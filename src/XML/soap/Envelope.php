@@ -39,7 +39,8 @@ final class Envelope extends AbstractSoapElement
      * @param \SimpleSAML\SOAP\XML\soap\Header|null $header
      * @param \DOMAttr[] $namespacedAttributes
      */
-    public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = []) {
+    public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = [])
+    {
         $this->setBody($body);
         $this->setHeader($header);
         $this->setAttributesNS($namespacedAttributes);
@@ -108,7 +109,6 @@ final class Envelope extends AbstractSoapElement
             self::getAttributesNSFromXML($xml)
         );
     }
-
 
 
     /**

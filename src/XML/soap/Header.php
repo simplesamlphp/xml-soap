@@ -28,7 +28,8 @@ final class Header extends AbstractSoapElement
      * @param \SimpleSAML\XML\Chunk[] $children
      * @param \DOMAttr[] $namespacedAttributes
      */
-    public function __construct(array $children = [], array $namespacedAttributes = []) {
+    public function __construct(array $children = [], array $namespacedAttributes = [])
+    {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -73,7 +74,6 @@ final class Header extends AbstractSoapElement
             self::getAttributesNSFromXML($xml)
         );
     }
-
 
 
     /**
