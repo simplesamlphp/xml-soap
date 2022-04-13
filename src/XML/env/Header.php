@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\SOAP\XML\env;
 
+use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;

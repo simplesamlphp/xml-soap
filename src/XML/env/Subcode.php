@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\SOAP\XML\env;
 
+use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
