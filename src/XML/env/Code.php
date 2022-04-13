@@ -4,6 +4,7 @@ namespace SimpleSAML\SOAP\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
@@ -59,8 +60,8 @@ final class Code extends AbstractSoapElement
     protected function setValue(Value $value): void
     {
         Assert::oneOf(
-            $value->getValue(),
-            Constants::FAULT_CODES,
+            $value->getContent(),
+            C::FAULT_CODES,
             'Invalid top-level Value',
             ProtocolViolationException::class
         );

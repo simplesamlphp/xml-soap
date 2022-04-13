@@ -5,6 +5,7 @@ namespace SimpleSAML\SOAP\XML\env;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -20,7 +21,7 @@ final class Body extends AbstractSoapElement
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = Constants::XS_ANY_NS_ANY;
+    public const NAMESPACE = C::XS_ANY_NS_ANY;
 
 
     /**
@@ -92,7 +93,7 @@ final class Body extends AbstractSoapElement
         }
 
         foreach ($this->elements as $child) {
-            $e->appendChild($e->ownerDocument->importNode($child->getXML(), true));
+            $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
         }
 
         return $e;

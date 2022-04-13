@@ -215,7 +215,7 @@ final class Fault extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         $this->code->toXML($e);
-        $this->resson->toXML($e);
+        $this->reason->toXML($e);
 
         if ($this->node !== null) {
             $this->node->toXML($e);
