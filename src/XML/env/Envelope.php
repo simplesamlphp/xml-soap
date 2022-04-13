@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
@@ -9,7 +9,7 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 
 /**
- * Class representing a soap:Envelope element.
+ * Class representing a env:Envelope element.
  *
  * @package simplesaml/xml-soap
  */
@@ -20,23 +20,23 @@ final class Envelope extends AbstractSoapElement
     /**
      * The Header element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Header|null
+     * @var \SimpleSAML\SOAP\XML\env\Header|null
      */
     protected ?Header $header;
 
     /**
      * The Body element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Body
+     * @var \SimpleSAML\SOAP\XML\env\Body
      */
     protected Body $body;
 
 
     /**
-     * Initialize a soap:Envelope
+     * Initialize a env:Envelope
      *
-     * @param \SimpleSAML\SOAP\XML\soap\Body $body
-     * @param \SimpleSAML\SOAP\XML\soap\Header|null $header
+     * @param \SimpleSAML\SOAP\XML\env\Body $body
+     * @param \SimpleSAML\SOAP\XML\env\Header|null $header
      * @param \DOMAttr[] $namespacedAttributes
      */
     public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = [])
@@ -48,7 +48,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Body
+     * @return \SimpleSAML\SOAP\XML\env\Body
      */
     public function getBody(): Body
     {
@@ -57,7 +57,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Body $body
+     * @param \SimpleSAML\SOAP\XML\env\Body $body
      */
     protected function setBody(Body $body): void
     {
@@ -66,7 +66,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Header|null
+     * @return \SimpleSAML\SOAP\XML\env\Header|null
      */
     public function getHeader(): ?Header
     {
@@ -75,7 +75,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Header|null $header
+     * @param \SimpleSAML\SOAP\XML\env\Header|null $header
      */
     protected function setHeader(?Header $header): void
     {

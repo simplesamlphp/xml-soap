@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
@@ -8,7 +8,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 
 /**
- * Class representing a soap:Fault element.
+ * Class representing a env:Fault element.
  *
  * @package simplesaml/xml-soap
  */
@@ -17,47 +17,47 @@ final class Fault extends AbstractSoapElement
     /**
      * The Code element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Code
+     * @var \SimpleSAML\SOAP\XML\env\Code
      */
     protected Code $code;
 
     /**
      * The Reason element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Reason
+     * @var \SimpleSAML\SOAP\XML\env\Reason
      */
     protected Reason $reason;
 
     /**
      * The Node element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Node|null
+     * @var \SimpleSAML\SOAP\XML\env\Node|null
      */
     protected ?Node $node;
 
     /**
      * The Role element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Role|null
+     * @var \SimpleSAML\SOAP\XML\env\Role|null
      */
     protected ?Role $role;
 
     /**
      * The Detail element
      *
-     * @var \SimpleSAML\SOAP\XML\soap\Detail|null
+     * @var \SimpleSAML\SOAP\XML\env\Detail|null
      */
     protected ?Detail $detail;
 
 
     /**
-     * Initialize a soap:Fault
+     * Initialize a env:Fault
      *
-     * @param \SimpleSAML\SOAP\XML\soap\Code $code
-     * @param \SimpleSAML\SOAP\XML\soap\Reason $reason
-     * @param \SimpleSAML\SOAP\XML\soap\Node|null $node
-     * @param \SimpleSAML\SOAP\XML\soap\Role|null $role
-     * @param \SimpleSAML\SOAP\XML\soap\Detail|null $detail
+     * @param \SimpleSAML\SOAP\XML\env\Code $code
+     * @param \SimpleSAML\SOAP\XML\env\Reason $reason
+     * @param \SimpleSAML\SOAP\XML\env\Node|null $node
+     * @param \SimpleSAML\SOAP\XML\env\Role|null $role
+     * @param \SimpleSAML\SOAP\XML\env\Detail|null $detail
      */
     public function __construct(
         Code $code,
@@ -75,7 +75,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Code
+     * @return \SimpleSAML\SOAP\XML\env\Code
      */
     public function getCode(): Code
     {
@@ -84,7 +84,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Code $code
+     * @param \SimpleSAML\SOAP\XML\env\Code $code
      */
     protected function setCode(Code $code): void
     {
@@ -93,7 +93,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Reason
+     * @return \SimpleSAML\SOAP\XML\env\Reason
      */
     public function getReason(): Reason
     {
@@ -102,7 +102,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Reason $reason
+     * @param \SimpleSAML\SOAP\XML\env\Reason $reason
      */
     protected function setReason(Reason $reason): void
     {
@@ -111,7 +111,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Node|null
+     * @return \SimpleSAML\SOAP\XML\env\Node|null
      */
     public function getNode(): ?Node
     {
@@ -120,7 +120,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Node|null $node
+     * @param \SimpleSAML\SOAP\XML\env\Node|null $node
      */
     protected function setNode(?Node $node): void
     {
@@ -129,7 +129,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Role|null
+     * @return \SimpleSAML\SOAP\XML\env\Role|null
      */
     public function getRole(): ?Role
     {
@@ -138,7 +138,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Role|null $role
+     * @param \SimpleSAML\SOAP\XML\env\Role|null $role
      */
     protected function setRole(?Role $role): void
     {
@@ -147,7 +147,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\soap\Detail|null
+     * @return \SimpleSAML\SOAP\XML\env\Detail|null
      */
     public function getDetail(): ?Detail
     {
@@ -156,7 +156,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\soap\Detail|null $detail
+     * @param \SimpleSAML\SOAP\XML\env\Detail|null $detail
      */
     protected function setDetail(?Detail $detail): void
     {

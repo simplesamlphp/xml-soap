@@ -1,23 +1,24 @@
 <?php
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
+use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
- * Class representing a soap:Value element.
+ * Class representing a env:Value element.
  *
  * @package simplesaml/xml-soap
  */
 final class Value extends AbstractSoapElement
 {
-    use XML StringElementTrait;
+    use XMLStringElementTrait;
 
 
     /**
-     * Initialize a soap:Value
+     * Initialize a env:Value
      *
      * @param string $content
      */

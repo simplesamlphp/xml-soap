@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
@@ -9,7 +9,7 @@ use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 
 /**
- * Class representing a soap:Body element.
+ * Class representing a env:Body element.
  *
  * @package simplesaml/xml-soap
  */

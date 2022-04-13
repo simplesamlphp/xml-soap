@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\XML\AbstractXMLElement;
 use SimpleSAML\SOAP\Constants as C;
@@ -18,5 +18,5 @@ abstract class AbstractSoapElement extends AbstractXMLElement
     public const NS = C::NS_SOAP_ENV;
 
     /** @var string */
-    public const NS_PREFIX = 'soap';
+    public const NS_PREFIX = 'env';
 }

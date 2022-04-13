@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\SOAP\XML\soap;
+namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
@@ -9,7 +9,7 @@ use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 
 /**
- * Class representing a soap:Header element.
+ * Class representing a env:Header element.
  *
  * @package simplesaml/xml-soap
  */
@@ -23,7 +23,7 @@ final class Header extends AbstractSoapElement
 
 
     /**
-     * Initialize a soap:Header
+     * Initialize a env:Header
      *
      * @param \SimpleSAML\XML\Chunk[] $children
      * @param \DOMAttr[] $namespacedAttributes
