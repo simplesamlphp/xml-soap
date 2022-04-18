@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\SOAP\XML\env;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\XML\env\Subcode;
 use SimpleSAML\SOAP\XML\env\Value;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -14,14 +15,14 @@ use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\SOAP\XML\env\ValueTest
+ * Class \SimpleSAML\SOAP\XML\env\SubcodeTest
  *
- * @covers \SimpleSAML\SOAP\XML\env\Value
+ * @covers \SimpleSAML\SOAP\XML\env\Subcode
  * @covers \SimpleSAML\SOAP\XML\env\AbstractSoapElement
  *
  * @package simplesamlphp/xml-soap
  */
-final class ValueTest extends TestCase
+final class SubcodeTest extends TestCase
 {
     use SerializableXMLTestTrait;
 
@@ -30,10 +31,10 @@ final class ValueTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testedClass = Value::class;
+        $this->testedClass = Subcode::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Value.xml'
+            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Subcode.xml'
         );
     }
 
@@ -42,11 +43,11 @@ final class ValueTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $value = new Value(Value::NS_PREFIX . ':Sender');
+        $subcode = new Subcode(new Value('m:SomethingNotFromSpec'), new Subcode(new Value('m:MessageTimeout')));
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($value)
+            strval($subcode)
         );
     }
 
@@ -55,7 +56,10 @@ final class ValueTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $value = Value::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals(Value::NS_PREFIX . ':Sender', $value->getContent());
+        $subcode = Subcode::fromXML($this->xmlRepresentation->documentElement);
+        $this->assertEquals('m:SomethingNotFromSpec', $subcode->getValue()->getContent());
+
+        $secondary = $subcode->getSubcode();
+        $this->assertEquals('m:MessageTimeout', $secondary->getValue()->getContent());
     }
 }

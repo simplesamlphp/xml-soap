@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\SOAP\XML\env;
 
+use DOMAttr;
 use DOMElement;
+use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\XMLStringElementTrait;
@@ -16,15 +18,38 @@ final class Value extends AbstractSoapElement
 {
     use XMLStringElementTrait;
 
+    /** @var \DOMAttr|null */
+    protected $node = null;
+
 
     /**
      * Initialize a env:Value
      *
      * @param string $content
+     * @param DOMAttr|null $node
      */
-    public function __construct(string $content)
+    public function __construct(string $content, ?DOMAttr $node = null)
     {
         $this->setContent($content);
+        $this->setNode($node);
+    }
+
+
+    /**
+     * @return \DOMAttr|null
+     */
+    public function getNode(): ?DOMAttr
+    {
+        return $this->node;
+    }
+
+
+    /**
+     * @param \DOMAttr|null $node
+     */
+    private function setNode(?DOMAttr $node)
+    {
+        $this->node = $node;
     }
 
 
@@ -42,6 +67,26 @@ final class Value extends AbstractSoapElement
 
 
     /**
+     * Convert this element to XML.
+     *
+     * @param \DOMElement|null $parent The element we should append this element to.
+     * @return \DOMElement
+     */
+    public function toXML(DOMElement $parent = null): DOMElement
+    {
+        $e = $this->instantiateParentElement($parent);
+        $e->textContent = $this->getContent();
+
+        if ($this->node !== null) {
+            if (!($e->hasAttribute($this->node->localName))) {
+               $e->setAttributeNode($this->getNode());
+            }
+        }
+
+        return $e;
+    }
+
+    /**
      * Convert XML into a Value
      *
      * @param \DOMElement $xml The XML element we should load
@@ -55,6 +100,23 @@ final class Value extends AbstractSoapElement
         Assert::same($xml->localName, 'Value', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Value::NS, InvalidDOMElementException::class);
 
-        return new self($xml->textContent);
+        @list($prefix, $localName) = preg_split('/:/', $xml->textContent, 2);
+        if ($localName === null) {
+            // We don't have a prefixed value here
+            $prefix = null;
+            $localName = $xml->textContent;
+        }
+
+        $node = null;
+        if ($prefix !== null) {
+            $node = $xml->ownerDocument->documentElement->getAttributeNode('xmlns:' . $prefix);
+            if ($node !== false) {
+                $node = new DOMAttr('xmlns:' . $prefix, $node->namespaceURI);
+            } else {
+                $node = null;
+            }
+        }
+
+        return new self($xml->textContent, $node);
     }
 }
