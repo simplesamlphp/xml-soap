@@ -104,7 +104,6 @@ final class Value extends AbstractSoapElement
         if ($localName === null) {
             // We don't have a prefixed value here
             $prefix = null;
-            $localName = $xml->textContent;
         }
 
         $node = null;
