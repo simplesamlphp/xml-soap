@@ -62,7 +62,7 @@ final class Fault extends AbstractSoapElement
      */
     public function __construct(
         Code $code,
-        Reason $reson,
+        Reason $reason,
         ?Node $node = null,
         ?Role $role = null,
         ?Detail $detail = null
