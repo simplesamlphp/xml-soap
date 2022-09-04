@@ -1,4 +1,4 @@
-<env:Subcode xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:m="http://www.example.org/timeouts">
+<env:Subcode xmlns:env="http://www.w3.org/2003/05/soap-envelope">
   <env:Value>m:SomethingNotFromSpec</env:Value>
   <env:Subcode>
     <env:Value>m:MessageTimeout</env:Value>
