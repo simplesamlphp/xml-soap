@@ -79,7 +79,7 @@ final class Value extends AbstractSoapElement
 
         if ($this->node !== null) {
             if (!($e->hasAttribute($this->node->localName))) {
-               $e->setAttributeNode($this->getNode());
+                $e->setAttributeNode($this->getNode());
             }
         }
 
