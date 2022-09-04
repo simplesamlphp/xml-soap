@@ -47,7 +47,7 @@ final class Value extends AbstractSoapElement
     /**
      * @param \DOMAttr|null $node
      */
-    private function setNode(?DOMAttr $node)
+    private function setNode(?DOMAttr $node): void
     {
         $this->node = $node;
     }
