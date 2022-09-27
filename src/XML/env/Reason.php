@@ -71,12 +71,12 @@ final class Reason extends AbstractSoapElement
      * Convert XML into a Value
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'Text', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Text::NS, InvalidDOMElementException::class);
@@ -84,6 +84,6 @@ final class Reason extends AbstractSoapElement
         $text = Text::getChildrenOfClass($xml);
         Assert::minCount(1, $text, SchemaViolationException::class);
 
-        return new self($text);
+        return new static($text);
     }
 }

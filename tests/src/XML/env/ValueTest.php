@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\SOAP\XML\env;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\XML\env\Value;
-use SimpleSAML\Test\XML\SerializableXMLTestTrait;
+use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -23,7 +23,7 @@ use function strval;
  */
 final class ValueTest extends TestCase
 {
-    use SerializableXMLTestTrait;
+    use SerializableElementTestTrait;
 
 
     /**

@@ -7,7 +7,7 @@ use DOMElement;
 use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\XMLStringElementTrait;
+use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class representing a env:Value element.
@@ -16,7 +16,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  */
 final class Value extends AbstractSoapElement
 {
-    use XMLStringElementTrait;
+    use StringElementTrait;
 
     /** @var \DOMAttr|null */
     protected $node = null;
@@ -90,12 +90,12 @@ final class Value extends AbstractSoapElement
      * Convert XML into a Value
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'Value', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Value::NS, InvalidDOMElementException::class);
@@ -116,6 +116,6 @@ final class Value extends AbstractSoapElement
             }
         }
 
-        return new self($xml->textContent, $node);
+        return new static($xml->textContent, $node);
     }
 }

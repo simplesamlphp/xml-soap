@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP\XML\env;
 
-use SimpleSAML\XML\AbstractXMLElement;
+use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\SOAP\Constants as C;
 
 /**
@@ -12,7 +12,7 @@ use SimpleSAML\SOAP\Constants as C;
  *
  * @package simplesamlphp/xml-soap
  */
-abstract class AbstractSoapElement extends AbstractXMLElement
+abstract class AbstractSoapElement extends AbstractElement
 {
     /** @var string */
     public const NS = C::NS_SOAP_ENV;

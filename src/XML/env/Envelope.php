@@ -88,12 +88,12 @@ final class Envelope extends AbstractSoapElement
      * Convert XML into an Envelope element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): self
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'Envelope', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Envelope::NS, InvalidDOMElementException::class);
@@ -104,7 +104,7 @@ final class Envelope extends AbstractSoapElement
         $header = Header::getChildrenOfClass($xml);
         Assert::maxCount($header, 1, 'Cannot process more than one Header element.', TooManyElementsException::class);
 
-        return new self(
+        return new static(
             array_pop($body),
             empty($header) ? null : array_pop($header),
             self::getAttributesNSFromXML($xml)

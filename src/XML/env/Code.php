@@ -91,12 +91,12 @@ final class Code extends AbstractSoapElement
      * Convert XML into an Code element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): self
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'Code', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Code::NS, InvalidDOMElementException::class);
@@ -107,7 +107,7 @@ final class Code extends AbstractSoapElement
         $subcode = Subcode::getChildrenOfClass($xml);
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
 
-        return new self(
+        return new static(
             array_pop($value),
             empty($subcode) ? null : array_pop($subcode)
         );

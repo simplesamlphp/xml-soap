@@ -52,12 +52,12 @@ final class Header extends AbstractSoapElement
      * Convert XML into an Header element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): self
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'Header', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Header::NS, InvalidDOMElementException::class);
@@ -71,7 +71,7 @@ final class Header extends AbstractSoapElement
             $children[] = new Chunk($child);
         }
 
-        return new self(
+        return new static(
             $children,
             self::getAttributesNSFromXML($xml)
         );
