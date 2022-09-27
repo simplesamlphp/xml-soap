@@ -10,11 +10,11 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\StringElementTrait;
 
 /**
- * Class representing a env:Value element.
+ * Class representing a env:Text element.
  *
  * @package simplesaml/xml-soap
  */
-final class Value extends AbstractSoapElement
+final class Text extends AbstractSoapElement
 {
     use StringElementTrait;
 
@@ -23,7 +23,7 @@ final class Value extends AbstractSoapElement
 
 
     /**
-     * Initialize a env:Value
+     * Initialize a env:Text
      *
      * @param string $content
      * @param DOMAttr|null $node
@@ -87,7 +87,7 @@ final class Value extends AbstractSoapElement
     }
 
     /**
-     * Convert XML into a Value
+     * Convert XML into a Text
      *
      * @param \DOMElement $xml The XML element we should load
      * @return static
@@ -97,8 +97,8 @@ final class Value extends AbstractSoapElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'Value', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Value::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, 'Text', InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, Text::NS, InvalidDOMElementException::class);
 
         @list($prefix, $localName) = preg_split('/:/', $xml->textContent, 2);
         if ($localName === null) {
