@@ -45,7 +45,7 @@ final class Reason extends AbstractSoapElement
     private function setText(array $text): void
     {
         Assert::allIsInstanceOf($text, Text::class, SchemaViolationException::class);
-        Assert::minCount(1, $text, SchemaViolationException::class);
+        Assert::minCount($text, 1, SchemaViolationException::class);
         $this->text = $text;
     }
 
@@ -82,7 +82,7 @@ final class Reason extends AbstractSoapElement
         Assert::same($xml->namespaceURI, Text::NS, InvalidDOMElementException::class);
 
         $text = Text::getChildrenOfClass($xml);
-        Assert::minCount(1, $text, SchemaViolationException::class);
+        Assert::minCount($text, 1, SchemaViolationException::class);
 
         return new static($text);
     }
