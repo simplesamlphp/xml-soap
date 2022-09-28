@@ -4,7 +4,7 @@ namespace SimpleSAML\SOAP\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\XML\Text;
+use SimpleSAML\SOAP\XML\env\Text;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
@@ -15,14 +15,14 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 final class Reason extends AbstractSoapElement
 {
-    /** @var \SimpleSAML\SOAP\XML\Text[] */
+    /** @var \SimpleSAML\SOAP\XML\env\Text[] */
     protected array $text;
 
 
     /**
      * Initialize a env:Reason
      *
-     * @param \SimpleSAML\SOAP\XML\Text[] $text
+     * @param \SimpleSAML\SOAP\XML\env\Text[] $text
      */
     public function __construct(array $text)
     {
@@ -31,7 +31,7 @@ final class Reason extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\Text[]
+     * @return \SimpleSAML\SOAP\XML\env\Text[]
      */
     public function getText(): array
     {
@@ -40,7 +40,7 @@ final class Reason extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\Text $text
+     * @param \SimpleSAML\SOAP\XML\env\Text[] $text
      */
     private function setText(array $text): void
     {
@@ -78,8 +78,8 @@ final class Reason extends AbstractSoapElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'Text', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Text::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, 'Reason', InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, Reason::NS, InvalidDOMElementException::class);
 
         $text = Text::getChildrenOfClass($xml);
         Assert::minCount($text, 1, SchemaViolationException::class);
