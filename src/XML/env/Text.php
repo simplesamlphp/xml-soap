@@ -6,8 +6,9 @@ use DOMAttr;
 use DOMElement;
 use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\LocalizedStringElementTrait;
 
 /**
  * Class representing a env:Text element.
@@ -16,40 +17,19 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class Text extends AbstractSoapElement
 {
-    use StringElementTrait;
-
-    /** @var \DOMAttr|null */
-    protected $node = null;
+    use LocalizedStringElementTrait;
 
 
     /**
      * Initialize a env:Text
      *
+     * @param string $language
      * @param string $content
-     * @param DOMAttr|null $node
      */
-    public function __construct(string $content, ?DOMAttr $node = null)
+    public function __construct(string $language, string $content)
     {
         $this->setContent($content);
-        $this->setNode($node);
-    }
-
-
-    /**
-     * @return \DOMAttr|null
-     */
-    public function getNode(): ?DOMAttr
-    {
-        return $this->node;
-    }
-
-
-    /**
-     * @param \DOMAttr|null $node
-     */
-    private function setNode(?DOMAttr $node): void
-    {
-        $this->node = $node;
+        $this->setLanguage($language);
     }
 
 
@@ -63,59 +43,5 @@ final class Text extends AbstractSoapElement
     protected function validateContent(string $content): void
     {
         Assert::notWhitespaceOnly($content);
-    }
-
-
-    /**
-     * Convert this element to XML.
-     *
-     * @param \DOMElement|null $parent The element we should append this element to.
-     * @return \DOMElement
-     */
-    public function toXML(DOMElement $parent = null): DOMElement
-    {
-        $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
-
-        if ($this->node !== null) {
-            if (!($e->hasAttribute($this->node->localName))) {
-                $e->setAttributeNode($this->getNode());
-            }
-        }
-
-        return $e;
-    }
-
-    /**
-     * Convert XML into a Text
-     *
-     * @param \DOMElement $xml The XML element we should load
-     * @return static
-     *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
-     *   If the qualified name of the supplied element is wrong
-     */
-    public static function fromXML(DOMElement $xml): static
-    {
-        Assert::same($xml->localName, 'Text', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Text::NS, InvalidDOMElementException::class);
-
-        @list($prefix, $localName) = preg_split('/:/', $xml->textContent, 2);
-        if ($localName === null) {
-            // We don't have a prefixed value here
-            $prefix = null;
-        }
-
-        $node = null;
-        if ($prefix !== null) {
-            $node = $xml->ownerDocument->documentElement->getAttributeNode('xmlns:' . $prefix);
-            if ($node !== false) {
-                $node = new DOMAttr('xmlns:' . $prefix, $node->namespaceURI);
-            } else {
-                $node = null;
-            }
-        }
-
-        return new static($xml->textContent, $node);
     }
 }
