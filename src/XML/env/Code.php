@@ -59,8 +59,14 @@ final class Code extends AbstractSoapElement
      */
     protected function setValue(Value $value): void
     {
+        @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
+        if ($localName === null) {
+            // We don't have a prefixed value here
+            $localName = $prefix;
+        }
+
         Assert::oneOf(
-            $value->getContent(),
+            $localName,
             C::FAULT_CODES,
             'Invalid top-level Value',
             ProtocolViolationException::class
@@ -103,6 +109,16 @@ final class Code extends AbstractSoapElement
 
         $value = Value::getChildrenOfClass($xml);
         Assert::count($value, 1, 'Must contain exactly one Value', MissingElementException::class);
+
+        // Assert that the namespace of the value matches the SOAP-ENV namespace
+        @list($prefix, $localName) = preg_split('/:/', $value[0]->getContent(), 2);
+        if ($localName === null) {
+            // We don't have a prefixed value here
+            $namespace = $xml->lookupNamespaceUri(null);
+        } else {
+            $namespace = $xml->lookupNamespaceUri($prefix);
+        }
+        Assert::same($namespace, C::NS_SOAP_ENV);
 
         $subcode = Subcode::getChildrenOfClass($xml);
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
