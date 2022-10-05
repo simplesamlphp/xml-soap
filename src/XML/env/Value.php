@@ -6,8 +6,8 @@ use DOMAttr;
 use DOMElement;
 use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\XML\QNameStringElementTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class representing a env:Value element.
@@ -16,106 +16,18 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class Value extends AbstractSoapElement
 {
-    use StringElementTrait;
-
-    /** @var \DOMAttr|null */
-    protected $node = null;
+    use QNameStringElementTrait;
 
 
     /**
      * Initialize a env:Value
      *
-     * @param string $content
-     * @param DOMAttr|null $node
+     * @param string $qname
+     * @param string|null $namespaceUri
      */
-    public function __construct(string $content, ?DOMAttr $node = null)
+    public function __construct(string $qname, ?string $namespaceUri = null)
     {
-        $this->setContent($content);
-        $this->setNode($node);
-    }
-
-
-    /**
-     * @return \DOMAttr|null
-     */
-    public function getNode(): ?DOMAttr
-    {
-        return $this->node;
-    }
-
-
-    /**
-     * @param \DOMAttr|null $node
-     */
-    private function setNode(?DOMAttr $node): void
-    {
-        $this->node = $node;
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\Assert\AssertionFailedException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::notWhitespaceOnly($content);
-    }
-
-
-    /**
-     * Convert this element to XML.
-     *
-     * @param \DOMElement|null $parent The element we should append this element to.
-     * @return \DOMElement
-     */
-    public function toXML(DOMElement $parent = null): DOMElement
-    {
-        $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
-
-        if ($this->node !== null) {
-            if (!($e->hasAttribute($this->node->localName))) {
-                $e->setAttributeNode($this->getNode());
-            }
-        }
-
-        return $e;
-    }
-
-    /**
-     * Convert XML into a Value
-     *
-     * @param \DOMElement $xml The XML element we should load
-     * @return static
-     *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
-     *   If the qualified name of the supplied element is wrong
-     */
-    public static function fromXML(DOMElement $xml): static
-    {
-        Assert::same($xml->localName, 'Value', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Value::NS, InvalidDOMElementException::class);
-
-        @list($prefix, $localName) = preg_split('/:/', $xml->textContent, 2);
-        if ($localName === null) {
-            // We don't have a prefixed value here
-            $prefix = null;
-        }
-
-        $node = null;
-        if ($prefix !== null) {
-            $node = $xml->ownerDocument->documentElement->getAttributeNode('xmlns:' . $prefix);
-            if ($node !== false) {
-                $node = new DOMAttr('xmlns:' . $prefix, $node->namespaceURI);
-            } else {
-                $node = null;
-            }
-        }
-
-        return new static($xml->textContent, $node);
+        $this->setContent($qname);
+        $this->setContentNamespaceUri($namespaceUri);
     }
 }

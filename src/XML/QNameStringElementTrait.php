@@ -22,8 +22,8 @@ trait QNameStringElementTrait
     /** @var string */
     protected string $content;
 
-    /** @var string */
-    protected string $namespaceUri;
+    /** @var string|null */
+    protected ?string $namespaceUri;
 
 
     /**
@@ -52,11 +52,11 @@ trait QNameStringElementTrait
     /**
      * Set the namespaceUri.
      *
-     * @param string $namespaceUri
+     * @param string|null $namespaceUri
      */
-    protected function setContentNamespaceUri(string $namespaceUri): void
+    protected function setContentNamespaceUri(?string $namespaceUri): void
     {
-        Assert::validURI($namespaceUri, SchemaViolationException::class);
+        Assert::nullOrValidURI($namespaceUri, SchemaViolationException::class);
         $this->namespaceUri = $namespaceUri;
     }
 
@@ -64,9 +64,9 @@ trait QNameStringElementTrait
     /**
      * Get the namespace URI.
      *
-     * @return string
+     * @return string|null
      */
-    public function getContentNamespaceUri(): string
+    public function getContentNamespaceUri(): ?string
     {
         return $this->namespaceUri;
     }
@@ -132,9 +132,11 @@ trait QNameStringElementTrait
         $e = $this->instantiateParentElement($parent);
 
         list($prefix, $localName) = self::parseQName($this->content);
-        if ($e->lookupNamespaceUri($this->namespaceUri) === null && $e->lookupPrefix($prefix) === null) {
-            // The namespace is not yet available in the document - insert it
-            $e->setAttribute('xmlns:' . $prefix, $this->namespaceUri);
+        if ($this->namespaceUri !== null && $prefix !== null) {
+            if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($this->namespaceUri) === null) {
+                // The namespace is not yet available in the document - insert it
+                $e->setAttribute('xmlns:' . $prefix, $this->namespaceUri);
+            }
         }
 
         $e->textContent = ($prefix === null) ? $localName : ($prefix . ':' . $localName);

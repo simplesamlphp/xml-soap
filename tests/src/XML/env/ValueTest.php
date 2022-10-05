@@ -42,7 +42,7 @@ final class ValueTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $value = new Value(Value::NS_PREFIX . ':Sender');
+        $value = new Value(Value::NS_PREFIX . ':Sender', Value::NS);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
@@ -57,5 +57,6 @@ final class ValueTest extends TestCase
     {
         $value = Value::fromXML($this->xmlRepresentation->documentElement);
         $this->assertEquals(Value::NS_PREFIX . ':Sender', $value->getContent());
+        $this->assertEquals(Value::NS, $value->getContentNamespaceUri());
     }
 }

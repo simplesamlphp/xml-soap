@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\SOAP\XML\env;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\XML\env\Code;
 use SimpleSAML\SOAP\XML\env\Subcode;
 use SimpleSAML\SOAP\XML\env\Value;
@@ -45,8 +46,11 @@ final class CodeTest extends TestCase
     public function testMarshalling(): void
     {
         $code = new Code(
-            new Value('env:Sender'),
-            new Subcode(new Value('m:SomethingNotFromSpec'), new Subcode(new Value('m:MessageTimeout')))
+            new Value('env:Sender', C::NS_SOAP_ENV),
+            new Subcode(
+                new Value('m:SomethingNotFromSpec', 'http://www.example.org/timeouts'),
+                new Subcode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts')),
+            ),
         );
 
         $this->assertEquals(
