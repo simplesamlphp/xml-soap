@@ -143,7 +143,8 @@
   </xs:complexType>
 
 
-  <!-- Global element and associated types for managing version transition as described in Appendix A of the SOAP Version 1.2 Part 1 Recommendation  -->  <xs:complexType name="SupportedEnvType" >
+  <!-- Global element and associated types for managing version transition as described in Appendix A of the SOAP Version 1.2 Part 1 Recommendation  -->
+  <xs:complexType name="SupportedEnvType" >
     <xs:attribute name="qname" type="xs:QName" use="required" />
   </xs:complexType>
 
