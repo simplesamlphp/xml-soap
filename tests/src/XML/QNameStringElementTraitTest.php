@@ -17,9 +17,9 @@ use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\XML\QNameStringElementTraitTest
+ * Class \SimpleSAML\Test\SOAP\QNameStringElementTraitTest
  *
- * @covers \SimpleSAML\XML\QNameStringElementTrait
+ * @covers \SimpleSAML\SOAP\XML\QNameStringElementTrait
  *
  * @package simplesamlphp\xml-soap
  */
