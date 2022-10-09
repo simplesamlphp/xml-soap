@@ -1,10 +1,10 @@
-<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:m="http://www.example.org/timeouts" xmlns:xml="http://www.w3.org/XML/1998/namespace">
-  <env:Header>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:test="urn:test:something" test:attr1="testval1">
+  <env:Header test:attr1="testval1">
     <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
       <m:Item>Apples</m:Item>
     </m:GetPrice>
   </env:Header>
- <env:Body>
+  <env:Body test:attr1="testval1">
     <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
       <m:Item>Apples</m:Item>
     </m:GetPrice>
