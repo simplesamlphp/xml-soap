@@ -2,12 +2,8 @@
 
 namespace SimpleSAML\SOAP\XML\env;
 
-use DOMAttr;
-use DOMElement;
-use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\XML\QNameStringElementTrait;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 
 /**
  * Class representing a env:Value element.
