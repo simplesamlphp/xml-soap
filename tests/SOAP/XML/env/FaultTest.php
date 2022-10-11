@@ -57,9 +57,11 @@ final class FaultTest extends TestCase
             new Reason([new Text('en', 'Sender Timeout')]),
             new Node('urn:x-simplesamlphp:namespace'),
             new Role('urn:x-simplesamlphp:namespace'),
-            new Detail([new Chunk(DOMDocumentFactory::fromString(
-                '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>')->documentElement
-            )]),
+            new Detail([
+                new Chunk(DOMDocumentFactory::fromString(
+                    '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>'
+                )->documentElement)
+            ]),
         );
 
         $this->assertEquals(
