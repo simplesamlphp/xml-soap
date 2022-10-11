@@ -41,7 +41,7 @@ final class Upgrade extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\SupportedEnvelope $supportedEnvelope
+     * @param \SimpleSAML\SOAP\XML\env\SupportedEnvelope[] $supportedEnvelope
      */
     private function setSupportedEnvelope(array $supportedEnvelope): void
     {
