@@ -57,7 +57,10 @@ final class FaultTest extends TestCase
     public function testMarshalling(): void
     {
         $fault = new Fault(
-            new Code(new Value('env:Sender'), new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts'))),
+            new Code(
+                new Value('env:Sender'),
+                new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts'))
+            ),
             new Reason([new Text('en', 'Sender Timeout')]),
             new Node('urn:x-simplesamlphp:namespace'),
             new Role('urn:x-simplesamlphp:namespace'),
