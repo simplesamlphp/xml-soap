@@ -83,9 +83,6 @@ final class EnvelopeTest extends TestCase
         $header = $envelope->getHeader();
         $this->assertNotNull($header);
 
-        $body = $envelope->getBody();
-        $this->assertNotNull($body);
-
         $attributes = $envelope->getAttributesNS();
         $this->assertCount(1, $attributes);
 
