@@ -10,7 +10,7 @@ namespace SimpleSAML\SOAP;
  * @package simplesamlphp/xml-soap
  */
 
-class Constants
+class Constants extends \SimpleSAML\XML\Constants
 {
     /**
      * The namespace for the SOAP envelope.
