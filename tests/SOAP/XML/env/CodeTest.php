@@ -74,6 +74,6 @@ final class CodeTest extends TestCase
         $this->assertEquals('m:SomethingNotFromSpec', $subcode->getValue()->getContent());
 
         $secondary = $subcode->getSubcode();
-        $this->assertEquals('m:MessageTimeout', $secondary->getValue()->getContent());
+        $this->assertEquals('m:MessageTimeout', $secondary?->getValue()->getContent());
     }
 }
