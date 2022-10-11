@@ -11,6 +11,7 @@ use SimpleSAML\SOAP\XML\env\Body;
 use SimpleSAML\SOAP\XML\env\Envelope;
 use SimpleSAML\SOAP\XML\env\Header;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -28,12 +29,11 @@ final class EnvelopeTest extends TestCase
 {
     use SerializableElementTestTrait;
 
-    /** @var \DOMDocument $body */
-    private DOMDocument $body;
+    /** @var \DOMElement $bodyContent */
+    private DOMElement $bodyContent;
 
-    /** @var \DOMDocument $header */
-    private DOMDocument $header;
-
+    /** @var \DOMElement $headerContent */
+    private DOMElement $headerContent;
 
     /**
      */
@@ -45,13 +45,13 @@ final class EnvelopeTest extends TestCase
             dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Envelope.xml',
         );
 
-        $this->body = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Body.xml',
-        );
+        $this->bodyContent = DOMDocumentFactory::fromString(
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+        )->documentElement;
 
-        $this->header = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Header.xml',
-        );
+        $this->headerContent = DOMDocumentFactory::fromString(
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+        )->documentElement;
     }
 
 
@@ -62,11 +62,10 @@ final class EnvelopeTest extends TestCase
         $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
         $domAttr->value = 'testval1';
 
-        $envelope = new Envelope(
-            Body::fromXML($this->body->documentElement),
-            Header::fromXML($this->header->documentElement),
-            [$domAttr],
-        );
+        $body = new Body([new Chunk($this->bodyContent)], [$domAttr]);
+        $header = new Header([new Chunk($this->headerContent)], [$domAttr]);
+
+        $envelope = new Envelope($body, $header, [$domAttr]);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
