@@ -27,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\SOAP\\": ["tests/src/", "tests/Utils/"]
+            "SimpleSAML\\Test\\SOAP\\": ["tests/SOAP/", "tests/Utils/"]
         }
     },
     "extra": {
