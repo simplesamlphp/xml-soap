@@ -16,6 +16,7 @@ use SimpleSAML\SOAP\XML\env\Role;
 use SimpleSAML\SOAP\XML\env\Subcode;
 use SimpleSAML\SOAP\XML\env\Text;
 use SimpleSAML\SOAP\XML\env\Value;
+use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -33,6 +34,7 @@ use function strval;
  */
 final class FaultTest extends TestCase
 {
+    use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
 
@@ -41,6 +43,8 @@ final class FaultTest extends TestCase
     protected function setUp(): void
     {
         $this->testedClass = Fault::class;
+
+        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/soap-envelope.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Fault.xml'
@@ -53,7 +57,7 @@ final class FaultTest extends TestCase
     public function testMarshalling(): void
     {
         $fault = new Fault(
-            new Code(new Value('env:Sender'), new SubCode(new Value('m:MessageTimeout'))),
+            new Code(new Value('env:Sender'), new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts'))),
             new Reason([new Text('en', 'Sender Timeout')]),
             new Node('urn:x-simplesamlphp:namespace'),
             new Role('urn:x-simplesamlphp:namespace'),

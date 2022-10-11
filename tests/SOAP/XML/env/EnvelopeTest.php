@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\XML\env\Body;
 use SimpleSAML\SOAP\XML\env\Envelope;
 use SimpleSAML\SOAP\XML\env\Header;
+use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -27,6 +28,7 @@ use function strval;
  */
 final class EnvelopeTest extends TestCase
 {
+    use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $bodyContent */
@@ -40,6 +42,8 @@ final class EnvelopeTest extends TestCase
     protected function setUp(): void
     {
         $this->testedClass = Envelope::class;
+
+        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/soap-envelope.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/env_Envelope.xml',
