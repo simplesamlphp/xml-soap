@@ -85,7 +85,7 @@ final class NotUnderstood extends AbstractSoapElement
      * Splits a QName into an array holding the prefix (or null if no prefix is available) and the localName
      *
      * @param string $qName  The qualified name
-     * @return string[]
+     * @return array{null|string, string}
      */
     private static function parseQName(string $qName): array
     {
@@ -118,15 +118,12 @@ final class NotUnderstood extends AbstractSoapElement
         Assert::same($xml->localName, 'NotUnderstood', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, NotUnderstood::NS, InvalidDOMElementException::class);
 
+        /** @psalm-var string $qname */
         $qname = self::getAttribute($xml, 'qname');
 
         list($prefix, $localName) = self::parseQName($qname);
-        if ($prefix === null) {
-            // We don't have a prefixed value here; use target namespace
-            $namespace = $xml->lookupNamespaceUri(null);
-        } else {
-            $namespace = $xml->lookupNamespaceUri($prefix);
-        }
+        /** @psalm-suppress PossiblyNullArgument */
+        $namespace = $xml->lookupNamespaceUri($prefix);
 
         return new static($qname, $namespace);
     }
@@ -144,7 +141,9 @@ final class NotUnderstood extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         list($prefix, $localName) = self::parseQName($this->qname);
+        /** @psalm-suppress RedundantConditionGivenDocblockType */
         if ($this->namespaceUri !== null && $prefix !== null) {
+            /** @psalm-suppress TypeDoesNotContainNull */
             if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($this->namespaceUri) === null) {
                 // The namespace is not yet available in the document - insert it
                 $e->setAttribute('xmlns:' . $prefix, $this->namespaceUri);

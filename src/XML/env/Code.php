@@ -114,12 +114,7 @@ final class Code extends AbstractSoapElement
 
         // Assert that the namespace of the value matches the SOAP-ENV namespace
         @list($prefix, $localName) = preg_split('/:/', $value[0]->getContent(), 2);
-        if ($localName === null) {
-            // We don't have a prefixed value here
-            $namespace = $xml->lookupNamespaceUri(null);
-        } else {
-            $namespace = $xml->lookupNamespaceUri($prefix);
-        }
+        $namespace = $xml->lookupNamespaceUri($prefix);
         Assert::same($namespace, C::NS_SOAP_ENV);
 
         $subcode = Subcode::getChildrenOfClass($xml);

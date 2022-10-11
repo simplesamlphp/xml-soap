@@ -65,6 +65,7 @@ final class SupportedEnvelope extends AbstractSoapElement
         Assert::same($xml->localName, 'SupportedEnvelope', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, SupportedEnvelope::NS, InvalidDOMElementException::class);
 
+        /** @psalm-var string $qname */
         $qname = self::getAttribute($xml, 'qname');
 
         return new static($qname);

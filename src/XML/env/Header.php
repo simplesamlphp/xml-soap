@@ -95,6 +95,7 @@ final class Header extends AbstractSoapElement
         }
 
         foreach ($this->elements as $child) {
+            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
             $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
         }
 
