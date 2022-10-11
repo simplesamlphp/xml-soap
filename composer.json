@@ -14,7 +14,7 @@
         "ext-soap": "*",
 
         "psr/log": "^2.0 || ^3.0",
-        "simplesamlphp/xml-common": "^1.0.1",
+        "simplesamlphp/xml-common": "^1.1.0",
         "simplesamlphp/assert": "^1.0.0"
     },
     "require-dev": {

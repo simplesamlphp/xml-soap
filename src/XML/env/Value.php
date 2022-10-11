@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\XML\QNameStringElementTrait;
+use SimpleSAML\XML\QNameElementTrait;
 
 /**
  * Class representing a env:Value element.
@@ -14,7 +14,7 @@ use SimpleSAML\SOAP\XML\QNameStringElementTrait;
  */
 final class Value extends AbstractSoapElement
 {
-    use QNameStringElementTrait;
+    use QNameElementTrait;
 
 
     /**
