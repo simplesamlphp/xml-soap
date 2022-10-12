@@ -226,7 +226,7 @@ final class Fault extends AbstractSoapElement
         if ($this->role !== null) {
             $this->role->toXML($e);
         }
-        if ($this->detail !== null) {
+        if ($this->detail !== null && !$this->detail->isEmptyElement()) {
             $this->detail->toXML($e);
         }
 
