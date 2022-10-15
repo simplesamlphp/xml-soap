@@ -56,7 +56,10 @@ final class ValueTest extends TestCase
     public function testUnmarshalling(): void
     {
         $value = Value::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals(Value::NS_PREFIX . ':Sender', $value->getContent());
-        $this->assertEquals(Value::NS, $value->getContentNamespaceUri());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($value)
+        );
     }
 }

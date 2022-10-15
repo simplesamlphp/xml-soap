@@ -83,16 +83,9 @@ final class DetailTest extends TestCase
     {
         $detail = Detail::fromXML($this->xmlRepresentation->documentElement);
 
-        $elements = $detail->getElements();
-        $this->assertFalse($detail->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $detail->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($detail)
+        );
     }
 }

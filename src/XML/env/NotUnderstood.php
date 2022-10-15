@@ -140,13 +140,14 @@ final class NotUnderstood extends AbstractSoapElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        list($prefix, $localName) = self::parseQName($this->qname);
+        list($prefix, $localName) = self::parseQName($this->getQName());
+        $namespaceUri = $this->getContentNamespaceUri();
         /** @psalm-suppress RedundantConditionGivenDocblockType */
-        if ($this->namespaceUri !== null && $prefix !== null) {
+        if ($namespaceUri !== null && $prefix !== null) {
             /** @psalm-suppress TypeDoesNotContainNull */
-            if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($this->namespaceUri) === null) {
+            if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($namespaceUri) === null) {
                 // The namespace is not yet available in the document - insert it
-                $e->setAttribute('xmlns:' . $prefix, $this->namespaceUri);
+                $e->setAttribute('xmlns:' . $prefix, $namespaceUri);
             }
         }
 

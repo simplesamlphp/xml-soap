@@ -66,14 +66,9 @@ final class CodeTest extends TestCase
     {
         $code = Code::fromXML($this->xmlRepresentation->documentElement);
 
-        $value = $code->getValue();
-        $this->assertEquals('env:Sender', $value->getContent());
-
-        $subcode = $code->getSubcode();
-        $this->assertNotNull($subcode);
-        $this->assertEquals('m:SomethingNotFromSpec', $subcode->getValue()->getContent());
-
-        $secondary = $subcode->getSubcode();
-        $this->assertEquals('m:MessageTimeout', $secondary?->getValue()->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($code)
+        );
     }
 }

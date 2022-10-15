@@ -87,16 +87,9 @@ final class HeaderTest extends TestCase
     {
         $header = Header::fromXML($this->xmlRepresentation->documentElement);
 
-        $elements = $header->getElements();
-        $this->assertFalse($header->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $header->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($header)
+        );
     }
 }

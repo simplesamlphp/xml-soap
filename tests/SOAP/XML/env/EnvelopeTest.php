@@ -84,15 +84,9 @@ final class EnvelopeTest extends TestCase
     {
         $envelope = Envelope::fromXML($this->xmlRepresentation->documentElement);
 
-        $header = $envelope->getHeader();
-        $this->assertNotNull($header);
-
-        $attributes = $envelope->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($envelope),
+        );
     }
 }

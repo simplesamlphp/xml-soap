@@ -87,16 +87,9 @@ final class BodyTest extends TestCase
     {
         $body = Body::fromXML($this->xmlRepresentation->documentElement);
 
-        $elements = $body->getElements();
-        $this->assertFalse($body->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $body->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($body)
+        );
     }
 }

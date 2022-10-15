@@ -81,7 +81,7 @@ final class SupportedEnvelope extends AbstractSoapElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('qname', $this->qname);
+        $e->setAttribute('qname', $this->getQName());
 
         return $e;
     }

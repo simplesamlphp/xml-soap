@@ -128,11 +128,11 @@ final class Envelope extends AbstractSoapElement
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
 
-        if ($this->header !== null && !$this->header->isEmptyElement()) {
-            $this->header->toXML($e);
+        if ($this->getHeader() !== null && !$this->getHeader()->isEmptyElement()) {
+            $this->getHeader()->toXML($e);
         }
 
-        $this->body->toXML($e);
+        $this->getBody()->toXML($e);
 
         return $e;
     }

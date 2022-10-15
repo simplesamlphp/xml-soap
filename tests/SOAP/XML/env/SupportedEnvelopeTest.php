@@ -56,6 +56,10 @@ final class SupportedEnvelopeTest extends TestCase
     public function testUnmarshalling(): void
     {
         $supportedEnvelope = SupportedEnvelope::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('ssp:Chunk', $supportedEnvelope->getQName());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($supportedEnvelope)
+        );
     }
 }

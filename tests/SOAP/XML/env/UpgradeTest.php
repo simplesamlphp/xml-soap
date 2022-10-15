@@ -61,6 +61,10 @@ final class UpgradeTest extends TestCase
     public function testUnmarshalling(): void
     {
         $upgrade = Upgrade::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('env:SupportedEnvelope', $upgrade->getSupportedEnvelope()[0]->getQName());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($upgrade)
+        );
     }
 }

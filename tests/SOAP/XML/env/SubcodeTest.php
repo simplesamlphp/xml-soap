@@ -57,9 +57,10 @@ final class SubcodeTest extends TestCase
     public function testUnmarshalling(): void
     {
         $subcode = Subcode::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('m:SomethingNotFromSpec', $subcode->getValue()->getContent());
 
-        $secondary = $subcode->getSubcode();
-        $this->assertEquals('m:MessageTimeout', $secondary?->getValue()->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($subcode)
+        );
     }
 }

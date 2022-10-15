@@ -98,9 +98,9 @@ final class Body extends AbstractSoapElement
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
 
-        foreach ($this->elements as $child) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
-            $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
+        foreach ($this->getElements() as $child) {
+            $child->toXML($e);
         }
 
         return $e;

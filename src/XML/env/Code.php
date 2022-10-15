@@ -138,10 +138,7 @@ final class Code extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         $this->value->toXML($e);
-
-        if ($this->subcode !== null) {
-            $this->subcode->toXML($e);
-        }
+        $this->subcode?->toXML($e);
 
         return $e;
     }

@@ -59,6 +59,10 @@ final class NotUnderstoodTest extends TestCase
     public function testUnmarshalling(): void
     {
         $notUnderstood = NotUnderstood::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('ssp:Chunk', $notUnderstood->getQName());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($notUnderstood)
+        );
     }
 }

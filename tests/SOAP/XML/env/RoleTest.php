@@ -55,6 +55,10 @@ final class RoleTest extends TestCase
     public function testUnmarshalling(): void
     {
         $role = Role::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('urn:x-simplesamlphp:namespace', $role->getContent());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($role)
+        );
     }
 }

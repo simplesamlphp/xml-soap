@@ -61,7 +61,7 @@ final class Upgrade extends AbstractSoapElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        foreach ($this->supportedEnvelope as $supportedEnvelope) {
+        foreach ($this->getSupportedEnvelope() as $supportedEnvelope) {
             $supportedEnvelope->toXML($e);
         }
 

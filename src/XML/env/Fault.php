@@ -216,18 +216,14 @@ final class Fault extends AbstractSoapElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $this->code->toXML($e);
-        $this->reason->toXML($e);
+        $this->getCode()->toXML($e);
+        $this->getReason()->toXML($e);
 
-        if ($this->node !== null) {
-            $this->node->toXML($e);
-        }
+        $this->getNode()?->toXML($e);
+        $this->getRole()?->toXML($e);
 
-        if ($this->role !== null) {
-            $this->role->toXML($e);
-        }
-        if ($this->detail !== null && !$this->detail->isEmptyElement()) {
-            $this->detail->toXML($e);
+        if ($this->getDetail() !== null && !$this->getDetail()->isEmptyElement()) {
+            $this->getDetail()->toXML($e);
         }
 
         return $e;

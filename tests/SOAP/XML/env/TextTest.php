@@ -55,7 +55,10 @@ final class TextTest extends TestCase
     public function testUnmarshalling(): void
     {
         $text = Text::fromXML($this->xmlRepresentation->documentElement);
-        $this->assertEquals('It\'s broken', $text->getContent());
-        $this->assertEquals('en', $text->getLanguage());
+
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($text)
+        );
     }
 }

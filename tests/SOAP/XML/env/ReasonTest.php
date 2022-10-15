@@ -59,12 +59,10 @@ final class ReasonTest extends TestCase
     public function testUnmarshalling(): void
     {
         $reason = Reason::fromXML($this->xmlRepresentation->documentElement);
-        $text = $reason->getText();
-        $this->assertCount(2, $text);
 
-        $this->assertEquals('It\'s broken', $text[0]->getContent());
-        $this->assertEquals('en', $text[0]->getLanguage());
-        $this->assertEquals('Het is stuk', $text[1]->getContent());
-        $this->assertEquals('nl', $text[1]->getLanguage());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($reason)
+        );
     }
 }

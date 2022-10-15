@@ -62,7 +62,7 @@ final class Reason extends AbstractSoapElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        foreach ($this->text as $text) {
+        foreach ($this->getText() as $text) {
             $text->toXML($e);
         }
 

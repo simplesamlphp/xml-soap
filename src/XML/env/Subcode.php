@@ -119,11 +119,8 @@ final class Subcode extends AbstractSoapElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $this->value->toXML($e);
-
-        if ($this->subcode !== null) {
-            $this->subcode->toXML($e);
-        }
+        $this->getValue()->toXML($e);
+        $this->getSubcode()?->toXML($e);
 
         return $e;
     }

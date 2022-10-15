@@ -84,21 +84,9 @@ final class FaultTest extends TestCase
     {
         $fault = Fault::fromXML($this->xmlRepresentation->documentElement);
 
-        $code = $fault->getCode();
-        $this->assertEquals('env:Sender', $code->getValue()->getContent());
-
-        $subcode = $code->getSubcode();
-        $this->assertEquals('m:MessageTimeout', $subcode?->getValue()->getContent());
-
-        $reason = $fault->getReason();
-        $this->assertEquals('en', $reason->getText()[0]->getLanguage());
-        $this->assertEquals('Sender Timeout', $reason->getText()[0]->getContent());
-
-        $this->assertEquals('urn:x-simplesamlphp:namespace', $fault->getNode()?->getContent());
-        $this->assertEquals('urn:x-simplesamlphp:namespace', $fault->getRole()?->getContent());
-
-        $detail = $fault->getDetail();
-        $this->assertNotNull($detail);
-        $this->assertCount(1, $detail->getElements());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($fault)
+        );
     }
 }
