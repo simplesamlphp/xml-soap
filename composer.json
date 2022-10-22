@@ -22,17 +22,20 @@
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\SOAP\\": "src/"
+            "SimpleSAML\\SOAP\\": "src/",
+            "SimpleSAML\\SOAP11\\": "src/SOAP11/",
+            "SimpleSAML\\SOAP12\\": "src/SOAP12/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\SOAP\\": ["tests/SOAP/", "tests/Utils/"]
+            "SimpleSAML\\Test\\SOAP11\\": ["tests/SOAP11/"],
+            "SimpleSAML\\Test\\SOAP12\\": ["tests/SOAP12/"]
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v1.0.x-dev"
+            "dev-master": "v2.0.x-dev"
         }
     },
     "config": {

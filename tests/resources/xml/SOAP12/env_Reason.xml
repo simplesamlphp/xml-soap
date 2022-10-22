@@ -1,0 +1,4 @@
+<env:Reason xmlns:env="http://www.w3.org/2003/05/soap-envelope/">
+  <env:Text xml:lang="en">It's broken</env:Text>
+  <env:Text xml:lang="nl">Het is stuk</env:Text>
+</env:Reason>
