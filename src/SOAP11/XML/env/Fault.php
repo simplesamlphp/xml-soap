@@ -77,7 +77,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP11\XML\env\Code $faultCode
+     * @param \SimpleSAML\SOAP11\XML\env\FaultCode $faultCode
      */
     protected function setFaultCode(FaultCode $faultCode): void
     {
@@ -160,7 +160,12 @@ final class Fault extends AbstractSoapElement
         Assert::count($faultString, 1, 'Must contain exactly one faultstring', MissingElementException::class);
 
         $faultActor = FaultActor::getChildrenOfClass($xml);
-        Assert::maxCount($faultActor, 1, 'Cannot process more than one faultactor element.', TooManyElementsException::class);
+        Assert::maxCount(
+            $faultActor,
+            1,
+            'Cannot process more than one faultactor element.',
+            TooManyElementsException::class
+        );
 
         $detail = Detail::getChildrenOfClass($xml);
         Assert::maxCount($detail, 1, 'Cannot process more than one detail element.', TooManyElementsException::class);

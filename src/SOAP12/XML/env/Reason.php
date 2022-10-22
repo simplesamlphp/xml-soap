@@ -17,14 +17,14 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 final class Reason extends AbstractSoapElement
 {
-    /** @var \SimpleSAML\SOAP\XML\env\Text[] */
+    /** @var \SimpleSAML\SOAP12\XML\env\Text[] */
     protected array $text;
 
 
     /**
      * Initialize a env:Reason
      *
-     * @param \SimpleSAML\SOAP\XML\env\Text[] $text
+     * @param \SimpleSAML\SOAP12\XML\env\Text[] $text
      */
     public function __construct(array $text)
     {
@@ -33,7 +33,7 @@ final class Reason extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Text[]
+     * @return \SimpleSAML\SOAP12\XML\env\Text[]
      */
     public function getText(): array
     {
@@ -42,7 +42,7 @@ final class Reason extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Text[] $text
+     * @param \SimpleSAML\SOAP12\XML\env\Text[] $text
      */
     private function setText(array $text): void
     {

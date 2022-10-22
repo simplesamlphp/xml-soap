@@ -16,14 +16,14 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 final class Upgrade extends AbstractSoapElement
 {
-    /** @var \SimpleSAML\SOAP\XML\env\SupportedEnvelope[] */
+    /** @var \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] */
     protected array $supportedEnvelope;
 
 
     /**
      * Initialize a env:Upgrade
      *
-     * @param \SimpleSAML\SOAP\XML\env\SupportedEnvelope[] $supportedEnvelope
+     * @param \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] $supportedEnvelope
      */
     public function __construct(array $supportedEnvelope)
     {
@@ -32,7 +32,7 @@ final class Upgrade extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\SupportedEnvelope[]
+     * @return \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[]
      */
     public function getSupportedEnvelope(): array
     {
@@ -41,7 +41,7 @@ final class Upgrade extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\SupportedEnvelope[] $supportedEnvelope
+     * @param \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] $supportedEnvelope
      */
     private function setSupportedEnvelope(array $supportedEnvelope): void
     {

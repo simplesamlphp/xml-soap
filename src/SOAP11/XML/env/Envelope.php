@@ -23,14 +23,14 @@ final class Envelope extends AbstractSoapElement
     /**
      * The Header element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Header|null
+     * @var \SimpleSAML\SOAP11\XML\env\Header|null
      */
     protected ?Header $header;
 
     /**
      * The Body element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Body
+     * @var \SimpleSAML\SOAP11\XML\env\Body
      */
     protected Body $body;
 
@@ -38,8 +38,8 @@ final class Envelope extends AbstractSoapElement
     /**
      * Initialize a env:Envelope
      *
-     * @param \SimpleSAML\SOAP\XML\env\Body $body
-     * @param \SimpleSAML\SOAP\XML\env\Header|null $header
+     * @param \SimpleSAML\SOAP11\XML\env\Body $body
+     * @param \SimpleSAML\SOAP11\XML\env\Header|null $header
      * @param \DOMAttr[] $namespacedAttributes
      */
     public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = [])
@@ -51,7 +51,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Body
+     * @return \SimpleSAML\SOAP11\XML\env\Body
      */
     public function getBody(): Body
     {
@@ -60,7 +60,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Body $body
+     * @param \SimpleSAML\SOAP11\XML\env\Body $body
      */
     protected function setBody(Body $body): void
     {
@@ -69,7 +69,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Header|null
+     * @return \SimpleSAML\SOAP11\XML\env\Header|null
      */
     public function getHeader(): ?Header
     {
@@ -78,7 +78,7 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Header|null $header
+     * @param \SimpleSAML\SOAP11\XML\env\Header|null $header
      */
     protected function setHeader(?Header $header): void
     {

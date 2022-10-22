@@ -20,35 +20,35 @@ final class Fault extends AbstractSoapElement
     /**
      * The Code element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Code
+     * @var \SimpleSAML\SOAP12\XML\env\Code
      */
     protected Code $code;
 
     /**
      * The Reason element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Reason
+     * @var \SimpleSAML\SOAP12\XML\env\Reason
      */
     protected Reason $reason;
 
     /**
      * The Node element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Node|null
+     * @var \SimpleSAML\SOAP12\XML\env\Node|null
      */
     protected ?Node $node;
 
     /**
      * The Role element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Role|null
+     * @var \SimpleSAML\SOAP12\XML\env\Role|null
      */
     protected ?Role $role;
 
     /**
      * The Detail element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Detail|null
+     * @var \SimpleSAML\SOAP12\XML\env\Detail|null
      */
     protected ?Detail $detail;
 
@@ -56,11 +56,11 @@ final class Fault extends AbstractSoapElement
     /**
      * Initialize a env:Fault
      *
-     * @param \SimpleSAML\SOAP\XML\env\Code $code
-     * @param \SimpleSAML\SOAP\XML\env\Reason $reason
-     * @param \SimpleSAML\SOAP\XML\env\Node|null $node
-     * @param \SimpleSAML\SOAP\XML\env\Role|null $role
-     * @param \SimpleSAML\SOAP\XML\env\Detail|null $detail
+     * @param \SimpleSAML\SOAP12\XML\env\Code $code
+     * @param \SimpleSAML\SOAP12\XML\env\Reason $reason
+     * @param \SimpleSAML\SOAP12\XML\env\Node|null $node
+     * @param \SimpleSAML\SOAP12\XML\env\Role|null $role
+     * @param \SimpleSAML\SOAP12\XML\env\Detail|null $detail
      */
     public function __construct(
         Code $code,
@@ -78,7 +78,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Code
+     * @return \SimpleSAML\SOAP12\XML\env\Code
      */
     public function getCode(): Code
     {
@@ -87,7 +87,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Code $code
+     * @param \SimpleSAML\SOAP12\XML\env\Code $code
      */
     protected function setCode(Code $code): void
     {
@@ -96,7 +96,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Reason
+     * @return \SimpleSAML\SOAP12\XML\env\Reason
      */
     public function getReason(): Reason
     {
@@ -105,7 +105,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Reason $reason
+     * @param \SimpleSAML\SOAP12\XML\env\Reason $reason
      */
     protected function setReason(Reason $reason): void
     {
@@ -114,7 +114,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Node|null
+     * @return \SimpleSAML\SOAP12\XML\env\Node|null
      */
     public function getNode(): ?Node
     {
@@ -123,7 +123,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Node|null $node
+     * @param \SimpleSAML\SOAP12\XML\env\Node|null $node
      */
     protected function setNode(?Node $node): void
     {
@@ -132,7 +132,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Role|null
+     * @return \SimpleSAML\SOAP12\XML\env\Role|null
      */
     public function getRole(): ?Role
     {
@@ -141,7 +141,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Role|null $role
+     * @param \SimpleSAML\SOAP12\XML\env\Role|null $role
      */
     protected function setRole(?Role $role): void
     {
@@ -150,7 +150,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Detail|null
+     * @return \SimpleSAML\SOAP12\XML\env\Detail|null
      */
     public function getDetail(): ?Detail
     {
@@ -159,7 +159,7 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Detail|null $detail
+     * @param \SimpleSAML\SOAP12\XML\env\Detail|null $detail
      */
     protected function setDetail(?Detail $detail): void
     {

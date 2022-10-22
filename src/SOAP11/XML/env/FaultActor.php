@@ -6,6 +6,7 @@ namespace SimpleSAML\SOAP11\XML\env;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\AbstractElement;
+use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\StringElementTrait;
 
 /**

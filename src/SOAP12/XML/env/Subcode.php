@@ -21,14 +21,14 @@ final class Subcode extends AbstractSoapElement
     /**
      * The Value element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Value
+     * @var \SimpleSAML\SOAP12\XML\env\Value
      */
     protected Value $value;
 
     /**
      * The Subcode element
      *
-     * @var \SimpleSAML\SOAP\XML\env\Subcode|null
+     * @var \SimpleSAML\SOAP12\XML\env\Subcode|null
      */
     protected ?Subcode $subcode;
 
@@ -36,8 +36,8 @@ final class Subcode extends AbstractSoapElement
     /**
      * Initialize a soap:Subcode
      *
-     * @param \SimpleSAML\SOAP\XML\env\Value $value
-     * @param \SimpleSAML\SOAP\XML\env\Code|null $code
+     * @param \SimpleSAML\SOAP12\XML\env\Value $value
+     * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
      */
     public function __construct(Value $value, ?Subcode $subcode = null)
     {
@@ -47,7 +47,7 @@ final class Subcode extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Value
+     * @return \SimpleSAML\SOAP12\XML\env\Value
      */
     public function getValue(): Value
     {
@@ -56,7 +56,7 @@ final class Subcode extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Value $value
+     * @param \SimpleSAML\SOAP12\XML\env\Value $value
      */
     protected function setValue(Value $value): void
     {
@@ -65,7 +65,7 @@ final class Subcode extends AbstractSoapElement
 
 
     /**
-     * @return \SimpleSAML\SOAP\XML\env\Subcode|null
+     * @return \SimpleSAML\SOAP12\XML\env\Subcode|null
      */
     public function getSubcode(): ?Subcode
     {
@@ -74,7 +74,7 @@ final class Subcode extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP\XML\env\Subcode|null $subcode
+     * @param \SimpleSAML\SOAP12\XML\env\Subcode|null $subcode
      */
     protected function setSubcode(?Subcode $subcode): void
     {
