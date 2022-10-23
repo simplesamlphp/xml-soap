@@ -40,14 +40,14 @@ final class Body extends AbstractSoapElement
     /**
      * Initialize a soap:Body
      *
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\ElementInterface[] $children
      * @param \DOMAttr[] $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
     {
         /**
          * 5.4: To be recognized as carrying SOAP error information, a SOAP message MUST contain a single SOAP Fault
-         * element information item as the only child element information item of the SOAP Body .
+         *      element information item as the only child element information item of the SOAP Body .
          */
         $fault = array_values(array_filter($children, function ($elt) {
             return $elt instanceof Fault;
@@ -55,12 +55,13 @@ final class Body extends AbstractSoapElement
         Assert::maxCount($fault, 1, ProtocolViolationException::class);
 
         /**
-         * 5.4: When generating a fault, SOAP senders MUST NOT include additional element information items in the SOAP Body .
+         * 5.4: When generating a fault, SOAP senders MUST NOT include additional element
+         *      information items in the SOAP Body .
          */
         $children = array_diff($children, $fault);
         Assert::false(
             !empty($fault) && !empty($children),
-            "When generating a fault, SOAP senders MUST NOT include additional element information items in the SOAP Body.",
+            "When generating a fault, SOAP senders MUST NOT include additional elements in the SOAP Body.",
             ProtocolViolationException::class,
         );
 
