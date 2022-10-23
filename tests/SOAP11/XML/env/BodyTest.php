@@ -7,7 +7,11 @@ namespace SimpleSAML\Test\SOAP11\XML\env;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\SOAP11\XML\env\Body;
+use SimpleSAML\SOAP11\XML\env\Fault;
+use SimpleSAML\SOAP11\XML\env\FaultCode;
+use SimpleSAML\SOAP11\XML\env\FaultString;
 use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
@@ -78,6 +82,21 @@ final class BodyTest extends TestCase
             strval($body)
         );
         $this->assertTrue($body->isEmptyElement());
+    }
+
+
+    /**
+     */
+    public function testMarshallingWithMultipleFaults(): void
+    {
+        $this->expectException(ProtocolViolationException::class);
+        new Body(
+            [
+                new Fault(new FaultCode('env:Sender'), new FaultString('Something is wrong')),
+                new Fault(new FaultCode('env:Sender'), new FaultString('It is broken')),
+            ],
+            [],
+        );
     }
 
 

@@ -7,10 +7,16 @@ namespace SimpleSAML\SOAP12\XML\env;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+
+use function array_diff;
+use function array_filter;
+use function array_pop;
+use function array_values;
 
 /**
  * Class representing a env:Body element.
@@ -25,6 +31,11 @@ final class Body extends AbstractSoapElement
     /** The namespace-attribute for the xs:any element */
     public const NAMESPACE = C::XS_ANY_NS_ANY;
 
+    /**
+     * @var \SimpleSAML\SOAP12\XML\env\Fault|null
+     */
+    protected ?Fault $fault;
+
 
     /**
      * Initialize a soap:Body
@@ -34,8 +45,46 @@ final class Body extends AbstractSoapElement
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
     {
+        /**
+         * 5.4: To be recognized as carrying SOAP error information, a SOAP message MUST contain a single SOAP Fault
+         * element information item as the only child element information item of the SOAP Body .
+         */
+        $fault = array_values(array_filter($children, function ($elt) {
+            return $elt instanceof Fault;
+        }));
+        Assert::maxCount($fault, 1, ProtocolViolationException::class);
+
+        /**
+         * 5.4: When generating a fault, SOAP senders MUST NOT include additional element information items in the SOAP Body .
+         */
+        $children = array_diff($children, $fault);
+        Assert::false(
+            !empty($fault) && !empty($children),
+            "When generating a fault, SOAP senders MUST NOT include additional element information items in the SOAP Body.",
+            ProtocolViolationException::class,
+        );
+
+        $this->setFault(array_pop($fault));
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
+    }
+
+
+    /**
+     * @param \SimpleSAML\SOAP12\XML\env\Fault|null $fault
+     */
+    public function setFault(?Fault $fault): void
+    {
+        $this->fault = $fault;
+    }
+
+
+    /**
+     * @return \SimpleSAML\SOAP12\XML\env\Fault|null
+     */
+    public function getFault(): ?Fault
+    {
+        return $this->fault;
     }
 
 
@@ -46,7 +95,7 @@ final class Body extends AbstractSoapElement
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->elements) && empty($this->namespacedAttributes);
+        return empty($this->fault) && empty($this->elements) && empty($this->namespacedAttributes);
     }
 
 
@@ -97,6 +146,8 @@ final class Body extends AbstractSoapElement
         foreach ($this->getAttributesNS() as $attr) {
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
+
+        $this->getFault()?->toXML($e);
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {

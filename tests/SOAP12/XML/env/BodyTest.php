@@ -7,7 +7,13 @@ namespace SimpleSAML\Test\SOAP12\XML\env;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\SOAP12\XML\env\Body;
+use SimpleSAML\SOAP12\XML\env\Code;
+use SimpleSAML\SOAP12\XML\env\Fault;
+use SimpleSAML\SOAP12\XML\env\Reason;
+use SimpleSAML\SOAP12\XML\env\Text;
+use SimpleSAML\SOAP12\XML\env\Value;
 use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
@@ -78,6 +84,36 @@ final class BodyTest extends TestCase
             strval($body)
         );
         $this->assertTrue($body->isEmptyElement());
+    }
+
+
+    /**
+     */
+    public function testMarshallingWithMultipleFaults(): void
+    {
+        $this->expectException(ProtocolViolationException::class);
+        new Body(
+            [
+                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
+                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'It is broken')])),
+            ],
+            [],
+        );
+    }
+
+
+    /**
+     */
+    public function testMarshallingWithFaultAndContent(): void
+    {
+        $this->expectException(ProtocolViolationException::class);
+        new Body(
+            [
+                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
+                new Chunk($this->BodyContent),
+            ],
+            [],
+        );
     }
 
 
