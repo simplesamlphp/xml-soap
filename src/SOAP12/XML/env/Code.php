@@ -40,7 +40,7 @@ final class Code extends AbstractSoapElement
      * @param \SimpleSAML\SOAP12\XML\env\Value $value
      * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
      */
-    public function __construct(Value $value, ?Subcode $subcode)
+    public function __construct(Value $value, ?Subcode $subcode = null)
     {
         $this->setValue($value);
         $this->setSubcode($subcode);
