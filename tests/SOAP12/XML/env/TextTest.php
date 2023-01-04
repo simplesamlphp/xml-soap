@@ -32,7 +32,7 @@ final class TextTest extends TestCase
         $this->testedClass = Text::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP12/env_Text.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Text.xml'
         );
     }
 

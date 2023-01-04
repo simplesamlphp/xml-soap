@@ -38,7 +38,7 @@ final class DetailTest extends TestCase
         $this->testedClass = Detail::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP11/env_Detail.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Detail.xml'
         );
 
         $this->DetailContent = DOMDocumentFactory::fromString(

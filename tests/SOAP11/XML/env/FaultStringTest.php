@@ -33,7 +33,7 @@ final class FaultStringTest extends TestCase
         $this->testedClass = FaultString::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP11/env_FaultString.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultString.xml'
         );
     }
 

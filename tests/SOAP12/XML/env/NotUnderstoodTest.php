@@ -33,10 +33,10 @@ final class NotUnderstoodTest extends TestCase
     {
         $this->testedClass = NotUnderstood::class;
 
-        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/soap-envelope-1.2.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/schemas/soap-envelope-1.2.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
         );
     }
 

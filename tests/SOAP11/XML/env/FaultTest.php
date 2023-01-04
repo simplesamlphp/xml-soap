@@ -40,10 +40,10 @@ final class FaultTest extends TestCase
     {
         $this->testedClass = Fault::class;
 
-        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/soap-envelope-1.1.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/schemas/soap-envelope-1.1.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP11/env_Fault.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Fault.xml'
         );
     }
 

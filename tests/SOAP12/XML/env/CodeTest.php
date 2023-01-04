@@ -36,7 +36,7 @@ final class CodeTest extends TestCase
         $this->testedClass = Code::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/SOAP12/env_Code.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Code.xml'
         );
     }
 
