@@ -39,7 +39,7 @@ final class HeaderTest extends TestCase
     {
         $this->testedClass = Header::class;
 
-        $this->schema = dirname(__FILE__, 6) . '/schemas/soap-envelope-1.1.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_Header.xml'

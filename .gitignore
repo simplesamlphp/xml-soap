@@ -11,6 +11,7 @@
 /www/assets/css/*.css.LICENSE.txt
 !/www/assets/css/post.css
 /www/assets/css/*.map
+/.phpunit.cache/
 .phpunit.result.cache
 
 !/config/.gitkeep

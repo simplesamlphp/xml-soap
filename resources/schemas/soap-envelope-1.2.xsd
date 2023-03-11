@@ -21,7 +21,7 @@
 		   elementFormDefault="qualified" >
 
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" 
-             schemaLocation="../vendor/simplesamlphp/xml-common/schemas/xml.xsd"/>
+             schemaLocation="../../vendor/simplesamlphp/xml-common/resources/schemas/xml.xsd"/>
 
   <!-- Envelope, header and body -->
   <xs:element name="Envelope" type="tns:Envelope" />
