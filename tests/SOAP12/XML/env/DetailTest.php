@@ -8,9 +8,9 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\Detail;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -38,7 +38,7 @@ final class DetailTest extends TestCase
         $this->testedClass = Detail::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Detail.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Detail.xml'
         );
 
         $this->DetailContent = DOMDocumentFactory::fromString(

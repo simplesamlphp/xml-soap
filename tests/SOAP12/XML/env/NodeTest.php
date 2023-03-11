@@ -6,8 +6,8 @@ namespace SimpleSAML\Test\SOAP12\XML\env;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\Node;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -32,7 +32,7 @@ final class NodeTest extends TestCase
         $this->testedClass = Node::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Node.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Node.xml'
         );
     }
 

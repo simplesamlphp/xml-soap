@@ -6,9 +6,9 @@ namespace SimpleSAML\Test\SOAP12\XML\env;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\NotUnderstood;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -33,10 +33,10 @@ final class NotUnderstoodTest extends TestCase
     {
         $this->testedClass = NotUnderstood::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/soap-envelope-1.2.xsd';
+        $this->schema = dirname(__FILE__, 6) . '/schemas/soap-envelope-1.2.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
         );
     }
 

@@ -8,10 +8,10 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\Header;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -39,10 +39,10 @@ final class HeaderTest extends TestCase
     {
         $this->testedClass = Header::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/soap-envelope-1.2.xsd';
+        $this->schema = dirname(__FILE__, 6) . '/schemas/soap-envelope-1.2.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Header.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Header.xml'
         );
 
         $this->headerContent = DOMDocumentFactory::fromString(

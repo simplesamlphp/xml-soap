@@ -10,8 +10,8 @@ use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP12\XML\env\Code;
 use SimpleSAML\SOAP12\XML\env\Subcode;
 use SimpleSAML\SOAP12\XML\env\Value;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -36,7 +36,7 @@ final class CodeTest extends TestCase
         $this->testedClass = Code::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Code.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Code.xml'
         );
     }
 

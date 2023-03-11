@@ -6,8 +6,8 @@ namespace SimpleSAML\Test\SOAP11\XML\env;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\env\FaultActor;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -32,7 +32,7 @@ final class FaultActorTest extends TestCase
         $this->testedClass = FaultActor::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultActor.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_FaultActor.xml'
         );
     }
 

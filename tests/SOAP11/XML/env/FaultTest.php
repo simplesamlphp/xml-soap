@@ -7,15 +7,15 @@ namespace SimpleSAML\Test\SOAP11\XML\env;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\SOAP11\XML\env\Detail;
+use SimpleSAML\SOAP11\XML\env\Fault;
 use SimpleSAML\SOAP11\XML\env\FaultActor;
 use SimpleSAML\SOAP11\XML\env\FaultCode;
 use SimpleSAML\SOAP11\XML\env\FaultString;
-use SimpleSAML\SOAP11\XML\env\Detail;
-use SimpleSAML\SOAP11\XML\env\Fault;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -40,10 +40,10 @@ final class FaultTest extends TestCase
     {
         $this->testedClass = Fault::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/soap-envelope-1.1.xsd';
+        $this->schema = dirname(__FILE__, 6) . '/schemas/soap-envelope-1.1.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Fault.xml'
+            dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_Fault.xml'
         );
     }
 
