@@ -198,7 +198,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-data
-          # The build-directory alone is not enough to make codecov work
           path: ${{ github.workspace }}
 
   unit-tests-windows:
@@ -256,6 +255,8 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
+      - uses: actions/checkout@v3
+
       - uses: actions/download-artifact@v3
         with:
           name: coverage-data
