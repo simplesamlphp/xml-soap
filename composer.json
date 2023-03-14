@@ -13,7 +13,6 @@
         "ext-dom": "*",
         "ext-pcre": "*",
 
-        "psr/log": "^2.0 || ^3.0",
         "simplesamlphp/xml-common": "^1.7.0",
         "simplesamlphp/assert": "^1.0.2"
     },
