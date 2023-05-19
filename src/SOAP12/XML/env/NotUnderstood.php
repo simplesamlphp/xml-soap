@@ -119,7 +119,6 @@ final class NotUnderstood extends AbstractSoapElement
         Assert::same($xml->localName, 'NotUnderstood', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, NotUnderstood::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $qname */
         $qname = self::getAttribute($xml, 'qname');
 
         list($prefix, $localName) = self::parseQName($qname);

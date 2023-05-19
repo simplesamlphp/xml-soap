@@ -6,6 +6,7 @@ namespace SimpleSAML\SOAP12\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -19,6 +20,9 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 final class Envelope extends AbstractSoapElement
 {
     use ExtendableAttributesTrait;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
     /**
      * The Header element
@@ -40,7 +44,7 @@ final class Envelope extends AbstractSoapElement
      *
      * @param \SimpleSAML\SOAP12\XML\env\Body $body
      * @param \SimpleSAML\SOAP12\XML\env\Header|null $header
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = [])
     {
@@ -125,7 +129,7 @@ final class Envelope extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         if ($this->getHeader() !== null && !$this->getHeader()->isEmptyElement()) {

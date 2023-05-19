@@ -32,7 +32,7 @@ final class FaultActorTest extends TestCase
         $this->testedClass = FaultActor::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_FaultActor.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultActor.xml'
         );
     }
 

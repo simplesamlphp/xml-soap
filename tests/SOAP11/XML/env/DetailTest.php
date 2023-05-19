@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\env\Detail;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -38,7 +39,7 @@ final class DetailTest extends TestCase
         $this->testedClass = Detail::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_Detail.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Detail.xml'
         );
 
         $this->DetailContent = DOMDocumentFactory::fromString(
@@ -51,8 +52,7 @@ final class DetailTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $detail = new Detail([new Chunk($this->DetailContent)], [$domAttr]);
         $this->assertFalse($detail->isEmptyElement());

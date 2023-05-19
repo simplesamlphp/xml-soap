@@ -32,7 +32,7 @@ final class RoleTest extends TestCase
         $this->testedClass = Role::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Role.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Role.xml'
         );
     }
 

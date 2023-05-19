@@ -6,7 +6,10 @@
   </env:Header>
   <env:Body test:attr1="testval1">
     <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
-      <m:Item>Apples</m:Item>
+      <m:Item>Pears</m:Item>
     </m:GetPrice>
   </env:Body>
+  <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+    <m:Item>Bananas</m:Item>
+  </m:GetPrice>
 </env:Envelope>

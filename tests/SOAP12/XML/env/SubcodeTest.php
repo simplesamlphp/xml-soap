@@ -34,7 +34,7 @@ final class SubcodeTest extends TestCase
         $this->testedClass = Subcode::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Subcode.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Subcode.xml'
         );
     }
 

@@ -12,6 +12,7 @@ use SimpleSAML\SOAP11\XML\env\Body;
 use SimpleSAML\SOAP11\XML\env\Fault;
 use SimpleSAML\SOAP11\XML\env\FaultCode;
 use SimpleSAML\SOAP11\XML\env\FaultString;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -46,7 +47,7 @@ final class BodyTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP11/env_Body.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Body.xml'
         );
 
         $this->BodyContent = DOMDocumentFactory::fromString(
@@ -59,8 +60,7 @@ final class BodyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $body = new Body([new Chunk($this->BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());

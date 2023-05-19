@@ -6,9 +6,12 @@ namespace SimpleSAML\SOAP11\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 
 /**
@@ -18,7 +21,14 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
  */
 final class Envelope extends AbstractSoapElement
 {
+    use ExtendableElementTrait;
     use ExtendableAttributesTrait;
+
+    /** The namespace-attribute for the xs:any element */
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_OTHER;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
     /**
      * The Header element
@@ -40,12 +50,18 @@ final class Envelope extends AbstractSoapElement
      *
      * @param \SimpleSAML\SOAP11\XML\env\Body $body
      * @param \SimpleSAML\SOAP11\XML\env\Header|null $header
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param \SimpleSAML\XML\ElementInterface[] $children
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    public function __construct(Body $body, ?Header $header = null, array $namespacedAttributes = [])
-    {
+    public function __construct(
+        Body $body,
+        ?Header $header = null,
+        array $children = [],
+        array $namespacedAttributes = [],
+    ) {
         $this->setBody($body);
         $this->setHeader($header);
+        $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -106,10 +122,21 @@ final class Envelope extends AbstractSoapElement
         $header = Header::getChildrenOfClass($xml);
         Assert::maxCount($header, 1, 'Cannot process more than one Header element.', TooManyElementsException::class);
 
+        $children = [];
+        foreach ($xml->childNodes as $child) {
+            if (!($child instanceof DOMElement)) {
+                continue;
+            } elseif ($child->namespaceURI === C::NS_SOAP_ENV_11) {
+                continue;
+            }
+            $children[] = new Chunk($child);
+        }
+
         return new static(
             array_pop($body),
             empty($header) ? null : array_pop($header),
-            self::getAttributesNSFromXML($xml)
+            $children,
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -125,7 +152,7 @@ final class Envelope extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         if ($this->getHeader() !== null && !$this->getHeader()->isEmptyElement()) {
@@ -133,6 +160,13 @@ final class Envelope extends AbstractSoapElement
         }
 
         $this->getBody()->toXML($e);
+
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
+        foreach ($this->getElements() as $child) {
+            if (!$child->isEmptyElement()) {
+                $child->toXML($e);
+            }
+        }
 
         return $e;
     }

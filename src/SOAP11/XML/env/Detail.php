@@ -6,6 +6,7 @@ namespace SimpleSAML\SOAP11\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
@@ -17,7 +18,7 @@ use SimpleSAML\XML\ExtendableElementTrait;
  *
  * @package simplesaml/xml-soap
  */
-final class Detail extends AbstractSoapElement
+final class Detail extends AbstractElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
@@ -32,14 +33,17 @@ final class Detail extends AbstractSoapElement
     public const NS_PREFIX = null;
 
     /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = C::XS_ANY_NS_ANY;
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_ANY;
 
 
     /**
      * Initialize a soap:Detail
      *
      * @param \SimpleSAML\XML\Chunk[] $children
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
     {
@@ -100,7 +104,7 @@ final class Detail extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */

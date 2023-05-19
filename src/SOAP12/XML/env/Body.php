@@ -29,7 +29,10 @@ final class Body extends AbstractSoapElement
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = C::XS_ANY_NS_ANY;
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
     /**
      * @var \SimpleSAML\SOAP12\XML\env\Fault|null
@@ -41,7 +44,7 @@ final class Body extends AbstractSoapElement
      * Initialize a soap:Body
      *
      * @param \SimpleSAML\XML\ElementInterface[] $children
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
     {
@@ -145,7 +148,7 @@ final class Body extends AbstractSoapElement
         $e = $this->instantiateParentElement($parent);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         $this->getFault()?->toXML($e);

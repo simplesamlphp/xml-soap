@@ -33,7 +33,7 @@ final class SupportedEnvelopeTest extends TestCase
         $this->testedClass = SupportedEnvelope::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_SupportedEnvelope.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_SupportedEnvelope.xml'
         );
     }
 

@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\Body;
 use SimpleSAML\SOAP12\XML\env\Envelope;
 use SimpleSAML\SOAP12\XML\env\Header;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -46,7 +47,7 @@ final class EnvelopeTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Envelope.xml',
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Envelope.xml',
         );
 
         $this->bodyContent = DOMDocumentFactory::fromString(
@@ -63,8 +64,7 @@ final class EnvelopeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $body = new Body([new Chunk($this->bodyContent)], [$domAttr]);
         $header = new Header([new Chunk($this->headerContent)], [$domAttr]);

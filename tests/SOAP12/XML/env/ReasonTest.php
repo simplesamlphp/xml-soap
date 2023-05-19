@@ -33,7 +33,7 @@ final class ReasonTest extends TestCase
         $this->testedClass = Reason::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Reason.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Reason.xml'
         );
     }
 

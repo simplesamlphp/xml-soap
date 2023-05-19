@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP12\XML\env\Header;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -42,7 +43,7 @@ final class HeaderTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/SOAP12/env_Header.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Header.xml'
         );
 
         $this->headerContent = DOMDocumentFactory::fromString(
@@ -55,8 +56,7 @@ final class HeaderTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $header = new Header([new Chunk($this->headerContent)], [$domAttr]);
         $this->assertFalse($header->isEmptyElement());
