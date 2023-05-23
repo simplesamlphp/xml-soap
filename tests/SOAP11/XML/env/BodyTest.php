@@ -35,22 +35,22 @@ final class BodyTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $BodyContent */
-    private DOMElement $BodyContent;
+    private static DOMElement $BodyContent;
 
 
     /**
      */
     protected function setUp(): void
     {
-        $this->testedClass = Body::class;
+        self::$testedClass = Body::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Body.xml'
         );
 
-        $this->BodyContent = DOMDocumentFactory::fromString(
+        self::$BodyContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -62,11 +62,11 @@ final class BodyTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $body = new Body([new Chunk($this->BodyContent)], [$domAttr]);
+        $body = new Body([new Chunk(self::$BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($body)
         );
     }
@@ -104,10 +104,10 @@ final class BodyTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $body = Body::fromXML($this->xmlRepresentation->documentElement);
+        $body = Body::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($body)
         );
     }

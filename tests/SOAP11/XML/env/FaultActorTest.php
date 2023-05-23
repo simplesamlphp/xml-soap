@@ -27,11 +27,11 @@ final class FaultActorTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = FaultActor::class;
+        self::$testedClass = FaultActor::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultActor.xml'
         );
     }
@@ -44,7 +44,7 @@ final class FaultActorTest extends TestCase
         $faultActor = new FaultActor('urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultActor)
         );
     }
@@ -54,10 +54,10 @@ final class FaultActorTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $faultActor = FaultActor::fromXML($this->xmlRepresentation->documentElement);
+        $faultActor = FaultActor::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultActor)
         );
     }

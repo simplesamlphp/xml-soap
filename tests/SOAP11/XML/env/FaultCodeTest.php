@@ -28,11 +28,11 @@ final class FaultCodeTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = FaultCode::class;
+        self::$testedClass = FaultCode::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultCode.xml'
         );
     }
@@ -45,7 +45,7 @@ final class FaultCodeTest extends TestCase
         $faultCode = new FaultCode('env:Sender');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultCode)
         );
     }
@@ -55,10 +55,10 @@ final class FaultCodeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $faultCode = FaultCode::fromXML($this->xmlRepresentation->documentElement);
+        $faultCode = FaultCode::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultCode)
         );
     }

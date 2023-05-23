@@ -29,13 +29,13 @@ final class NotUnderstoodTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = NotUnderstood::class;
+        self::$testedClass = NotUnderstood::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
         );
     }
@@ -48,7 +48,7 @@ final class NotUnderstoodTest extends TestCase
         $notUnderstood = new NotUnderstood('ssp:Chunk', 'urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($notUnderstood)
         );
     }
@@ -58,10 +58,10 @@ final class NotUnderstoodTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $notUnderstood = NotUnderstood::fromXML($this->xmlRepresentation->documentElement);
+        $notUnderstood = NotUnderstood::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($notUnderstood)
         );
     }

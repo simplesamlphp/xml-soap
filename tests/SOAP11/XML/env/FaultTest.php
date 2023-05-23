@@ -36,13 +36,13 @@ final class FaultTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Fault::class;
+        self::$testedClass = Fault::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Fault.xml'
         );
     }
@@ -64,7 +64,7 @@ final class FaultTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($fault)
         );
     }
@@ -74,10 +74,10 @@ final class FaultTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $fault = Fault::fromXML($this->xmlRepresentation->documentElement);
+        $fault = Fault::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($fault)
         );
     }

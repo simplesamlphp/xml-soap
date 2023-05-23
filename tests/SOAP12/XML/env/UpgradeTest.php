@@ -31,13 +31,13 @@ final class UpgradeTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Upgrade::class;
+        self::$testedClass = Upgrade::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Upgrade.xml'
         );
     }
@@ -50,7 +50,7 @@ final class UpgradeTest extends TestCase
         $upgrade = new Upgrade([new SupportedEnvelope('env:SupportedEnvelope')]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($upgrade)
         );
     }
@@ -60,10 +60,10 @@ final class UpgradeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $upgrade = Upgrade::fromXML($this->xmlRepresentation->documentElement);
+        $upgrade = Upgrade::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($upgrade)
         );
     }

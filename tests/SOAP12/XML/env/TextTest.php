@@ -27,11 +27,11 @@ final class TextTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Text::class;
+        self::$testedClass = Text::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Text.xml'
         );
     }
@@ -44,7 +44,7 @@ final class TextTest extends TestCase
         $text = new Text('en', 'It\'s broken');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($text)
         );
     }
@@ -54,10 +54,10 @@ final class TextTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $text = Text::fromXML($this->xmlRepresentation->documentElement);
+        $text = Text::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($text)
         );
     }

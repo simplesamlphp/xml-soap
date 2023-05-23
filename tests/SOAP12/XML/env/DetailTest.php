@@ -29,20 +29,20 @@ final class DetailTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $DetailContent */
-    private DOMElement $DetailContent;
+    private static DOMElement $DetailContent;
 
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Detail::class;
+        self::$testedClass = Detail::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Detail.xml'
         );
 
-        $this->DetailContent = DOMDocumentFactory::fromString(
+        self::$DetailContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -54,11 +54,11 @@ final class DetailTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $detail = new Detail([new Chunk($this->DetailContent)], [$domAttr]);
+        $detail = new Detail([new Chunk(self::$DetailContent)], [$domAttr]);
         $this->assertFalse($detail->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($detail)
         );
     }
@@ -81,10 +81,10 @@ final class DetailTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $detail = Detail::fromXML($this->xmlRepresentation->documentElement);
+        $detail = Detail::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($detail)
         );
     }

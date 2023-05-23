@@ -27,11 +27,11 @@ final class NodeTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Node::class;
+        self::$testedClass = Node::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Node.xml'
         );
     }
@@ -44,7 +44,7 @@ final class NodeTest extends TestCase
         $node = new Node('urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($node)
         );
     }
@@ -54,10 +54,10 @@ final class NodeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $node = Node::fromXML($this->xmlRepresentation->documentElement);
+        $node = Node::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($node)
         );
     }

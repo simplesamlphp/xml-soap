@@ -28,11 +28,11 @@ final class SupportedEnvelopeTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = SupportedEnvelope::class;
+        self::$testedClass = SupportedEnvelope::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_SupportedEnvelope.xml'
         );
     }
@@ -45,7 +45,7 @@ final class SupportedEnvelopeTest extends TestCase
         $supportedEnvelope = new SupportedEnvelope('ssp:Chunk');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($supportedEnvelope)
         );
     }
@@ -55,10 +55,10 @@ final class SupportedEnvelopeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $supportedEnvelope = SupportedEnvelope::fromXML($this->xmlRepresentation->documentElement);
+        $supportedEnvelope = SupportedEnvelope::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($supportedEnvelope)
         );
     }

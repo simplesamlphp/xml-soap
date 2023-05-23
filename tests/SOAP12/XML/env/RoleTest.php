@@ -27,11 +27,11 @@ final class RoleTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Role::class;
+        self::$testedClass = Role::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Role.xml'
         );
     }
@@ -44,7 +44,7 @@ final class RoleTest extends TestCase
         $role = new Role('urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($role)
         );
     }
@@ -54,10 +54,10 @@ final class RoleTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $role = Role::fromXML($this->xmlRepresentation->documentElement);
+        $role = Role::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($role)
         );
     }

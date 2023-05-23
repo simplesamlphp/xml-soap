@@ -28,11 +28,11 @@ final class FaultStringTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = FaultString::class;
+        self::$testedClass = FaultString::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultString.xml'
         );
     }
@@ -45,7 +45,7 @@ final class FaultStringTest extends TestCase
         $faultString = new FaultString('Something went wrong');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultString)
         );
     }
@@ -55,10 +55,10 @@ final class FaultStringTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $faultString = FaultString::fromXML($this->xmlRepresentation->documentElement);
+        $faultString = FaultString::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($faultString)
         );
     }

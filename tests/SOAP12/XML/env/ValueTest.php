@@ -28,11 +28,11 @@ final class ValueTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Value::class;
+        self::$testedClass = Value::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Value.xml'
         );
     }
@@ -45,7 +45,7 @@ final class ValueTest extends TestCase
         $value = new Value(Value::NS_PREFIX . ':Sender', Value::NS);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($value)
         );
     }
@@ -55,10 +55,10 @@ final class ValueTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $value = Value::fromXML($this->xmlRepresentation->documentElement);
+        $value = Value::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($value)
         );
     }

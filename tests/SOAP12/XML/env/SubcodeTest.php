@@ -29,11 +29,11 @@ final class SubcodeTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Subcode::class;
+        self::$testedClass = Subcode::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Subcode.xml'
         );
     }
@@ -46,7 +46,7 @@ final class SubcodeTest extends TestCase
         $subcode = new Subcode(new Value('m:SomethingNotFromSpec'), new Subcode(new Value('m:MessageTimeout')));
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($subcode)
         );
     }
@@ -56,10 +56,10 @@ final class SubcodeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $subcode = Subcode::fromXML($this->xmlRepresentation->documentElement);
+        $subcode = Subcode::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($subcode)
         );
     }

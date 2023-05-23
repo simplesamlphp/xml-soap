@@ -28,11 +28,11 @@ final class ReasonTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Reason::class;
+        self::$testedClass = Reason::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Reason.xml'
         );
     }
@@ -48,7 +48,7 @@ final class ReasonTest extends TestCase
         ]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($reason)
         );
     }
@@ -58,10 +58,10 @@ final class ReasonTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $reason = Reason::fromXML($this->xmlRepresentation->documentElement);
+        $reason = Reason::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($reason)
         );
     }

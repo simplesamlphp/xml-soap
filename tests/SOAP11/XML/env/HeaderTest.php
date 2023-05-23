@@ -31,22 +31,22 @@ final class HeaderTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $headerContent */
-    private DOMElement $headerContent;
+    private static DOMElement $headerContent;
 
 
     /**
      */
     protected function setUp(): void
     {
-        $this->testedClass = Header::class;
+        self::$testedClass = Header::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Header.xml'
         );
 
-        $this->headerContent = DOMDocumentFactory::fromString(
+        self::$headerContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -58,11 +58,11 @@ final class HeaderTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $header = new Header([new Chunk($this->headerContent)], [$domAttr]);
+        $header = new Header([new Chunk(self::$headerContent)], [$domAttr]);
         $this->assertFalse($header->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($header)
         );
     }
@@ -85,10 +85,10 @@ final class HeaderTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $header = Header::fromXML($this->xmlRepresentation->documentElement);
+        $header = Header::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($header)
         );
     }

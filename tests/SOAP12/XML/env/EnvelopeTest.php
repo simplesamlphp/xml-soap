@@ -33,28 +33,28 @@ final class EnvelopeTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $bodyContent */
-    private DOMElement $bodyContent;
+    private static DOMElement $bodyContent;
 
     /** @var \DOMElement $headerContent */
-    private DOMElement $headerContent;
+    private static DOMElement $headerContent;
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Envelope::class;
+        self::$testedClass = Envelope::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Envelope.xml',
         );
 
-        $this->bodyContent = DOMDocumentFactory::fromString(
+        self::$bodyContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
 
-        $this->headerContent = DOMDocumentFactory::fromString(
+        self::$headerContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -66,13 +66,13 @@ final class EnvelopeTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $body = new Body([new Chunk($this->bodyContent)], [$domAttr]);
-        $header = new Header([new Chunk($this->headerContent)], [$domAttr]);
+        $body = new Body([new Chunk(self::$bodyContent)], [$domAttr]);
+        $header = new Header([new Chunk(self::$headerContent)], [$domAttr]);
 
         $envelope = new Envelope($body, $header, [$domAttr]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($envelope),
         );
     }
@@ -82,10 +82,10 @@ final class EnvelopeTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $envelope = Envelope::fromXML($this->xmlRepresentation->documentElement);
+        $envelope = Envelope::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($envelope),
         );
     }
