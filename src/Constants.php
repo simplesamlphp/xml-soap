@@ -43,4 +43,6 @@ class Constants extends \SimpleSAML\XML\Constants
         self::FAULT_RESPONDER,
         self::FAULT_DATA_ENCODING_UNKNOWN,
     ];
+
+    public const SOAP_ACTOR_NEXT = 'http://schemas.xmlsoap.org/soap/actor/next';
 }
