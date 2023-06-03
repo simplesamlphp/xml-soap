@@ -28,6 +28,7 @@ final class Reason extends AbstractSoapElement
      */
     public function __construct(array $text)
     {
+        Assert::maxCount($text, C::UNBOUNDED_LIMIT);
         $this->setText($text);
     }
 

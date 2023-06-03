@@ -27,6 +27,7 @@ final class Upgrade extends AbstractSoapElement
      */
     public function __construct(array $supportedEnvelope)
     {
+        Assert::maxCount($supportedEnvelope, C::UNBOUNDED_LIMIT);
         $this->setSupportedEnvelope($supportedEnvelope);
     }
 
