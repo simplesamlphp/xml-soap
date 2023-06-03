@@ -18,35 +18,6 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 final class Fault extends AbstractSoapElement
 {
     /**
-     * The faultcode element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\FaultCode
-     */
-    protected FaultCode $faultCode;
-
-    /**
-     * The faultstring element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\FaultString
-     */
-    protected FaultString $faultString;
-
-    /**
-     * The faultactor element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\FaultActor|null
-     */
-    protected ?FaultActor $faultActor;
-
-    /**
-     * The detail element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\Detail|null
-     */
-    protected ?Detail $detail;
-
-
-    /**
      * Initialize a env:Fault
      *
      * @param \SimpleSAML\SOAP11\XML\env\FaultCode $faultCode
@@ -55,15 +26,11 @@ final class Fault extends AbstractSoapElement
      * @param \SimpleSAML\SOAP11\XML\env\Detail|null $detail
      */
     public function __construct(
-        FaultCode $faultCode,
-        FaultString $faultString,
-        ?FaultActor $faultActor = null,
-        ?Detail $detail = null
+        protected FaultCode $faultCode,
+        protected FaultString $faultString,
+        protected ?FaultActor $faultActor = null,
+        protected ?Detail $detail = null
     ) {
-        $this->setFaultCode($faultCode);
-        $this->setFaultString($faultString);
-        $this->setFaultActor($faultActor);
-        $this->setDetail($detail);
     }
 
 
@@ -77,29 +44,11 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP11\XML\env\FaultCode $faultCode
-     */
-    protected function setFaultCode(FaultCode $faultCode): void
-    {
-        $this->faultCode = $faultCode;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP11\XML\env\FaultString
      */
     public function getFaultString(): FaultString
     {
         return $this->faultString;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP11\XML\env\FaultString $faultString
-     */
-    protected function setFaultString(FaultString $faultString): void
-    {
-        $this->faultString = $faultString;
     }
 
 
@@ -113,29 +62,11 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP11\XML\env\FaultActor|null $faultActor
-     */
-    protected function setFaultActor(?FaultActor $faultActor): void
-    {
-        $this->faultActor = $faultActor;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP11\XML\env\Detail|null
      */
     public function getDetail(): ?Detail
     {
         return $this->detail;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP11\XML\env\Detail|null $detail
-     */
-    protected function setDetail(?Detail $detail): void
-    {
-        $this->detail = $detail;
     }
 
 

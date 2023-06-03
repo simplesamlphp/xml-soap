@@ -18,23 +18,18 @@ use function preg_split;
  */
 final class NotUnderstood extends AbstractSoapElement
 {
-    /** @var string $qname */
-    protected string $qname;
-
-    /** @var string|null */
-    protected ?string $namespaceUri;
-
-
     /**
      * Initialize a env:NotUnderstood
      *
      * @param string $qname
      * @param string|null $namespaceUri
      */
-    public function __construct(string $qname, ?string $namespaceUri = null)
-    {
-        $this->setQName($qname);
-        $this->setContentNamespaceUri($namespaceUri);
+    public function __construct(
+        protected string $qname,
+        protected ?string $namespaceUri = null
+    ) {
+        Assert::validQName($qname);
+        Assert::nullOrValidURI($namespaceUri, SchemaViolationException::class);
     }
 
 
@@ -44,28 +39,6 @@ final class NotUnderstood extends AbstractSoapElement
     public function getQName(): string
     {
         return $this->qname;
-    }
-
-
-    /**
-     * @param string $qname
-     */
-    private function setQName(string $qname): void
-    {
-        Assert::validQName($qname);
-        $this->qname = $qname;
-    }
-
-
-    /**
-     * Set the namespaceUri.
-     *
-     * @param string|null $namespaceUri
-     */
-    protected function setContentNamespaceUri(?string $namespaceUri): void
-    {
-        Assert::nullOrValidURI($namespaceUri, SchemaViolationException::class);
-        $this->namespaceUri = $namespaceUri;
     }
 
 

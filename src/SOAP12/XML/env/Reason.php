@@ -7,6 +7,7 @@ namespace SimpleSAML\SOAP12\XML\env;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP12\XML\env\Text;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
@@ -17,19 +18,17 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 final class Reason extends AbstractSoapElement
 {
-    /** @var \SimpleSAML\SOAP12\XML\env\Text[] */
-    protected array $text;
-
-
     /**
      * Initialize a env:Reason
      *
      * @param \SimpleSAML\SOAP12\XML\env\Text[] $text
      */
-    public function __construct(array $text)
-    {
+    public function __construct(
+        protected array $text
+    ) {
         Assert::maxCount($text, C::UNBOUNDED_LIMIT);
-        $this->setText($text);
+        Assert::minCount($text, 1, SchemaViolationException::class);
+        Assert::allIsInstanceOf($text, Text::class, SchemaViolationException::class);
     }
 
 
@@ -39,17 +38,6 @@ final class Reason extends AbstractSoapElement
     public function getText(): array
     {
         return $this->text;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Text[] $text
-     */
-    private function setText(array $text): void
-    {
-        Assert::allIsInstanceOf($text, Text::class, SchemaViolationException::class);
-        Assert::minCount($text, 1, SchemaViolationException::class);
-        $this->text = $text;
     }
 
 

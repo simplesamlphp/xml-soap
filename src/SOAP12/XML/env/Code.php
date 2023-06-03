@@ -20,30 +20,27 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 final class Code extends AbstractSoapElement
 {
     /**
-     * The Value element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Value
-     */
-    protected Value $value;
-
-    /**
-     * The Subcode element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Subcode|null
-     */
-    protected ?Subcode $subcode;
-
-
-    /**
      * Initialize a soap:Code
      *
      * @param \SimpleSAML\SOAP12\XML\env\Value $value
      * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
      */
-    public function __construct(Value $value, ?Subcode $subcode = null)
-    {
-        $this->setValue($value);
-        $this->setSubcode($subcode);
+    public function __construct(
+        protected Value $value,
+        protected ?Subcode $subcode = null
+    ) {
+        @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
+        if ($localName === null) {
+            // We don't have a prefixed value here
+            $localName = $prefix;
+        }
+
+        Assert::oneOf(
+            $localName,
+            C::FAULT_CODES,
+            'Invalid top-level Value',
+            ProtocolViolationException::class
+        );
     }
 
 
@@ -57,41 +54,11 @@ final class Code extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP12\XML\env\Value $value
-     */
-    protected function setValue(Value $value): void
-    {
-        @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
-        if ($localName === null) {
-            // We don't have a prefixed value here
-            $localName = $prefix;
-        }
-
-        Assert::oneOf(
-            $localName,
-            C::FAULT_CODES,
-            'Invalid top-level Value',
-            ProtocolViolationException::class
-        );
-        $this->value = $value;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP12\XML\env\Subcode|null
      */
     public function getSubcode(): ?Subcode
     {
         return $this->subcode;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Subcode|null $subcode
-     */
-    protected function setSubcode(?Subcode $subcode): void
-    {
-        $this->subcode = $subcode;
     }
 
 

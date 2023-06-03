@@ -16,20 +16,13 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 final class SupportedEnvelope extends AbstractSoapElement
 {
     /**
-     * The qname attribute
-     *
-     * @var string
-     */
-    protected string $qname;
-
-    /**
      * Initialize a soap:SupportedEnvelope
      *
      * @param string $qname
      */
-    public function __construct(string $qname)
-    {
-        $this->setQName($qname);
+    public function __construct(
+        protected string $qname
+    ) {
     }
 
 
@@ -39,15 +32,6 @@ final class SupportedEnvelope extends AbstractSoapElement
     public function getQName(): string
     {
         return $this->qname;
-    }
-
-
-    /**
-     * @param string $qname
-     */
-    private function setQName(string $qname): void
-    {
-        $this->qname = $qname;
     }
 
 

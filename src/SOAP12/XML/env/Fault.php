@@ -18,42 +18,6 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 final class Fault extends AbstractSoapElement
 {
     /**
-     * The Code element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Code
-     */
-    protected Code $code;
-
-    /**
-     * The Reason element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Reason
-     */
-    protected Reason $reason;
-
-    /**
-     * The Node element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Node|null
-     */
-    protected ?Node $node;
-
-    /**
-     * The Role element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Role|null
-     */
-    protected ?Role $role;
-
-    /**
-     * The Detail element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Detail|null
-     */
-    protected ?Detail $detail;
-
-
-    /**
      * Initialize a env:Fault
      *
      * @param \SimpleSAML\SOAP12\XML\env\Code $code
@@ -63,17 +27,12 @@ final class Fault extends AbstractSoapElement
      * @param \SimpleSAML\SOAP12\XML\env\Detail|null $detail
      */
     public function __construct(
-        Code $code,
-        Reason $reason,
-        ?Node $node = null,
-        ?Role $role = null,
-        ?Detail $detail = null
+        protected Code $code,
+        protected Reason $reason,
+        protected ?Node $node = null,
+        protected ?Role $role = null,
+        protected ?Detail $detail = null
     ) {
-        $this->setCode($code);
-        $this->setReason($reason);
-        $this->setNode($node);
-        $this->setRole($role);
-        $this->setDetail($detail);
     }
 
 
@@ -87,29 +46,11 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP12\XML\env\Code $code
-     */
-    protected function setCode(Code $code): void
-    {
-        $this->code = $code;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP12\XML\env\Reason
      */
     public function getReason(): Reason
     {
         return $this->reason;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Reason $reason
-     */
-    protected function setReason(Reason $reason): void
-    {
-        $this->reason = $reason;
     }
 
 
@@ -123,15 +64,6 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP12\XML\env\Node|null $node
-     */
-    protected function setNode(?Node $node): void
-    {
-        $this->node = $node;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP12\XML\env\Role|null
      */
     public function getRole(): ?Role
@@ -141,29 +73,11 @@ final class Fault extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP12\XML\env\Role|null $role
-     */
-    protected function setRole(?Role $role): void
-    {
-        $this->role = $role;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP12\XML\env\Detail|null
      */
     public function getDetail(): ?Detail
     {
         return $this->detail;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Detail|null $detail
-     */
-    protected function setDetail(?Detail $detail): void
-    {
-        $this->detail = $detail;
     }
 
 

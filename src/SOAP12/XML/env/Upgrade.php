@@ -6,6 +6,7 @@ namespace SimpleSAML\SOAP12\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
@@ -16,19 +17,17 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 final class Upgrade extends AbstractSoapElement
 {
-    /** @var \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] */
-    protected array $supportedEnvelope;
-
-
     /**
      * Initialize a env:Upgrade
      *
      * @param \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] $supportedEnvelope
      */
-    public function __construct(array $supportedEnvelope)
-    {
+    public function __construct(
+        protected array $supportedEnvelope
+    ) {
         Assert::maxCount($supportedEnvelope, C::UNBOUNDED_LIMIT);
-        $this->setSupportedEnvelope($supportedEnvelope);
+        Assert::minCount($supportedEnvelope, 1, SchemaViolationException::class);
+        Assert::allIsInstanceOf($supportedEnvelope, SupportedEnvelope::class, SchemaViolationException::class);
     }
 
 
@@ -38,17 +37,6 @@ final class Upgrade extends AbstractSoapElement
     public function getSupportedEnvelope(): array
     {
         return $this->supportedEnvelope;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] $supportedEnvelope
-     */
-    private function setSupportedEnvelope(array $supportedEnvelope): void
-    {
-        Assert::allIsInstanceOf($supportedEnvelope, SupportedEnvelope::class, SchemaViolationException::class);
-        Assert::minCount($supportedEnvelope, 1, SchemaViolationException::class);
-        $this->supportedEnvelope = $supportedEnvelope;
     }
 
 

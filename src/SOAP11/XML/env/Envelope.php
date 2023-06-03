@@ -30,20 +30,6 @@ final class Envelope extends AbstractSoapElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
-    /**
-     * The Header element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\Header|null
-     */
-    protected ?Header $header;
-
-    /**
-     * The Body element
-     *
-     * @var \SimpleSAML\SOAP11\XML\env\Body
-     */
-    protected Body $body;
-
 
     /**
      * Initialize a env:Envelope
@@ -54,13 +40,11 @@ final class Envelope extends AbstractSoapElement
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        Body $body,
-        ?Header $header = null,
+        protected Body $body,
+        protected ?Header $header = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        $this->setBody($body);
-        $this->setHeader($header);
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -76,29 +60,11 @@ final class Envelope extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP11\XML\env\Body $body
-     */
-    protected function setBody(Body $body): void
-    {
-        $this->body = $body;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP11\XML\env\Header|null
      */
     public function getHeader(): ?Header
     {
         return $this->header;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP11\XML\env\Header|null $header
-     */
-    protected function setHeader(?Header $header): void
-    {
-        $this->header = $header;
     }
 
 

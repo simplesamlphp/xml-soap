@@ -19,30 +19,15 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 final class Subcode extends AbstractSoapElement
 {
     /**
-     * The Value element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Value
-     */
-    protected Value $value;
-
-    /**
-     * The Subcode element
-     *
-     * @var \SimpleSAML\SOAP12\XML\env\Subcode|null
-     */
-    protected ?Subcode $subcode;
-
-
-    /**
      * Initialize a soap:Subcode
      *
      * @param \SimpleSAML\SOAP12\XML\env\Value $value
      * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
      */
-    public function __construct(Value $value, ?Subcode $subcode = null)
-    {
-        $this->setValue($value);
-        $this->setSubcode($subcode);
+    public function __construct(
+        protected Value $value,
+        protected ?Subcode $subcode = null
+    ) {
     }
 
 
@@ -56,29 +41,11 @@ final class Subcode extends AbstractSoapElement
 
 
     /**
-     * @param \SimpleSAML\SOAP12\XML\env\Value $value
-     */
-    protected function setValue(Value $value): void
-    {
-        $this->value = $value;
-    }
-
-
-    /**
      * @return \SimpleSAML\SOAP12\XML\env\Subcode|null
      */
     public function getSubcode(): ?Subcode
     {
         return $this->subcode;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Subcode|null $subcode
-     */
-    protected function setSubcode(?Subcode $subcode): void
-    {
-        $this->subcode = $subcode;
     }
 
 
