@@ -13,6 +13,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\XsNamespace as NS;
 
 /**
  * Class representing a env:Envelope element.
@@ -25,10 +26,10 @@ final class Envelope extends AbstractSoapElement
     use ExtendableAttributesTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**

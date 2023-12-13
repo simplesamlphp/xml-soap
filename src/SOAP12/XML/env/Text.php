@@ -8,7 +8,6 @@ use DOMAttr;
 use DOMElement;
 use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\LocalizedStringElementTrait;
 

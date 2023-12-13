@@ -8,6 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
+use SimpleSAML\SOAP12\Fault;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -36,8 +37,8 @@ final class Code extends AbstractSoapElement
         }
 
         Assert::oneOf(
-            $localName,
-            C::FAULT_CODES,
+            Fault::from($localName),
+            Fault::cases(),
             'Invalid top-level Value',
             ProtocolViolationException::class
         );

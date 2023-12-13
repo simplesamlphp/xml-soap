@@ -6,11 +6,11 @@ namespace SimpleSAML\SOAP12\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\XsNamespace as NS;
 
 /**
  * Class representing a env:Envelope element.
@@ -22,7 +22,7 @@ final class Envelope extends AbstractSoapElement
     use ExtendableAttributesTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
