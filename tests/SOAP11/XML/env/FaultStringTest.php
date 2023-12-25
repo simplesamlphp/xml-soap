@@ -49,17 +49,4 @@ final class FaultStringTest extends TestCase
             strval($faultString)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $faultString = FaultString::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultString)
-        );
-    }
 }

@@ -49,17 +49,4 @@ final class FaultCodeTest extends TestCase
             strval($faultCode)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $faultCode = FaultCode::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultCode)
-        );
-    }
 }

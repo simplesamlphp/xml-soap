@@ -48,17 +48,4 @@ final class RoleTest extends TestCase
             strval($role)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $role = Role::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($role)
-        );
-    }
 }

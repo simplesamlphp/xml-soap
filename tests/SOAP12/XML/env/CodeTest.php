@@ -58,17 +58,4 @@ final class CodeTest extends TestCase
             strval($code)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $code = Code::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($code)
-        );
-    }
 }

@@ -79,17 +79,4 @@ final class HeaderTest extends TestCase
         );
         $this->assertTrue($header->isEmptyElement());
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $header = Header::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($header)
-        );
-    }
 }

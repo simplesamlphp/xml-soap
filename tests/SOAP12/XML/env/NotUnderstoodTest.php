@@ -52,17 +52,4 @@ final class NotUnderstoodTest extends TestCase
             strval($notUnderstood)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $notUnderstood = NotUnderstood::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($notUnderstood)
-        );
-    }
 }

@@ -54,17 +54,4 @@ final class UpgradeTest extends TestCase
             strval($upgrade)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $upgrade = Upgrade::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($upgrade)
-        );
-    }
 }

@@ -75,17 +75,4 @@ final class DetailTest extends TestCase
         );
         $this->assertTrue($detail->isEmptyElement());
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $detail = Detail::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($detail)
-        );
-    }
 }

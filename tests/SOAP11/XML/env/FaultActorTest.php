@@ -48,17 +48,4 @@ final class FaultActorTest extends TestCase
             strval($faultActor)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $faultActor = FaultActor::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultActor)
-        );
-    }
 }

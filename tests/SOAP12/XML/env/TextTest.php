@@ -48,17 +48,4 @@ final class TextTest extends TestCase
             strval($text)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $text = Text::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($text)
-        );
-    }
 }

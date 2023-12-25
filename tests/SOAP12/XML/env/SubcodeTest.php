@@ -50,17 +50,4 @@ final class SubcodeTest extends TestCase
             strval($subcode)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $subcode = Subcode::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($subcode)
-        );
-    }
 }

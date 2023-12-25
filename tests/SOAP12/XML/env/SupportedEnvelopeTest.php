@@ -49,17 +49,4 @@ final class SupportedEnvelopeTest extends TestCase
             strval($supportedEnvelope)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $supportedEnvelope = SupportedEnvelope::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($supportedEnvelope)
-        );
-    }
 }

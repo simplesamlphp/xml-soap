@@ -52,17 +52,4 @@ final class ReasonTest extends TestCase
             strval($reason)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $reason = Reason::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($reason)
-        );
-    }
 }

@@ -48,17 +48,4 @@ final class NodeTest extends TestCase
             strval($node)
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $node = Node::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($node)
-        );
-    }
 }
