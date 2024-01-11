@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\SOAP11\XML\env;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\env\FaultString;
-use SimpleSAML\SOAP11\XML\env\Text;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 

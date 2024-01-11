@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP12\XML\env;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\StringElementTrait;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class representing a env:Role element.

@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML\env;
 
-use DOMAttr;
-use DOMElement;
-use DOMNameSpaceNode;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\LocalizedStringElementTrait;
 
 /**

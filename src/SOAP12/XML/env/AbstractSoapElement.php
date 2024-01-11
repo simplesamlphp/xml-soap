@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML\env;
 
-use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\XML\AbstractElement;
 
 /**
  * Abstract class to be implemented by all the classes in this namespace

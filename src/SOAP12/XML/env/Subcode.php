@@ -6,7 +6,6 @@ namespace SimpleSAML\SOAP12\XML\env;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;

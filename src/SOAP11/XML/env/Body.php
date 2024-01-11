@@ -10,8 +10,8 @@ use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_diff;

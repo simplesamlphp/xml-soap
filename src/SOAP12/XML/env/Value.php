@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML\env;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\QNameElementTrait;
 
 /**

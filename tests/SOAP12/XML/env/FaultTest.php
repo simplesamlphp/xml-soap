@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP12\XML\env;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP12\XML\env\Code;
 use SimpleSAML\SOAP12\XML\env\Detail;
 use SimpleSAML\SOAP12\XML\env\Fault;
