@@ -14,10 +14,7 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
-use function array_diff;
-use function array_filter;
 use function array_pop;
-use function array_values;
 
 /**
  * Class representing a env:Body element.
@@ -35,52 +32,34 @@ final class Body extends AbstractSoapElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
-    /**
-     * @var \SimpleSAML\SOAP12\XML\env\Fault|null
-     */
-    protected ?Fault $fault;
-
 
     /**
      * Initialize a soap:Body
      *
+     * @param \SimpleSAML\SOAP12\XML\Fault|null $fault
      * @param \SimpleSAML\XML\ElementInterface[] $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    public function __construct(array $children = [], array $namespacedAttributes = [])
-    {
-        /**
-         * 5.4: To be recognized as carrying SOAP error information, a SOAP message MUST contain a single SOAP Fault
-         *      element information item as the only child element information item of the SOAP Body .
-         */
-        $fault = array_values(array_filter($children, function ($elt) {
-            return $elt instanceof Fault;
-        }));
-        Assert::maxCount($fault, 1, ProtocolViolationException::class);
+    public function __construct(
+        protected ?Fault $fault = null,
+        array $children = [],
+        array $namespacedAttributes = []
+    ) {
+        if ($fault !== null) {
+            /**
+             * 5.4: When generating a fault, SOAP senders MUST NOT include additional element
+             *      information items in the SOAP Body .
+             */
+            Assert::isEmpty(
+                $children,
+                "When generating a fault, SOAP senders MUST NOT include additional elements in the SOAP Body.",
+                ProtocolViolationException::class,
+            );
+        }
+        Assert::allNotInstanceOf($children, Fault::class, ProtocolViolationException::class);
 
-        /**
-         * 5.4: When generating a fault, SOAP senders MUST NOT include additional element
-         *      information items in the SOAP Body .
-         */
-        $children = array_diff($children, $fault);
-        Assert::false(
-            !empty($fault) && !empty($children),
-            "When generating a fault, SOAP senders MUST NOT include additional elements in the SOAP Body.",
-            ProtocolViolationException::class,
-        );
-
-        $this->setFault(array_pop($fault));
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * @param \SimpleSAML\SOAP12\XML\env\Fault|null $fault
-     */
-    public function setFault(?Fault $fault): void
-    {
-        $this->fault = $fault;
     }
 
 
@@ -118,20 +97,27 @@ final class Body extends AbstractSoapElement
         Assert::same($xml->localName, 'Body', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Body::NS, InvalidDOMElementException::class);
 
-        $children = [];
+        $children = $fault = [];
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
             } elseif ($child->namespaceURI === C::NS_SOAP_ENV_12) {
                 if ($child->localName === 'Fault') {
-                    Fault::fromXML($child);
+                    $fault = Fault::fromXML($child);
                     continue;
                 }
             }
             $children[] = new Chunk($child);
         }
 
+        /**
+         * 5.4: To be recognized as carrying SOAP error information, a SOAP message MUST contain a single SOAP Fault
+         *      element information item as the only child element information item of the SOAP Body .
+         */
+        Assert::maxCount($fault, 1, ProtocolViolationException::class);
+
         return new static(
+            array_pop($fault),
             $children,
             self::getAttributesNSFromXML($xml)
         );

@@ -63,7 +63,7 @@ final class BodyTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $body = new Body([new Chunk(self::$BodyContent)], [$domAttr]);
+        $body = new Body(null, [new Chunk(self::$BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());
 
         $this->assertEquals(
@@ -77,7 +77,7 @@ final class BodyTest extends TestCase
      */
     public function testMarshallingWithNoContent(): void
     {
-        $body = new Body([], []);
+        $body = new Body(null, [], []);
         $this->assertEquals(
             '<env:Body xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
             strval($body)
@@ -88,29 +88,12 @@ final class BodyTest extends TestCase
 
     /**
      */
-    public function testMarshallingWithMultipleFaults(): void
-    {
-        $this->expectException(ProtocolViolationException::class);
-        new Body(
-            [
-                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
-                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'It is broken')])),
-            ],
-            [],
-        );
-    }
-
-
-    /**
-     */
     public function testMarshallingWithFaultAndContent(): void
     {
         $this->expectException(ProtocolViolationException::class);
         new Body(
-            [
-                new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
-                new Chunk(self::$BodyContent),
-            ],
+            new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
+            [new Chunk(self::$BodyContent)],
             [],
         );
     }

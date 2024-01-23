@@ -65,7 +65,7 @@ final class EnvelopeTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $body = new Body([new Chunk(self::$bodyContent)], [$domAttr]);
+        $body = new Body(null, [new Chunk(self::$bodyContent)], [$domAttr]);
         $header = new Header([new Chunk(self::$headerContent)], [$domAttr]);
 
         $envelope = new Envelope($body, $header, [$domAttr]);
