@@ -44,7 +44,7 @@ final class Body extends AbstractSoapElement
     /**
      * Initialize a soap:Body
      *
-     * @param \SimpleSAML\XML\ElementInterface[] $children
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])

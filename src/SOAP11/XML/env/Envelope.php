@@ -37,7 +37,7 @@ final class Envelope extends AbstractSoapElement
      *
      * @param \SimpleSAML\SOAP11\XML\env\Body $body
      * @param \SimpleSAML\SOAP11\XML\env\Header|null $header
-     * @param \SimpleSAML\XML\ElementInterface[] $children
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(

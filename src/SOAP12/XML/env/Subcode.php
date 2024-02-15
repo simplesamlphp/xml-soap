@@ -21,7 +21,7 @@ final class Subcode extends AbstractSoapElement
      * Initialize a soap:Subcode
      *
      * @param \SimpleSAML\SOAP12\XML\env\Value $value
-     * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
+     * @param \SimpleSAML\SOAP12\XML\env\Subcode|null $subcode
      */
     public function __construct(
         protected Value $value,

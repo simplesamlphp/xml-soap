@@ -66,6 +66,7 @@ final class NotUnderstood extends AbstractSoapElement
         Assert::validQName($qName);
 
         @list($prefix, $localName) = preg_split('/:/', $qName, 2);
+        /** @var string|null $localName */
         if ($localName === null) {
             $prefix = null;
             $localName = $qName;
@@ -115,9 +116,8 @@ final class NotUnderstood extends AbstractSoapElement
 
         list($prefix, $localName) = self::parseQName($this->getQName());
         $namespaceUri = $this->getContentNamespaceUri();
-        /** @psalm-suppress RedundantConditionGivenDocblockType */
         if ($namespaceUri !== null && $prefix !== null) {
-            /** @psalm-suppress TypeDoesNotContainNull */
+            /** @phpstan-ignore-next-line */
             if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($namespaceUri) === null) {
                 // The namespace is not yet available in the document - insert it
                 $e->setAttribute('xmlns:' . $prefix, $namespaceUri);

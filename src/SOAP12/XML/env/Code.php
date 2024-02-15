@@ -24,13 +24,14 @@ final class Code extends AbstractSoapElement
      * Initialize a soap:Code
      *
      * @param \SimpleSAML\SOAP12\XML\env\Value $value
-     * @param \SimpleSAML\SOAP12\XML\env\Code|null $code
+     * @param \SimpleSAML\SOAP12\XML\env\Subcode|null $subcode
      */
     public function __construct(
         protected Value $value,
         protected ?Subcode $subcode = null
     ) {
         @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
+        /** @var string|null $localName */
         if ($localName === null) {
             // We don't have a prefixed value here
             $localName = $prefix;
