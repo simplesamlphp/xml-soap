@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP11\XML\env;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP11\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\env\Detail;
 use SimpleSAML\SOAP11\XML\env\Fault;
 use SimpleSAML\SOAP11\XML\env\FaultActor;
@@ -21,11 +23,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP11\XML\env\FaultTest
  *
- * @covers \SimpleSAML\SOAP11\XML\env\Fault
- * @covers \SimpleSAML\SOAP11\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(Fault::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class FaultTest extends TestCase
 {
     use SchemaValidationTestTrait;

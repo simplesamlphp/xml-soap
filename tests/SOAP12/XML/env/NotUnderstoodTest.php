@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP12\XML\env;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP12\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\env\NotUnderstood;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -16,11 +18,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP12\XML\env\NotUnderstoodTest
  *
- * @covers \SimpleSAML\SOAP12\XML\env\NotUnderstood
- * @covers \SimpleSAML\SOAP12\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(NotUnderstood::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class NotUnderstoodTest extends TestCase
 {
     use SchemaValidationTestTrait;

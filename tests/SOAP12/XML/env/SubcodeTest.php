@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP12\XML\env;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP12\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\env\Subcode;
 use SimpleSAML\SOAP12\XML\env\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,11 +18,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP12\XML\env\SubcodeTest
  *
- * @covers \SimpleSAML\SOAP12\XML\env\Subcode
- * @covers \SimpleSAML\SOAP12\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(Subcode::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class SubcodeTest extends TestCase
 {
     use SerializableElementTestTrait;

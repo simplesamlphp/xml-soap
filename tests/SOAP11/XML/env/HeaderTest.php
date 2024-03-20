@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\SOAP11\XML\env;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP11\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\env\Header;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -19,11 +21,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP11\XML\env\HeaderTest
  *
- * @covers \SimpleSAML\SOAP11\XML\env\Header
- * @covers \SimpleSAML\SOAP11\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(Header::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class HeaderTest extends TestCase
 {
     use SchemaValidationTestTrait;

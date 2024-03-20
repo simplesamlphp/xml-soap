@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\SOAP11\XML\env;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
+use SimpleSAML\SOAP11\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\env\Body;
 use SimpleSAML\SOAP11\XML\env\Fault;
 use SimpleSAML\SOAP11\XML\env\FaultCode;
@@ -23,11 +25,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP11\XML\env\BodyTest
  *
- * @covers \SimpleSAML\SOAP11\XML\env\Body
- * @covers \SimpleSAML\SOAP11\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(Body::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class BodyTest extends TestCase
 {
     use SchemaValidationTestTrait;

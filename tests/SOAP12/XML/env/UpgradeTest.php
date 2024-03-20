@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP12\XML\env;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP12\XML\env\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\env\SupportedEnvelope;
 use SimpleSAML\SOAP12\XML\env\Upgrade;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,11 +19,10 @@ use function strval;
 /**
  * Class \SimpleSAML\SOAP12\XML\env\UpgradeTest
  *
- * @covers \SimpleSAML\SOAP12\XML\env\Upgrade
- * @covers \SimpleSAML\SOAP12\XML\env\AbstractSoapElement
- *
  * @package simplesamlphp/xml-soap
  */
+#[CoversClass(Upgrade::class)]
+#[CoversClass(AbstractSoapElement::class)]
 final class UpgradeTest extends TestCase
 {
     use SchemaValidationTestTrait;
