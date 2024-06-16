@@ -88,7 +88,7 @@ final class Detail extends AbstractElement
 
         return new static(
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

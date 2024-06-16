@@ -33,7 +33,7 @@ final class RoleTest extends TestCase
         self::$testedClass = Role::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Role.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Role.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class RoleTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($role)
+            strval($role),
         );
     }
 }

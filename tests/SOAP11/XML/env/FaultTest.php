@@ -42,7 +42,7 @@ final class FaultTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.1.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Fault.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Fault.xml',
         );
     }
 
@@ -57,14 +57,14 @@ final class FaultTest extends TestCase
             new FaultActor('urn:x-simplesamlphp:namespace'),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
-                    '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>'
-                )->documentElement)
+                    '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',
+                )->documentElement),
             ]),
         );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($fault)
+            strval($fault),
         );
     }
 }

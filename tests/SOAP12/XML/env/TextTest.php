@@ -33,7 +33,7 @@ final class TextTest extends TestCase
         self::$testedClass = Text::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Text.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Text.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class TextTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($text)
+            strval($text),
         );
     }
 }

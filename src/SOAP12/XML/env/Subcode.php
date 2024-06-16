@@ -25,7 +25,7 @@ final class Subcode extends AbstractSoapElement
      */
     public function __construct(
         protected Value $value,
-        protected ?Subcode $subcode = null
+        protected ?Subcode $subcode = null,
     ) {
     }
 
@@ -70,7 +70,7 @@ final class Subcode extends AbstractSoapElement
 
         return new static(
             array_pop($value),
-            empty($subcode) ? null : array_pop($subcode)
+            empty($subcode) ? null : array_pop($subcode),
         );
     }
 

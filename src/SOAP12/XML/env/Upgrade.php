@@ -23,7 +23,7 @@ final class Upgrade extends AbstractSoapElement
      * @param \SimpleSAML\SOAP12\XML\env\SupportedEnvelope[] $supportedEnvelope
      */
     public function __construct(
-        protected array $supportedEnvelope
+        protected array $supportedEnvelope,
     ) {
         Assert::maxCount($supportedEnvelope, C::UNBOUNDED_LIMIT);
         Assert::minCount($supportedEnvelope, 1, SchemaViolationException::class);

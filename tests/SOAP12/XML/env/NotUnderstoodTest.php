@@ -37,7 +37,7 @@ final class NotUnderstoodTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_NotUnderstood.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_NotUnderstood.xml',
         );
     }
 
@@ -50,7 +50,7 @@ final class NotUnderstoodTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($notUnderstood)
+            strval($notUnderstood),
         );
     }
 }

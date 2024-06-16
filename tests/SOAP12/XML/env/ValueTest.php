@@ -33,7 +33,7 @@ final class ValueTest extends TestCase
         self::$testedClass = Value::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Value.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Value.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class ValueTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($value)
+            strval($value),
         );
     }
 }

@@ -33,7 +33,7 @@ final class FaultStringTest extends TestCase
         self::$testedClass = FaultString::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultString.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultString.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class FaultStringTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultString)
+            strval($faultString),
         );
     }
 }

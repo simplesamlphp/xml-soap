@@ -49,11 +49,11 @@ final class BodyTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Body.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Body.xml',
         );
 
         self::$BodyContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
     }
 
@@ -69,7 +69,7 @@ final class BodyTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($body)
+            strval($body),
         );
     }
 
@@ -81,7 +81,7 @@ final class BodyTest extends TestCase
         $body = new Body(null, [], []);
         $this->assertEquals(
             '<env:Body xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
-            strval($body)
+            strval($body),
         );
         $this->assertTrue($body->isEmptyElement());
     }

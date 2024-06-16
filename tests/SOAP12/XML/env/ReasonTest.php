@@ -34,7 +34,7 @@ final class ReasonTest extends TestCase
         self::$testedClass = Reason::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Reason.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Reason.xml',
         );
     }
 
@@ -50,7 +50,7 @@ final class ReasonTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($reason)
+            strval($reason),
         );
     }
 }

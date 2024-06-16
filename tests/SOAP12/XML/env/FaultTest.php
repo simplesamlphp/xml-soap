@@ -46,7 +46,7 @@ final class FaultTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Fault.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Fault.xml',
         );
     }
 
@@ -58,21 +58,21 @@ final class FaultTest extends TestCase
         $fault = new Fault(
             new Code(
                 new Value('env:Sender'),
-                new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts'))
+                new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts')),
             ),
             new Reason([new Text('en', 'Sender Timeout')]),
             new Node('urn:x-simplesamlphp:namespace'),
             new Role('urn:x-simplesamlphp:namespace'),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
-                    '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>'
-                )->documentElement)
+                    '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',
+                )->documentElement),
             ]),
         );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($fault)
+            strval($fault),
         );
     }
 }

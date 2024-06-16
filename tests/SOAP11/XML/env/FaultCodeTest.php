@@ -33,7 +33,7 @@ final class FaultCodeTest extends TestCase
         self::$testedClass = FaultCode::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultCode.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_FaultCode.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class FaultCodeTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultCode)
+            strval($faultCode),
         );
     }
 }

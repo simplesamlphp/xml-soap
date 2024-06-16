@@ -26,7 +26,7 @@ final class NotUnderstood extends AbstractSoapElement
      */
     public function __construct(
         protected string $qname,
-        protected ?string $namespaceUri = null
+        protected ?string $namespaceUri = null,
     ) {
         Assert::validQName($qname);
         Assert::nullOrValidURI($namespaceUri, SchemaViolationException::class);

@@ -43,11 +43,11 @@ final class HeaderTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Header.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Header.xml',
         );
 
         self::$headerContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
     }
 
@@ -63,7 +63,7 @@ final class HeaderTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($header)
+            strval($header),
         );
     }
 
@@ -75,7 +75,7 @@ final class HeaderTest extends TestCase
         $header = new Header([], []);
         $this->assertEquals(
             '<env:Header xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
-            strval($header)
+            strval($header),
         );
         $this->assertTrue($header->isEmptyElement());
     }

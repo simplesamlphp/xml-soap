@@ -54,15 +54,15 @@ final class EnvelopeTest extends TestCase
         );
 
         self::$headerContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
 
         self::$bodyContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Pears</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Pears</m:Item></m:GetPrice>',
         )->documentElement;
 
         self::$envelopeContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Bananas</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Bananas</m:Item></m:GetPrice>',
         )->documentElement;
     }
 

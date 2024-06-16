@@ -29,7 +29,7 @@ final class Fault extends AbstractSoapElement
         protected FaultCode $faultCode,
         protected FaultString $faultString,
         protected ?FaultActor $faultActor = null,
-        protected ?Detail $detail = null
+        protected ?Detail $detail = null,
     ) {
     }
 
@@ -95,7 +95,7 @@ final class Fault extends AbstractSoapElement
             $faultActor,
             1,
             'Cannot process more than one faultactor element.',
-            TooManyElementsException::class
+            TooManyElementsException::class,
         );
 
         $detail = Detail::getChildrenOfClass($xml);
@@ -105,7 +105,7 @@ final class Fault extends AbstractSoapElement
             array_pop($faultCode),
             array_pop($faultString),
             array_pop($faultActor),
-            array_pop($detail)
+            array_pop($detail),
         );
     }
 

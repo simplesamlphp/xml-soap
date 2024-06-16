@@ -35,7 +35,7 @@ final class Envelope extends AbstractSoapElement
     public function __construct(
         protected Body $body,
         protected ?Header $header = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -82,7 +82,7 @@ final class Envelope extends AbstractSoapElement
         return new static(
             array_pop($body),
             empty($header) ? null : array_pop($header),
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

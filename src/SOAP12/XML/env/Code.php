@@ -28,7 +28,7 @@ final class Code extends AbstractSoapElement
      */
     public function __construct(
         protected Value $value,
-        protected ?Subcode $subcode = null
+        protected ?Subcode $subcode = null,
     ) {
         @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
         /** @var string|null $localName */
@@ -41,7 +41,7 @@ final class Code extends AbstractSoapElement
             Fault::from($localName),
             Fault::cases(),
             'Invalid top-level Value',
-            ProtocolViolationException::class
+            ProtocolViolationException::class,
         );
     }
 
@@ -91,7 +91,7 @@ final class Code extends AbstractSoapElement
 
         return new static(
             array_pop($value),
-            empty($subcode) ? null : array_pop($subcode)
+            empty($subcode) ? null : array_pop($subcode),
         );
     }
 

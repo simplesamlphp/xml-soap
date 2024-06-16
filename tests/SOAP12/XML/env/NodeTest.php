@@ -33,7 +33,7 @@ final class NodeTest extends TestCase
         self::$testedClass = Node::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Node.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Node.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class NodeTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($node)
+            strval($node),
         );
     }
 }

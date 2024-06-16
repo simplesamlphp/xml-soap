@@ -36,7 +36,7 @@ final class CodeTest extends TestCase
         self::$testedClass = Code::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Code.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Code.xml',
         );
     }
 
@@ -55,7 +55,7 @@ final class CodeTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($code)
+            strval($code),
         );
     }
 }

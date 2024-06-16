@@ -78,7 +78,7 @@ final class Header extends AbstractSoapElement
 
         return new static(
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

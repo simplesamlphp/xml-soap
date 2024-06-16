@@ -31,7 +31,7 @@ final class Fault extends AbstractSoapElement
         protected Reason $reason,
         protected ?Node $node = null,
         protected ?Role $role = null,
-        protected ?Detail $detail = null
+        protected ?Detail $detail = null,
     ) {
     }
 
@@ -115,7 +115,7 @@ final class Fault extends AbstractSoapElement
             array_pop($reason),
             empty($node) ? null : array_pop($node),
             empty($role) ? null : array_pop($role),
-            empty($detail) ? null : array_pop($detail)
+            empty($detail) ? null : array_pop($detail),
         );
     }
 

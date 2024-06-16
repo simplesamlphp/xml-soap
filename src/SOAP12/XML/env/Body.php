@@ -43,7 +43,7 @@ final class Body extends AbstractSoapElement
     public function __construct(
         protected ?Fault $fault = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         if ($fault !== null) {
             /**
@@ -119,7 +119,7 @@ final class Body extends AbstractSoapElement
         return new static(
             array_pop($fault),
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

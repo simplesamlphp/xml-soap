@@ -33,7 +33,7 @@ final class SupportedEnvelopeTest extends TestCase
         self::$testedClass = SupportedEnvelope::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_SupportedEnvelope.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_SupportedEnvelope.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class SupportedEnvelopeTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($supportedEnvelope)
+            strval($supportedEnvelope),
         );
     }
 }

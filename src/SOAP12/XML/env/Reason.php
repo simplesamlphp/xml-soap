@@ -24,7 +24,7 @@ final class Reason extends AbstractSoapElement
      * @param \SimpleSAML\SOAP12\XML\env\Text[] $text
      */
     public function __construct(
-        protected array $text
+        protected array $text,
     ) {
         Assert::maxCount($text, C::UNBOUNDED_LIMIT);
         Assert::minCount($text, 1, SchemaViolationException::class);

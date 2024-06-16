@@ -39,11 +39,11 @@ final class DetailTest extends TestCase
         self::$testedClass = Detail::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Detail.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP11/env_Detail.xml',
         );
 
         self::$DetailContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
     }
 
@@ -59,7 +59,7 @@ final class DetailTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($detail)
+            strval($detail),
         );
     }
 
@@ -71,7 +71,7 @@ final class DetailTest extends TestCase
         $detail = new Detail([], []);
         $this->assertEquals(
             '<detail/>',
-            strval($detail)
+            strval($detail),
         );
         $this->assertTrue($detail->isEmptyElement());
     }

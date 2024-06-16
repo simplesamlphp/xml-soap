@@ -38,7 +38,7 @@ final class UpgradeTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/soap-envelope-1.2.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Upgrade.xml'
+            dirname(__FILE__, 4) . '/resources/xml/SOAP12/env_Upgrade.xml',
         );
     }
 
@@ -51,7 +51,7 @@ final class UpgradeTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($upgrade)
+            strval($upgrade),
         );
     }
 }

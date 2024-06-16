@@ -21,7 +21,7 @@ final class SupportedEnvelope extends AbstractSoapElement
      * @param string $qname
      */
     public function __construct(
-        protected string $qname
+        protected string $qname,
     ) {
     }
 
