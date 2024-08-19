@@ -2,6 +2,7 @@
 /config/
 /metadata/
 /cert/
+/super-linter-output/
 /www/assets/fonts/*
 /www/assets/js/*.js
 /www/assets/js/*.js.LICENSE.txt
