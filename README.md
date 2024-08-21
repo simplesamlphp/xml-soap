@@ -1,6 +1,6 @@
 # xml-soap
 
-[![Build Status](https://github.com/simplesamlphp/xml-soap/workflows/CI/badge.svg?branch=master)](https://github.com/simplesamlphp/xml-soap/actions)
+[![Build Status](https://github.com/simplesamlphp/xml-soap/actions/workflows/php.yml/badge.svg)]
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/simplesamlphp/xml-soap/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/simplesamlphp/xml-soap/?branch=master)
 [![Coverage Status](https://codecov.io/gh/simplesamlphp/xml-soap/branch/master/graph/badge.svg)](https://codecov.io/gh/simplesamlphp/xml-soap)
 [![Type coverage](https://shepherd.dev/github/simplesamlphp/xml-soap/coverage.svg)](https://shepherd.dev/github/simplesamlphp/xml-soap)
