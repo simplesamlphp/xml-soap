@@ -1,6 +1,7 @@
 {
     "name": "simplesamlphp/xml-soap",
     "description": "SimpleSAMLphp library for XML SOAP",
+    "type": "simplesamlphp-xmlprovider",
     "license": "LGPL-2.1-or-later",
     "authors": [
         {
