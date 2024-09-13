@@ -31,7 +31,7 @@ final class Detail extends AbstractSoapElement
     /**
      * Initialize a soap:Detail
      *
-     * @param \SimpleSAML\XML\AbstractElement[] $children
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
