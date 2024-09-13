@@ -15,22 +15,20 @@
         "ext-pcre": "*",
 
         "simplesamlphp/assert": "^1.0",
-        "simplesamlphp/xml-common": "^1.14"
+        "simplesamlphp/composer-xmlprovider-installer": "dev-master",
+        "simplesamlphp/xml-common": "dev-feature/elt-exclusion-list"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "^1.5"
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\SOAP\\": "src/",
-            "SimpleSAML\\SOAP11\\": "src/SOAP11/",
-            "SimpleSAML\\SOAP12\\": "src/SOAP12/"
+            "SimpleSAML\\SOAP\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\SOAP11\\": ["tests/SOAP11/"],
-            "SimpleSAML\\Test\\SOAP12\\": ["tests/SOAP12/"]
+            "SimpleSAML\\Test\\SOAP\\": ["tests/"]
         }
     },
     "extra": {
@@ -42,7 +40,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "simplesamlphp/composer-xmlprovider-installer": true
         }
     }
 }

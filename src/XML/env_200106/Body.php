@@ -6,9 +6,7 @@ namespace SimpleSAML\SOAP\XML\env_200106;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -107,21 +105,8 @@ final class Body extends AbstractSoapElement
         Assert::same($xml->localName, 'Body', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Body::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === C::NS_SOAP_ENV_11) {
-                if ($child->localName === 'Fault') {
-                    Fault::fromXML($child);
-                    continue;
-                }
-            }
-            $children[] = new Chunk($child);
-        }
-
         return new static(
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

@@ -7,7 +7,6 @@ namespace SimpleSAML\SOAP\XML\env_200106;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\AbstractElement;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -42,7 +41,7 @@ final class Detail extends AbstractElement
     /**
      * Initialize a soap:Detail
      *
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\AbstractElement[] $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
@@ -77,17 +76,8 @@ final class Detail extends AbstractElement
         Assert::same($xml->localName, 'detail', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Detail::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

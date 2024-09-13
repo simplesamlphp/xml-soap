@@ -6,8 +6,6 @@ namespace SimpleSAML\SOAP\XML\env_200106;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\Constants as C;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -89,20 +87,10 @@ final class Envelope extends AbstractSoapElement
         $header = Header::getChildrenOfClass($xml);
         Assert::maxCount($header, 1, 'Cannot process more than one Header element.', TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === C::NS_SOAP_ENV_11) {
-                continue;
-            }
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($body),
             empty($header) ? null : array_pop($header),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }
