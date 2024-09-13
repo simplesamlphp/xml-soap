@@ -1,0 +1,8 @@
+<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+  <faultcode>SOAP-ENV:Sender</faultcode>
+  <faultstring>Something went wrong</faultstring>
+  <faultactor>urn:x-simplesamlphp:namespace</faultactor>
+  <detail>
+    <m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>
+  </detail>
+</SOAP-ENV:Fault>

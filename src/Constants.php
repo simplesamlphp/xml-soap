@@ -23,9 +23,14 @@ class Constants extends \SimpleSAML\XML\Constants
     public const NS_SOAP_ENV_12 = 'http://www.w3.org/2003/05/soap-envelope/';
 
     /**
-     * The namespace for SOAP encoding.
+     * The namespace for SOAP encoding 1.1.
      */
-    public const NS_SOAP_ENC = 'http://www.w3.org/2003/05/soap-encoding';
+    public const NS_SOAP_ENC_11 = 'https://schemas.xmlsoap.org/soap/encoding/';
+
+    /**
+     * The namespace for SOAP encoding 1.2.
+     */
+    public const NS_SOAP_ENC_12 = 'http://www.w3.org/2003/05/soap-encoding';
 
     /**
      */

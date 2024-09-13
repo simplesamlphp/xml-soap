@@ -1,0 +1,5 @@
+<SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:test="urn:test:something" test:attr1="testval1">
+  <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+    <m:Item>Apples</m:Item>
+  </m:GetPrice>
+</SOAP-ENV:Header>
