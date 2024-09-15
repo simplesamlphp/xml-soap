@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\WSSecurity\XML;
+namespace SimpleSAML\Test\SOAP\XML;
 
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * Tests for element registry.
  *
- * @package simplesamlphp/ws-security
+ * @package simplesamlphp/xml-soap
  */
 #[Group('utils')]
 final class ElementRegistryTest extends TestCase
