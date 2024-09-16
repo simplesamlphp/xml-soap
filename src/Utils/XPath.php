@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\SOAP11\Utils;
+namespace SimpleSAML\SOAP\Utils;
 
 use DOMNode;
 use DOMXPath;
