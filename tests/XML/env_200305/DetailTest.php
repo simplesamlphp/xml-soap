@@ -70,7 +70,7 @@ final class DetailTest extends TestCase
     {
         $detail = new Detail([], []);
         $this->assertEquals(
-            '<env:Detail xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
+            '<env:Detail xmlns:env="http://www.w3.org/2003/05/soap-envelope"/>',
             strval($detail),
         );
         $this->assertTrue($detail->isEmptyElement());

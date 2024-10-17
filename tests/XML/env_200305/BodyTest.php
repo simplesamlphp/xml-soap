@@ -80,7 +80,7 @@ final class BodyTest extends TestCase
     {
         $body = new Body(null, [], []);
         $this->assertEquals(
-            '<env:Body xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
+            '<env:Body xmlns:env="http://www.w3.org/2003/05/soap-envelope"/>',
             strval($body),
         );
         $this->assertTrue($body->isEmptyElement());

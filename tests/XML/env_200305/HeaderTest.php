@@ -74,7 +74,7 @@ final class HeaderTest extends TestCase
     {
         $header = new Header([], []);
         $this->assertEquals(
-            '<env:Header xmlns:env="http://www.w3.org/2003/05/soap-envelope/"/>',
+            '<env:Header xmlns:env="http://www.w3.org/2003/05/soap-envelope"/>',
             strval($header),
         );
         $this->assertTrue($header->isEmptyElement());

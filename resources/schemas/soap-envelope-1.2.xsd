@@ -16,8 +16,8 @@
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://www.w3.org/2003/05/soap-envelope/"
-           targetNamespace="http://www.w3.org/2003/05/soap-envelope/" 
+           xmlns:tns="http://www.w3.org/2003/05/soap-envelope"
+           targetNamespace="http://www.w3.org/2003/05/soap-envelope" 
 		   elementFormDefault="qualified" >
 
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" 
@@ -156,3 +156,10 @@
 
 
 </xs:schema>
+
+
+
+
+
+
+

@@ -1,1 +1,1 @@
-<env:Node xmlns:env="http://www.w3.org/2003/05/soap-envelope/">urn:x-simplesamlphp:namespace</env:Node>
+<env:Node xmlns:env="http://www.w3.org/2003/05/soap-envelope">urn:x-simplesamlphp:namespace</env:Node>
