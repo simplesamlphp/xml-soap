@@ -61,7 +61,7 @@ final class SupportedEnvelope extends AbstractSoapElement
      * @param \DOMElement|null $parent The element we should add this SupportedEnvelope to.
      * @return \DOMElement This SupportedEnvelope-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('qname', $this->getQName());

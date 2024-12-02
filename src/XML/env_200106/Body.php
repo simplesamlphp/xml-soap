@@ -118,7 +118,7 @@ final class Body extends AbstractSoapElement
      * @param \DOMElement|null $parent The element we should add this Body to.
      * @return \DOMElement This Body-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

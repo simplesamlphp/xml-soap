@@ -79,7 +79,7 @@ final class Detail extends AbstractSoapElement
      * @param \DOMElement|null $parent The element we should add this Detail to.
      * @return \DOMElement This Detail-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

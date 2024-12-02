@@ -93,7 +93,7 @@ final class Envelope extends AbstractSoapElement
      * @param \DOMElement|null $parent The element we should add this envelope to.
      * @return \DOMElement This Envelope-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 
