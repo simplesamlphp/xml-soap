@@ -147,7 +147,7 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
 
         // Dirty hack to get the namespaces in the right place. They cannot be in the env:Value element
         $doc = DOMDocumentFactory::create();
-        $e = $doc->appendChild($doc->importNode($e, true));
+        $doc->appendChild($doc->importNode($e, true));
 
         return $doc->documentElement;
     }
