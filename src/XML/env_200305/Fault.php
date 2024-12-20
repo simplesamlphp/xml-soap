@@ -6,17 +6,22 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * Class representing a env:Fault element.
  *
  * @package simplesaml/xml-soap
  */
-final class Fault extends AbstractSoapElement
+final class Fault extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Initialize a env:Fault
      *
@@ -140,6 +145,10 @@ final class Fault extends AbstractSoapElement
             $this->getDetail()->toXML($e);
         }
 
-        return $e;
+        // Dirty hack to get the namespaces in the right place. They cannot be in the env:Value element
+        $doc = DOMDocumentFactory::create();
+        $e = $doc->appendChild($doc->importNode($e, true));
+
+        return $doc->documentElement;
     }
 }

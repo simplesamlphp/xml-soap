@@ -6,8 +6,11 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 use function preg_split;
 
@@ -16,8 +19,10 @@ use function preg_split;
  *
  * @package simplesaml/xml-soap
  */
-final class NotUnderstood extends AbstractSoapElement
+final class NotUnderstood extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Initialize a env:NotUnderstood
      *
@@ -120,7 +125,11 @@ final class NotUnderstood extends AbstractSoapElement
             /** @phpstan-ignore-next-line */
             if ($e->lookupNamespaceUri($prefix) === null && $e->lookupPrefix($namespaceUri) === null) {
                 // The namespace is not yet available in the document - insert it
-                $e->setAttribute('xmlns:' . $prefix, $namespaceUri);
+//$attr = $e->createAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns');
+//$attr->value = $namespaceUri;
+                //$e->setAttributeNS(C::NS_XS, 'xmlns:' . $prefix, $namespaceUri);
+                $attr = new XMLAttribute('http://www.w3.org/2000/xmlns/', 'xmlns', $prefix, $namespaceUri);
+                $attr->toXML($e);
             }
         }
 

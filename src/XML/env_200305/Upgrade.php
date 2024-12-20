@@ -9,14 +9,18 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * Class representing a env:Upgrade element.
  *
  * @package simplesaml/xml-soap
  */
-final class Upgrade extends AbstractSoapElement
+final class Upgrade extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Initialize a env:Upgrade
      *

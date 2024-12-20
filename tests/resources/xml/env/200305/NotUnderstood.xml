@@ -1,1 +1,1 @@
-<env:NotUnderstood xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ssp="urn:x-simplesamlphp:namespace" qname="ssp:Chunk"></env:NotUnderstood>
+<env:NotUnderstood xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ssp="urn:x-simplesamlphp:namespace" qname="ssp:Chunk"/>

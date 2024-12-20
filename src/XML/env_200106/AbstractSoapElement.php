@@ -19,4 +19,7 @@ abstract class AbstractSoapElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'SOAP-ENV';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/soap-envelope-1.1.xsd';
 }
