@@ -7,17 +7,17 @@ namespace SimpleSAML\Test\SOAP\XML\env_200106;
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\SOAP\XML\env_200106\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200106\Body;
 use SimpleSAML\SOAP\XML\env_200106\Fault;
 use SimpleSAML\SOAP\XML\env_200106\FaultCode;
 use SimpleSAML\SOAP\XML\env_200106\FaultString;
-use SimpleSAML\XML\Attribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\{QNameValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -58,7 +58,7 @@ final class BodyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
+        $domAttr = new XMLAttribute('urn:test:something', 'test', 'attr1', StringValue::fromString('testval1'));
 
         $body = new Body([new Chunk(self::$BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());
@@ -90,8 +90,22 @@ final class BodyTest extends TestCase
         $this->expectException(ProtocolViolationException::class);
         new Body(
             [
-                new Fault(new FaultCode('SOAP-ENV:Sender'), new FaultString('Something is wrong')),
-                new Fault(new FaultCode('SOAP-ENV:Sender'), new FaultString('It is broken')),
+                new Fault(
+                    new FaultCode(
+                        QNameValue::fromString('{' . C::NS_SOAP_ENV_11 . '}SOAP-ENV:Sender'),
+                    ),
+                    new FaultString(
+                        StringValue::fromString('Something is wrong'),
+                    ),
+                ),
+                new Fault(
+                    new FaultCode(
+                        QNameValue::fromString('{' . C::NS_SOAP_ENV_11 . '}SOAP-ENV:Sender'),
+                    ),
+                    new FaultString(
+                        StringValue::fromString('It is broken'),
+                    ),
+                ),
             ],
             [],
         );

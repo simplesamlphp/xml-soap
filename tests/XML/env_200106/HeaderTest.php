@@ -9,11 +9,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\XML\env_200106\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200106\Header;
-use SimpleSAML\XML\Attribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -54,7 +53,7 @@ final class HeaderTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
+        $domAttr = new XMLAttribute('urn:test:something', 'test', 'attr1', StringValue::fromString('testval1'));
 
         $header = new Header([new Chunk(self::$headerContent)], [$domAttr]);
         $this->assertFalse($header->isEmptyElement());

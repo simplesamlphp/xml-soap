@@ -6,7 +6,11 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingAttributeException};
+use SimpleSAML\XML\Type\QNameValue;
+
+use function strval;
 
 /**
  * Class representing a env:SupportedEnvelope element.
@@ -18,25 +22,25 @@ final class SupportedEnvelope extends AbstractSoapElement
     /**
      * Initialize a soap:SupportedEnvelope
      *
-     * @param string $qname
+     * @param \SimpleSAML\XML\Type\QNameValue $qname
      */
     public function __construct(
-        protected string $qname,
+        protected QNameValue $qname,
     ) {
     }
 
 
     /**
-     * @return string
+     * @return \SimpleSAML\XML\Type\QNameValue
      */
-    public function getQName(): string
+    public function getQName(): QNameValue
     {
         return $this->qname;
     }
 
 
-    /**
-     * Convert XML into an SupportedEnvelope element
+    /*
+     * Convert XML into a SupportedEnvelope element
      *
      * @param \DOMElement $xml The XML element we should load
      * @return static
@@ -47,24 +51,36 @@ final class SupportedEnvelope extends AbstractSoapElement
     public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'SupportedEnvelope', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, SupportedEnvelope::NS, InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
+        Assert::notNull($xml->hasAttribute('qname'), MissingAttributeException::class);
 
-        $qname = self::getAttribute($xml, 'qname');
-
-        return new static($qname);
+        return new static(
+            QNameValue::fromDocument($xml->getAttribute('qname'), $xml),
+        );
     }
 
 
     /**
      * Convert this SupportedEnvelope to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this SupportedEnvelope to.
+     * @param \DOMElement|null $parent The element we should add this Body to.
      * @return \DOMElement This SupportedEnvelope-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('qname', $this->getQName());
+
+        if (!$e->lookupPrefix($this->getQName()->getNamespaceURI()->getValue())) {
+            $namespace = new XMLAttribute(
+                'http://www.w3.org/2000/xmlns/',
+                'xmlns',
+                $this->getQName()->getNamespacePrefix()->getValue(),
+                $this->getQName()->getNamespaceURI(),
+            );
+            $namespace->toXML($e);
+        }
+
+        $e->setAttribute('qname', strval($this->getQName()->getValue()));
 
         return $e;
     }

@@ -1,4 +1,4 @@
-<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
   <faultcode>SOAP-ENV:Sender</faultcode>
   <faultstring>Something went wrong</faultstring>
   <faultactor>urn:x-simplesamlphp:namespace</faultactor>

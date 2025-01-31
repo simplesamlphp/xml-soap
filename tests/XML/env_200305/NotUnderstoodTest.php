@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\NotUnderstood;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -46,7 +46,9 @@ final class NotUnderstoodTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $notUnderstood = new NotUnderstood('ssp:Chunk', 'urn:x-simplesamlphp:namespace');
+        $notUnderstood = new NotUnderstood(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

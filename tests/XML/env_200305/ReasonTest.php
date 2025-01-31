@@ -11,6 +11,7 @@ use SimpleSAML\SOAP\XML\env_200305\Reason;
 use SimpleSAML\SOAP\XML\env_200305\Text;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\{LanguageValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -44,8 +45,8 @@ final class ReasonTest extends TestCase
     public function testMarshalling(): void
     {
         $reason = new Reason([
-            new Text('en', 'It\'s broken'),
-            new Text('nl', 'Het is stuk'),
+            new Text(LanguageValue::fromString('en'), StringValue::fromString('It\'s broken')),
+            new Text(LanguageValue::fromString('nl'), StringValue::fromString('Het is stuk')),
         ]);
 
         $this->assertEquals(
