@@ -8,8 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

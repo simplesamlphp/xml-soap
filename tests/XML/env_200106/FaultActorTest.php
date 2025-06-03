@@ -10,6 +10,7 @@ use SimpleSAML\SOAP\XML\env_200106\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200106\FaultActor;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\AnyURIValue;
 
 use function dirname;
 use function strval;
@@ -42,7 +43,9 @@ final class FaultActorTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $faultActor = new FaultActor('urn:x-simplesamlphp:namespace');
+        $faultActor = new FaultActor(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

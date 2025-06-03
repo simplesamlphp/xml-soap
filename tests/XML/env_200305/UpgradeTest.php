@@ -10,8 +10,8 @@ use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\SupportedEnvelope;
 use SimpleSAML\SOAP\XML\env_200305\Upgrade;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -45,7 +45,9 @@ final class UpgradeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $upgrade = new Upgrade([new SupportedEnvelope('env:SupportedEnvelope')]);
+        $upgrade = new Upgrade([
+            new SupportedEnvelope(QNameValue::fromString('{' . SupportedEnvelope::NS . '}env:SupportedEnvelope')),
+        ]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

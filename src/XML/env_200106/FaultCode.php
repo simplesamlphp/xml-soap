@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200106;
 
 use SimpleSAML\XML\AbstractElement;
-use SimpleSAML\XML\QNameElementTrait;
+use SimpleSAML\XML\Type\QNameValue;
+use SimpleSAML\XML\TypedTextContentTrait;
 
 /**
  * Class representing a faultcode element.
@@ -14,7 +15,7 @@ use SimpleSAML\XML\QNameElementTrait;
  */
 final class FaultCode extends AbstractElement
 {
-    use QNameElementTrait;
+    use TypedTextContentTrait;
 
     /** @var string */
     public const LOCALNAME = 'faultcode';
@@ -25,16 +26,6 @@ final class FaultCode extends AbstractElement
     /** @var null */
     public const NS_PREFIX = null;
 
-
-    /**
-     * Initialize an faultcode
-     *
-     * @param string $qname
-     * @param string|null $namespaceUri
-     */
-    public function __construct(string $qname, ?string $namespaceUri = null)
-    {
-        $this->setContent($qname);
-        $this->setContentNamespaceUri($namespaceUri);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = QNameValue::class;
 }
