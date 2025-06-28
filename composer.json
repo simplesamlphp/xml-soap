@@ -14,11 +14,11 @@
         "ext-dom": "*",
         "ext-pcre": "*",
 
-        "simplesamlphp/assert": "~1.8.0",
-        "simplesamlphp/xml-common": "dev-master"
+        "simplesamlphp/assert": "~1.8.1",
+        "simplesamlphp/xml-common": "~2.0.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.8"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
     },
     "autoload": {
         "psr-4": {
