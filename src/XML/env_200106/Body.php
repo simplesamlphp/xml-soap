@@ -7,12 +7,10 @@ namespace SimpleSAML\SOAP\XML\env_200106;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\SchemaValidatableElementInterface;
-use SimpleSAML\XML\SchemaValidatableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\xs\NamespaceEnum;
 
 use function array_diff;
 use function array_filter;
@@ -31,10 +29,10 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
     use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+    public const XS_ANY_ATTR_NAMESPACE = NamespaceEnum::Any;
 
     /**
      * @var \SimpleSAML\SOAP\XML\env_200106\Fault|null

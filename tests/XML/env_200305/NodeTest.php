@@ -10,6 +10,7 @@ use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\Node;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\AnyURIValue;
 
 use function dirname;
 use function strval;
@@ -42,7 +43,7 @@ final class NodeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $node = new Node('urn:x-simplesamlphp:namespace');
+        $node = new Node(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

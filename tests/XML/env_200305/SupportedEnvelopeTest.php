@@ -10,6 +10,7 @@ use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\SupportedEnvelope;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\QNameValue;
 
 use function dirname;
 use function strval;
@@ -42,7 +43,9 @@ final class SupportedEnvelopeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $supportedEnvelope = new SupportedEnvelope('ssp:Chunk');
+        $supportedEnvelope = new SupportedEnvelope(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

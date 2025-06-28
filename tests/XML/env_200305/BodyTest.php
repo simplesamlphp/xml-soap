@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\SOAP\XML\env_200305;
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\Body;
@@ -15,11 +16,11 @@ use SimpleSAML\SOAP\XML\env_200305\Fault;
 use SimpleSAML\SOAP\XML\env_200305\Reason;
 use SimpleSAML\SOAP\XML\env_200305\Text;
 use SimpleSAML\SOAP\XML\env_200305\Value;
-use SimpleSAML\XML\Attribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Builtin\{QNameValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -60,7 +61,7 @@ final class BodyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
+        $domAttr = new XMLAttribute('urn:test:something', 'test', 'attr1', StringValue::fromString('testval1'));
 
         $body = new Body(null, [new Chunk(self::$BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());
@@ -91,7 +92,19 @@ final class BodyTest extends TestCase
     {
         $this->expectException(ProtocolViolationException::class);
         new Body(
-            new Fault(new Code(new Value('env:Sender')), new Reason([new Text('en', 'Something is wrong')])),
+            new Fault(
+                new Code(
+                    new Value(
+                        QNameValue::fromString('{' . C::NS_SOAP_ENV_12 . '}env:Sender'),
+                    ),
+                ),
+                new Reason([
+                    new Text(
+                        LangValue::fromString('en'),
+                        StringValue::fromString('Something is wrong'),
+                    ),
+                ]),
+            ),
             [new Chunk(self::$BodyContent)],
             [],
         );

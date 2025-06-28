@@ -6,16 +6,16 @@ namespace SimpleSAML\Test\SOAP\XML\env_200106;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\XML\env_200106\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200106\Detail;
 use SimpleSAML\SOAP\XML\env_200106\Fault;
 use SimpleSAML\SOAP\XML\env_200106\FaultActor;
 use SimpleSAML\SOAP\XML\env_200106\FaultCode;
 use SimpleSAML\SOAP\XML\env_200106\FaultString;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XMLSchema\Type\Builtin\{AnyURIValue, QNameValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -50,9 +50,15 @@ final class FaultTest extends TestCase
     public function testMarshalling(): void
     {
         $fault = new Fault(
-            new FaultCode('SOAP-ENV:Sender'),
-            new FaultString('Something went wrong'),
-            new FaultActor('urn:x-simplesamlphp:namespace'),
+            new FaultCode(
+                QNameValue::fromString('{' . C::NS_SOAP_ENV_11 . '}SOAP-ENV:Sender'),
+            ),
+            new FaultString(
+                StringValue::fromString('Something went wrong'),
+            ),
+            new FaultActor(
+                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            ),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
                     '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',

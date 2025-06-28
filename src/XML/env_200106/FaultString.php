@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200106;
 
 use SimpleSAML\XML\AbstractElement;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 /**
  * Class representing a faultstring element.
@@ -14,7 +15,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class FaultString extends AbstractElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
 
     /** @var string */
     public const LOCALNAME = 'faultstring';
@@ -25,14 +26,6 @@ final class FaultString extends AbstractElement
     /** @var null */
     public const NS_PREFIX = null;
 
-
-    /**
-     * Initialize an faultstring
-     *
-     * @param string $faultString
-     */
-    public function __construct(string $faultString)
-    {
-        $this->setContent($faultString);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 }

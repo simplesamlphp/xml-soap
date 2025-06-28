@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\SOAP\XML\env_200305;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\Code;
 use SimpleSAML\SOAP\XML\env_200305\Detail;
@@ -16,10 +17,10 @@ use SimpleSAML\SOAP\XML\env_200305\Role;
 use SimpleSAML\SOAP\XML\env_200305\Subcode;
 use SimpleSAML\SOAP\XML\env_200305\Text;
 use SimpleSAML\SOAP\XML\env_200305\Value;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Builtin\{AnyURIValue, QNameValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -57,12 +58,27 @@ final class FaultTest extends TestCase
     {
         $fault = new Fault(
             new Code(
-                new Value('env:Sender'),
-                new SubCode(new Value('m:MessageTimeout', 'http://www.example.org/timeouts')),
+                new Value(
+                    QNameValue::fromString('{' . C::NS_SOAP_ENV_12 . '}env:Sender'),
+                ),
+                new SubCode(
+                    new Value(
+                        QNameValue::fromString('{http://www.example.org/timeouts}m:MessageTimeout'),
+                    ),
+                ),
             ),
-            new Reason([new Text('en', 'Sender Timeout')]),
-            new Node('urn:x-simplesamlphp:namespace'),
-            new Role('urn:x-simplesamlphp:namespace'),
+            new Reason([
+                new Text(
+                    LangValue::fromString('en'),
+                    StringValue::fromString('Sender Timeout'),
+                ),
+            ]),
+            new Node(
+                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            ),
+            new Role(
+                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            ),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
                     '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',

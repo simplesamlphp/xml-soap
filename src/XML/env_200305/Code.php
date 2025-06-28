@@ -6,12 +6,7 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SOAP\Constants as C;
-use SimpleSAML\SOAP\Exception\ProtocolViolationException;
-use SimpleSAML\SOAP\XML\env_200305\FaultEnum;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 
 /**
  * Class representing a env:Code element.
@@ -30,19 +25,6 @@ final class Code extends AbstractSoapElement
         protected Value $value,
         protected ?Subcode $subcode = null,
     ) {
-        @list($prefix, $localName) = preg_split('/:/', $value->getContent(), 2);
-        /** @var string|null $localName */
-        if ($localName === null) {
-            // We don't have a prefixed value here
-            $localName = $prefix;
-        }
-
-        Assert::oneOf(
-            FaultEnum::from($localName),
-            FaultEnum::cases(),
-            'Invalid top-level Value',
-            ProtocolViolationException::class,
-        );
     }
 
 
@@ -70,7 +52,7 @@ final class Code extends AbstractSoapElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -80,11 +62,6 @@ final class Code extends AbstractSoapElement
 
         $value = Value::getChildrenOfClass($xml);
         Assert::count($value, 1, 'Must contain exactly one Value', MissingElementException::class);
-
-        // Assert that the namespace of the value matches the SOAP-ENV namespace
-        @list($prefix, $localName) = preg_split('/:/', $value[0]->getContent(), 2);
-        $namespace = $xml->lookupNamespaceUri($prefix);
-        Assert::same($namespace, C::NS_SOAP_ENV_12);
 
         $subcode = Subcode::getChildrenOfClass($xml);
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
