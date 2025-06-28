@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\Assert\Assert;
 use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\xs\NamespaceEnum;

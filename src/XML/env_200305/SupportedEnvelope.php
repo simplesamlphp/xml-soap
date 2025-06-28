@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
 use SimpleSAML\XMLSchema\Type\Builtin\QNameValue;

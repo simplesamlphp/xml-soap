@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200106;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\SOAP\Assert\Assert;
 use SimpleSAML\SOAP\Exception\ProtocolViolationException;
 use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
 use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
