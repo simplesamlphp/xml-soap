@@ -7,9 +7,9 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingAttributeException};
 use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\Type\QNameValue;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
+use SimpleSAML\XMLSchema\Type\Builtin\QNameValue;
 
 /**
  * Class representing a env:NotUnderstood element.
@@ -23,7 +23,7 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
     /**
      * Initialize a soap:NotUnderstood
      *
-     * @param \SimpleSAML\XML\Type\QNameValue $qname
+     * @param \SimpleSAML\XMLSchema\Type\Builtin\QNameValue $qname
      */
     public function __construct(
         protected QNameValue $qname,
@@ -32,7 +32,7 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
 
 
     /**
-     * @return \SimpleSAML\XML\Type\QNameValue
+     * @return \SimpleSAML\XMLSchema\Type\Builtin\QNameValue
      */
     public function getQName(): QNameValue
     {
@@ -46,7 +46,7 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

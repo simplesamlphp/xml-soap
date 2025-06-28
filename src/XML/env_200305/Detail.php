@@ -6,9 +6,9 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\xs\NamespaceEnum;
 
 /**
  * Class representing a env:Detail element.
@@ -21,10 +21,10 @@ final class Detail extends AbstractSoapElement
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NamespaceEnum::Other;
 
 
     /**

@@ -10,7 +10,7 @@ use SimpleSAML\SOAP\XML\env_200106\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200106\FaultActor;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Builtin\AnyURIValue;
 
 use function dirname;
 use function strval;

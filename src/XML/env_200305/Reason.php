@@ -7,7 +7,7 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Constants as C;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, SchemaViolationException};
 
 /**
  * Class representing a env:Reason element.
@@ -62,7 +62,7 @@ final class Reason extends AbstractSoapElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

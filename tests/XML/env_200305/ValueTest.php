@@ -11,7 +11,7 @@ use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\Builtin\QNameValue;
 
 use function dirname;
 use function strval;

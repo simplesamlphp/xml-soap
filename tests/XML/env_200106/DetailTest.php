@@ -12,7 +12,7 @@ use SimpleSAML\SOAP\XML\env_200106\Detail;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function dirname;
 use function strval;

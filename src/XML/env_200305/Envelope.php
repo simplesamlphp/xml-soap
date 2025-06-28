@@ -6,10 +6,10 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XMLSchema\XML\xs\NamespaceEnum;
 
 /**
  * Class representing a env:Envelope element.
@@ -22,7 +22,7 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
     use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NamespaceEnum::Other;
 
 
     /**
@@ -65,7 +65,7 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

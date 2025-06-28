@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\SOAP\XML\env_200106;
 
 use SimpleSAML\XML\AbstractElement;
-use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\AnyURIValue;
 
 /**
  * Class representing a faultactor element.

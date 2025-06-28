@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP\XML\env_200305;
 
-use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\AnyURIValue;
 
 /**
  * Class representing a env:Node element.

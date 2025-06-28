@@ -17,7 +17,7 @@ use SimpleSAML\SOAP\XML\env_200106\FaultString;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XML\Type\{QNameValue, StringValue};
+use SimpleSAML\XMLSchema\Type\Builtin\{QNameValue, StringValue};
 
 use function dirname;
 use function strval;

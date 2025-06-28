@@ -6,7 +6,7 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 
 /**
  * Class representing a env:Subcode element.
@@ -52,7 +52,7 @@ final class Subcode extends AbstractSoapElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

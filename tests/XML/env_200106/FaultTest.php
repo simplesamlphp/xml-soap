@@ -15,7 +15,7 @@ use SimpleSAML\SOAP\XML\env_200106\FaultCode;
 use SimpleSAML\SOAP\XML\env_200106\FaultString;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XML\Type\{AnyURIValue, QNameValue, StringValue};
+use SimpleSAML\XMLSchema\Type\Builtin\{AnyURIValue, QNameValue, StringValue};
 
 use function dirname;
 use function strval;

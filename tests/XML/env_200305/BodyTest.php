@@ -19,7 +19,8 @@ use SimpleSAML\SOAP\XML\env_200305\Value;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XML\Type\{LanguageValue, QNameValue, StringValue};
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Builtin\{QNameValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -99,7 +100,7 @@ final class BodyTest extends TestCase
                 ),
                 new Reason([
                     new Text(
-                        LanguageValue::fromString('en'),
+                        LangValue::fromString('en'),
                         StringValue::fromString('Something is wrong'),
                     ),
                 ]),

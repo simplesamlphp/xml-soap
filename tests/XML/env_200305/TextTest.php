@@ -10,7 +10,8 @@ use SimpleSAML\SOAP\XML\env_200305\AbstractSoapElement;
 use SimpleSAML\SOAP\XML\env_200305\Text;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\{LanguageValue, StringValue};
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function dirname;
 use function strval;
@@ -44,7 +45,7 @@ final class TextTest extends TestCase
     public function testMarshalling(): void
     {
         $text = new Text(
-            LanguageValue::fromString('en'),
+            LangValue::fromString('en'),
             StringValue::fromString('It\'s broken'),
         );
 

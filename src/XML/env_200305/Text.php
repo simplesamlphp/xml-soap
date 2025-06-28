@@ -7,8 +7,9 @@ namespace SimpleSAML\SOAP\XML\env_200305;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SOAP\Constants as C;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingAttributeException};
-use SimpleSAML\XML\Type\{StringValue, LanguageValue};
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function strval;
 
@@ -22,11 +23,11 @@ final class Text extends AbstractSoapElement
     /**
      * Initialize a env:Text
      *
-     * @param \SimpleSAML\XML\Type\LanguageValue $language
-     * @param \SimpleSAML\XML\Type\StringValue $content
+     * @param \SimpleSAML\XML\Type\LangValue $language
+     * @param \SimpleSAML\XMLSchema\Type\Builtin\StringValue $content
      */
     public function __construct(
-        protected LanguageValue $language,
+        protected LangValue $language,
         protected StringValue $content,
     ) {
     }
@@ -35,9 +36,9 @@ final class Text extends AbstractSoapElement
     /**
      * Collect the value of the language-property
      *
-     * @return \SimpleSAML\XML\Type\LanguageValue
+     * @return \SimpleSAML\XML\Type\LangValue
      */
-    public function getLanguage(): LanguageValue
+    public function getLanguage(): LangValue
     {
         return $this->language;
     }
@@ -46,7 +47,7 @@ final class Text extends AbstractSoapElement
     /**
      * Collect the value of the content-property
      *
-     * @return \SimpleSAML\XML\Type\StringValue
+     * @return \SimpleSAML\XMLSchema\Type\Builtin\StringValue
      */
     public function getContent(): StringValue
     {
@@ -60,7 +61,7 @@ final class Text extends AbstractSoapElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -74,7 +75,7 @@ final class Text extends AbstractSoapElement
         );
 
         return new static(
-            LanguageValue::fromString($xml->getAttributeNS(C::NS_XML, 'lang')),
+            LangValue::fromString($xml->getAttributeNS(C::NS_XML, 'lang')),
             StringValue::fromString($xml->textContent),
         );
     }
@@ -89,9 +90,9 @@ final class Text extends AbstractSoapElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-
-        $e->setAttributeNS(C::NS_XML, 'xml:lang', strval($this->getLanguage()));
         $e->textContent = strval($this->getContent());
+
+        $this->getLanguage()->toAttribute()->toXML($e);
 
         return $e;
     }
