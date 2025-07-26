@@ -14,20 +14,23 @@
         "ext-dom": "*",
         "ext-pcre": "*",
 
-        "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/xml-common": "~2.0.0"
+        "simplesamlphp/assert": "~1.8.2",
+        "simplesamlphp/xml-common": "~2.0.1"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.9.3"
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\SOAP\\": "src/"
+            "SimpleSAML\\SOAP11\\": "src/SOAP11/",
+            "SimpleSAML\\SOAP12\\": "src/SOAP12/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\SOAP\\": ["tests/"]
+            "SimpleSAML\\Test\\Registry\\": ["tests/Registry/"],
+            "SimpleSAML\\Test\\SOAP11\\": ["tests/SOAP11/"],
+            "SimpleSAML\\Test\\SOAP12\\": ["tests/SOAP12/"]
         }
     },
     "extra": {
