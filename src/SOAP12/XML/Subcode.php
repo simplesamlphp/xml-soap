@@ -6,7 +6,9 @@ namespace SimpleSAML\SOAP12\XML;
 
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
 /**
  * Class representing a env:Subcode element.

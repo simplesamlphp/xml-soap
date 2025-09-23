@@ -13,9 +13,13 @@ use SimpleSAML\SOAP11\XML\Fault;
 use SimpleSAML\SOAP11\XML\FaultActor;
 use SimpleSAML\SOAP11\XML\FaultCode;
 use SimpleSAML\SOAP11\XML\FaultString;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XMLSchema\Type\{AnyURIValue, QNameValue, StringValue};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;

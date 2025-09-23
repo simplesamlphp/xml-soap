@@ -7,7 +7,8 @@ namespace SimpleSAML\SOAP12\XML;
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Constants as C;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, SchemaViolationException};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 
 /**
  * Class representing a env:Reason element.
@@ -55,6 +56,7 @@ final class Reason extends AbstractSoapElement
 
         return $e;
     }
+
 
     /**
      * Convert XML into a Value

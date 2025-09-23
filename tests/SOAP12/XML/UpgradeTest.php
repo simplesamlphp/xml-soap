@@ -10,7 +10,8 @@ use SimpleSAML\SOAP12\XML\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\SupportedEnvelope;
 use SimpleSAML\SOAP12\XML\Upgrade;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;

@@ -16,6 +16,7 @@ final class Value extends AbstractSoapElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = QNameValue::class;
 }

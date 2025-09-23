@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP11\Type;
 
-use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, DependsOnClass};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\Type\EncodingStyleValue;
 use SimpleSAML\XMLSchema\Exception\SchemaViolationException;

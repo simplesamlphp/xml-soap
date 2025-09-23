@@ -10,7 +10,8 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\Detail;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
@@ -27,6 +28,7 @@ use function strval;
 final class DetailTest extends TestCase
 {
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $DetailContent */
     private static DOMElement $DetailContent;

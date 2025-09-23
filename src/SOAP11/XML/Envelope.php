@@ -6,9 +6,13 @@ namespace SimpleSAML\SOAP11\XML;
 
 use DOMElement;
 use SimpleSAML\SOAP11\Assert\Assert;
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 
 /**
@@ -21,6 +25,7 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
     use ExtendableElementTrait;
     use ExtendableAttributesTrait;
     use SchemaValidatableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Other;

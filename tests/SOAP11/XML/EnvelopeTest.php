@@ -12,8 +12,10 @@ use SimpleSAML\SOAP11\XML\Body;
 use SimpleSAML\SOAP11\XML\Envelope;
 use SimpleSAML\SOAP11\XML\Header;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
@@ -31,6 +33,7 @@ final class EnvelopeTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $bodyContent */
     private static DOMElement $bodyContent;
 
@@ -39,6 +42,7 @@ final class EnvelopeTest extends TestCase
 
     /** @var \DOMElement $envelopeContent */
     private static DOMElement $envelopeContent;
+
 
     /**
      */

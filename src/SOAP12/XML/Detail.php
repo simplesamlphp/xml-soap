@@ -6,7 +6,8 @@ namespace SimpleSAML\SOAP12\XML;
 
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 
@@ -19,6 +20,7 @@ final class Detail extends AbstractSoapElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;

@@ -7,8 +7,10 @@ namespace SimpleSAML\SOAP12\XML;
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Constants as C;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, SchemaViolationException};
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 
 /**
  * Class representing a env:Upgrade element.
@@ -18,6 +20,7 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
 final class Upgrade extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
+
 
     /**
      * Initialize a env:Upgrade
@@ -58,6 +61,7 @@ final class Upgrade extends AbstractSoapElement implements SchemaValidatableElem
 
         return $e;
     }
+
 
     /**
      * Convert XML into a Upgrade

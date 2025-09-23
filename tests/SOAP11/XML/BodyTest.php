@@ -15,9 +15,12 @@ use SimpleSAML\SOAP11\XML\Fault;
 use SimpleSAML\SOAP11\XML\FaultCode;
 use SimpleSAML\SOAP11\XML\FaultString;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XMLSchema\Type\{QNameValue, StringValue};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -33,6 +36,7 @@ final class BodyTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $BodyContent */
     private static DOMElement $BodyContent;

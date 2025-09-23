@@ -17,6 +17,7 @@ final class FaultCode extends AbstractElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const LOCALNAME = 'faultcode';
 

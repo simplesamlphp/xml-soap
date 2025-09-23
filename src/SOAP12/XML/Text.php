@@ -7,8 +7,9 @@ namespace SimpleSAML\SOAP12\XML;
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\SOAP12\Constants as C;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
 use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingAttributeException;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function strval;

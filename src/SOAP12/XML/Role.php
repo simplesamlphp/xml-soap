@@ -16,6 +16,7 @@ final class Role extends AbstractSoapElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

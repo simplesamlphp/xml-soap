@@ -17,10 +17,14 @@ use SimpleSAML\SOAP12\XML\Role;
 use SimpleSAML\SOAP12\XML\Subcode;
 use SimpleSAML\SOAP12\XML\Text;
 use SimpleSAML\SOAP12\XML\Value;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\Type\LangValue;
-use SimpleSAML\XMLSchema\Type\{AnyURIValue, QNameValue, StringValue};
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;

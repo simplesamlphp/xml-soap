@@ -7,7 +7,8 @@ namespace SimpleSAML\SOAP11\XML;
 use DOMElement;
 use SimpleSAML\SOAP11\Assert\Assert;
 use SimpleSAML\XML\AbstractElement;
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 
@@ -20,6 +21,7 @@ final class Detail extends AbstractElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** @var string */
     public const LOCALNAME = 'detail';

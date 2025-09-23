@@ -6,8 +6,11 @@ namespace SimpleSAML\SOAP11\XML;
 
 use DOMElement;
 use SimpleSAML\SOAP11\Assert\Assert;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
 /**
  * Class representing a SOAP-ENV:Fault element.
@@ -17,6 +20,7 @@ use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementEx
 final class Fault extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
+
 
     /**
      * Initialize a SOAP-ENV:Fault

@@ -7,7 +7,8 @@ namespace SimpleSAML\SOAP12\XML;
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingAttributeException;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function strval;

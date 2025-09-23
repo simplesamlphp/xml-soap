@@ -7,8 +7,10 @@ namespace SimpleSAML\SOAP12\XML;
 use DOMElement;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingAttributeException};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingAttributeException;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
@@ -19,6 +21,7 @@ use SimpleSAML\XMLSchema\Type\QNameValue;
 final class NotUnderstood extends AbstractSoapElement implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
+
 
     /**
      * Initialize a soap:NotUnderstood

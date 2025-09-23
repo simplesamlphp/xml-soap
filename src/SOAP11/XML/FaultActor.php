@@ -17,6 +17,7 @@ final class FaultActor extends AbstractElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const LOCALNAME = 'faultactor';
 

@@ -7,8 +7,10 @@ namespace SimpleSAML\SOAP11\XML;
 use DOMElement;
 use SimpleSAML\SOAP11\Assert\Assert;
 use SimpleSAML\SOAP11\Exception\ProtocolViolationException;
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 
@@ -28,11 +30,13 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
     use ExtendableElementTrait;
     use SchemaValidatableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NamespaceEnum::Any;
+
 
     /**
      * @var \SimpleSAML\SOAP11\XML\Fault|null
