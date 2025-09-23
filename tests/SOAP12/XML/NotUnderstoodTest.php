@@ -35,8 +35,6 @@ final class NotUnderstoodTest extends TestCase
     {
         self::$testedClass = NotUnderstood::class;
 
-        self::$schemaFile = dirname(__FILE__, 4) . '/resources/schemas/soap-envelope-1.2.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 3) . '/resources/xml/env/200305/NotUnderstood.xml',
         );
