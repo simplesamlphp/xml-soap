@@ -12,7 +12,7 @@ use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
-use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing a env:Envelope element.
@@ -26,7 +26,7 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
 
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NamespaceEnum::Other;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
