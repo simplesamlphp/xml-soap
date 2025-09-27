@@ -130,7 +130,6 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
 
         $this->getFault()?->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             $child->toXML($e);
         }

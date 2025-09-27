@@ -98,7 +98,6 @@ final class Detail extends AbstractElement
             $attr->toXML($e);
         }
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             $child->toXML($e);
         }

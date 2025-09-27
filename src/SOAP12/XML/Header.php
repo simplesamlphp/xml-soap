@@ -91,7 +91,6 @@ final class Header extends AbstractSoapElement implements SchemaValidatableEleme
             $attr->toXML($e);
         }
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             $child->toXML($e);
         }
