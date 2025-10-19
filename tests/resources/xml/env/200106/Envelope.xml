@@ -1,15 +1,15 @@
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:test="urn:test:something" test:attr1="testval1">
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:test="urn:test:something" xmlns:m="https://www.w3schools.com/prices" test:attr1="testval1">
   <SOAP-ENV:Header test:attr1="testval1">
-    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+    <m:GetPrice>
       <m:Item>Apples</m:Item>
     </m:GetPrice>
   </SOAP-ENV:Header>
   <SOAP-ENV:Body test:attr1="testval1">
-    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+    <m:GetPrice>
       <m:Item>Pears</m:Item>
     </m:GetPrice>
   </SOAP-ENV:Body>
-  <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+  <m:GetPrice>
     <m:Item>Bananas</m:Item>
   </m:GetPrice>
 </SOAP-ENV:Envelope>

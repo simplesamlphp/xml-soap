@@ -1,5 +1,5 @@
-<detail xmlns:test="urn:test:something" test:attr1="testval1">
-  <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+<detail xmlns:test="urn:test:something" xmlns:m="https://www.w3schools.com/prices" test:attr1="testval1">
+  <m:GetPrice>
     <m:Item>Apples</m:Item>
   </m:GetPrice>
 </detail>
