@@ -23,8 +23,6 @@ use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 final class MustUnderstandValueTest extends TestCase
 {
     /**
-     * @param boolean $shouldPass
-     * @param string $mustUnderstand
      */
     #[DataProvider('provideInvalidMustUnderstand')]
     #[DataProvider('provideValidMustUnderstand')]

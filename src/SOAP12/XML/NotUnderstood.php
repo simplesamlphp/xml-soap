@@ -47,7 +47,6 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
      * Convert XML into a NotUnderstood element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -68,7 +67,6 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
      * Convert this NotUnderstood to XML.
      *
      * @param \DOMElement|null $parent The element we should add this Body to.
-     * @return \DOMElement This NotUnderstood-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

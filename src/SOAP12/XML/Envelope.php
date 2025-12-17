@@ -26,7 +26,7 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
 
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+    public const string XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
@@ -67,7 +67,6 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
      * Convert XML into an Envelope element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -95,7 +94,6 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
      * Convert this Envelope to XML.
      *
      * @param \DOMElement|null $parent The element we should add this envelope to.
-     * @return \DOMElement This Envelope-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

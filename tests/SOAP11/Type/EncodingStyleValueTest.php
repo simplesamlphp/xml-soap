@@ -19,8 +19,6 @@ use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 final class EncodingStyleValueTest extends TestCase
 {
     /**
-     * @param string $encodingStyle
-     * @param bool $shouldPass
      */
     #[DataProvider('provideEncodingStyle')]
     public function testEncodingStyleValue(string $encodingStyle, bool $shouldPass): void

@@ -18,15 +18,11 @@ final class FaultActor extends AbstractElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const LOCALNAME = 'faultactor';
+    public const string LOCALNAME = 'faultactor';
 
-    /** @var null */
-    public const NS = null;
+    public const null NS = null;
 
-    /** @var null */
-    public const NS_PREFIX = null;
+    public const null NS_PREFIX = null;
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = AnyURIValue::class;
+    public const string TEXTCONTENT_TYPE = AnyURIValue::class;
 }

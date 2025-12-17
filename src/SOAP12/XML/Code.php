@@ -52,7 +52,6 @@ final class Code extends AbstractSoapElement
      * Convert XML into an Code element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -79,7 +78,6 @@ final class Code extends AbstractSoapElement
      * Convert this Code to XML.
      *
      * @param \DOMElement|null $parent The element we should add this code to.
-     * @return \DOMElement This Code-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

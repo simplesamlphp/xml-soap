@@ -32,10 +32,10 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
 
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    public const string XS_ANY_ELT_NAMESPACE = NS::ANY;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+    public const string XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
 
     /**
@@ -87,8 +87,6 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
 
     /**
      * Test if an object, at the state it's in, would produce an empty XML-element
-     *
-     * @return bool
      */
     public function isEmptyElement(): bool
     {
@@ -100,7 +98,6 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
      * Convert XML into an Body element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -121,7 +118,6 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
      * Convert this Body to XML.
      *
      * @param \DOMElement|null $parent The element we should add this Body to.
-     * @return \DOMElement This Body-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

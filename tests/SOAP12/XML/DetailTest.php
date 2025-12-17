@@ -30,7 +30,6 @@ final class DetailTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $DetailContent */
     private static DOMElement $DetailContent;
 
 

@@ -15,14 +15,14 @@ class Constants extends \SimpleSAML\XML\Constants
     /**
      * The namespace for the SOAP envelope 1.1.
      */
-    public const NS_SOAP_ENV = 'http://schemas.xmlsoap.org/soap/envelope/';
+    public const string NS_SOAP_ENV = 'http://schemas.xmlsoap.org/soap/envelope/';
 
     /**
      * The namespace for SOAP encoding 1.1.
      */
-    public const NS_SOAP_ENC = 'https://schemas.xmlsoap.org/soap/encoding/';
+    public const string NS_SOAP_ENC = 'https://schemas.xmlsoap.org/soap/encoding/';
 
     /**
      */
-    public const SOAP_ACTOR_NEXT = 'http://schemas.xmlsoap.org/soap/actor/next';
+    public const string SOAP_ACTOR_NEXT = 'http://schemas.xmlsoap.org/soap/actor/next';
 }

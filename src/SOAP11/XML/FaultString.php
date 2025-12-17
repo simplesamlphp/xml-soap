@@ -18,15 +18,11 @@ final class FaultString extends AbstractElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const LOCALNAME = 'faultstring';
+    public const string LOCALNAME = 'faultstring';
 
-    /** @var null */
-    public const NS = null;
+    public const null NS = null;
 
-    /** @var null */
-    public const NS_PREFIX = null;
+    public const null NS_PREFIX = null;
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = StringValue::class;
+    public const string TEXTCONTENT_TYPE = StringValue::class;
 }
