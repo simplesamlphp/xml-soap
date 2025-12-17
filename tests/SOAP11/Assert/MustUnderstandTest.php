@@ -19,8 +19,6 @@ use SimpleSAML\SOAP11\Assert\Assert;
 final class MustUnderstandTest extends TestCase
 {
     /**
-     * @param boolean $shouldPass
-     * @param string $mustUnderstand
      */
     #[DataProvider('provideInvalidMustUnderstand')]
     #[DataProvider('provideValidMustUnderstand')]

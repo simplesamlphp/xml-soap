@@ -34,10 +34,8 @@ final class EnvelopeTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $bodyContent */
     private static DOMElement $bodyContent;
 
-    /** @var \DOMElement $headerContent */
     private static DOMElement $headerContent;
 
 

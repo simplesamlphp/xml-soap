@@ -38,7 +38,6 @@ final class BodyTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $BodyContent */
     private static DOMElement $BodyContent;
 
 

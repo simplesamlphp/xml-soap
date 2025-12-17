@@ -18,15 +18,11 @@ final class FaultCode extends AbstractElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const LOCALNAME = 'faultcode';
+    public const string LOCALNAME = 'faultcode';
 
-    /** @var null */
-    public const NS = null;
+    public const null NS = null;
 
-    /** @var null */
-    public const NS_PREFIX = null;
+    public const null NS_PREFIX = null;
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = QNameValue::class;
+    public const string TEXTCONTENT_TYPE = QNameValue::class;
 }

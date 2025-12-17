@@ -41,28 +41,9 @@ final class Reason extends AbstractSoapElement
 
 
     /**
-     * Convert this element to XML.
-     *
-     * @param \DOMElement|null $parent The element we should append this element to.
-     * @return \DOMElement
-     */
-    public function toXML(?DOMElement $parent = null): DOMElement
-    {
-        $e = $this->instantiateParentElement($parent);
-
-        foreach ($this->getText() as $text) {
-            $text->toXML($e);
-        }
-
-        return $e;
-    }
-
-
-    /**
      * Convert XML into a Value
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -76,5 +57,22 @@ final class Reason extends AbstractSoapElement
         Assert::minCount($text, 1, SchemaViolationException::class);
 
         return new static($text);
+    }
+
+
+    /**
+     * Convert this element to XML.
+     *
+     * @param \DOMElement|null $parent The element we should append this element to.
+     */
+    public function toXML(?DOMElement $parent = null): DOMElement
+    {
+        $e = $this->instantiateParentElement($parent);
+
+        foreach ($this->getText() as $text) {
+            $text->toXML($e);
+        }
+
+        return $e;
     }
 }

@@ -32,7 +32,6 @@ final class HeaderTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $headerContent */
     private static DOMElement $headerContent;
 
 

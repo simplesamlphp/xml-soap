@@ -60,7 +60,6 @@ final class Text extends AbstractSoapElement
      * Convert XML into a env:Text element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -86,7 +85,6 @@ final class Text extends AbstractSoapElement
      * Convert this Text element to XML.
      *
      * @param \DOMElement|null $parent The element we should append this Text element to.
-     * @return \DOMElement
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

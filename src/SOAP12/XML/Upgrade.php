@@ -49,7 +49,6 @@ final class Upgrade extends AbstractSoapElement implements SchemaValidatableElem
      * Convert this element to XML.
      *
      * @param \DOMElement|null $parent The element we should append this element to.
-     * @return \DOMElement
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {
@@ -67,7 +66,6 @@ final class Upgrade extends AbstractSoapElement implements SchemaValidatableElem
      * Convert XML into a Upgrade
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong

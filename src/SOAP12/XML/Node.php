@@ -17,6 +17,5 @@ final class Node extends AbstractSoapElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = AnyURIValue::class;
+    public const string TEXTCONTENT_TYPE = AnyURIValue::class;
 }

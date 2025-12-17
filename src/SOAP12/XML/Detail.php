@@ -23,10 +23,10 @@ final class Detail extends AbstractSoapElement
 
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    public const string XS_ANY_ELT_NAMESPACE = NS::ANY;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+    public const string XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
@@ -44,8 +44,6 @@ final class Detail extends AbstractSoapElement
 
     /**
      * Test if an object, at the state it's in, would produce an empty XML-element
-     *
-     * @return bool
      */
     public function isEmptyElement(): bool
     {
@@ -57,7 +55,6 @@ final class Detail extends AbstractSoapElement
      * Convert XML into an Detail element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -78,7 +75,6 @@ final class Detail extends AbstractSoapElement
      * Convert this Detail to XML.
      *
      * @param \DOMElement|null $parent The element we should add this Detail to.
-     * @return \DOMElement This Detail-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

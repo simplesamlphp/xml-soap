@@ -91,7 +91,6 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
      * Convert XML into an Fault element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
@@ -130,7 +129,6 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
      * Convert this Fault to XML.
      *
      * @param \DOMElement|null $parent The element we should add this fault to.
-     * @return \DOMElement This Fault-element.
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {

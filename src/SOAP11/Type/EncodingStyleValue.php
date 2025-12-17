@@ -16,8 +16,7 @@ use function explode;
  */
 class EncodingStyleValue extends NMTokensValue
 {
-    /** @var string */
-    public const SCHEMA_TYPE = 'encodingStyle';
+    public const string SCHEMA_TYPE = 'encodingStyle';
 
 
     /**
@@ -25,7 +24,6 @@ class EncodingStyleValue extends NMTokensValue
      *
      * @param string $value The value
      * @throws \SimpleSAML\XMLSchema\Exception\SchemaViolationException on failure
-     * @return void
      */
     protected function validateValue(string $value): void
     {
