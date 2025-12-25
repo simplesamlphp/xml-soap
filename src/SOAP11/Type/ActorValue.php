@@ -24,6 +24,6 @@ class ActorValue extends AnyURIValue implements AttributeTypeInterface
      */
     public function toAttribute(): Attribute
     {
-        return new Attribute(C::NS_SOAP_ENV, 'env', 'actor', $this);
+        return new Attribute(C::NS_SOAP_ENV, 'SOAP-ENV', 'actor', $this);
     }
 }
