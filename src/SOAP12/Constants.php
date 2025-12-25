@@ -21,4 +21,8 @@ class Constants extends \SimpleSAML\XML\Constants
      * The namespace for SOAP encoding 1.2.
      */
     public const string NS_SOAP_ENC = 'http://www.w3.org/2003/05/soap-encoding';
+
+    /**
+     */
+    public const string ROLE_ULTIMATERECEIVER = 'http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver';
 }
