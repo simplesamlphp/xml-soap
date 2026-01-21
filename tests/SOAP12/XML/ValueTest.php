@@ -11,7 +11,6 @@ use SimpleSAML\SOAP12\XML\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -44,9 +43,7 @@ final class ValueTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $value = new Value(
-            QNameValue::fromString('{' . C::NS_SOAP_ENV . '}env:Sender'),
-        );
+        $value = Value::fromString('{' . C::NS_SOAP_ENV . '}env:Sender');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

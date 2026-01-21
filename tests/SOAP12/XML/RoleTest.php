@@ -10,7 +10,6 @@ use SimpleSAML\SOAP12\XML\AbstractSoapElement;
 use SimpleSAML\SOAP12\XML\Role;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 use function strval;
@@ -43,9 +42,7 @@ final class RoleTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $role = new Role(
-            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
-        );
+        $role = Role::fromString('urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

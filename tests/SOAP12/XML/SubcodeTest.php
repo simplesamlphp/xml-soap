@@ -11,7 +11,6 @@ use SimpleSAML\SOAP12\XML\Subcode;
 use SimpleSAML\SOAP12\XML\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -45,13 +44,9 @@ final class SubcodeTest extends TestCase
     public function testMarshalling(): void
     {
         $subcode = new Subcode(
-            new Value(
-                QNameValue::fromString('{https://www.w3schools.com/prices}m:SomethingNotFromSpec'),
-            ),
+            Value::fromString('{https://www.w3schools.com/prices}m:SomethingNotFromSpec'),
             new Subcode(
-                new Value(
-                    QNameValue::fromString('{https://www.w3schools.com/prices}m:MessageTimeout'),
-                ),
+                Value::fromString('{https://www.w3schools.com/prices}m:MessageTimeout'),
             ),
         );
 

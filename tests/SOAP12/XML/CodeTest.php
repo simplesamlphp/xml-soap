@@ -13,7 +13,6 @@ use SimpleSAML\SOAP12\XML\Subcode;
 use SimpleSAML\SOAP12\XML\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -47,10 +46,10 @@ final class CodeTest extends TestCase
     public function testMarshalling(): void
     {
         $code = new Code(
-            new Value(QNameValue::fromString('{' . C::NS_SOAP_ENV . '}env:Sender')),
+            Value::fromString('{' . C::NS_SOAP_ENV . '}env:Sender'),
             new Subcode(
-                new Value(QNameValue::fromString('{http://www.example.org/timeouts}m:SomethingNotFromSpec')),
-                new Subcode(new Value(QNameValue::fromString('{http://www.example.org/timeouts}m:MessageTimeout'))),
+                Value::fromString('{http://www.example.org/timeouts}m:SomethingNotFromSpec'),
+                new Subcode(Value::fromString('{http://www.example.org/timeouts}m:MessageTimeout')),
             ),
         );
 

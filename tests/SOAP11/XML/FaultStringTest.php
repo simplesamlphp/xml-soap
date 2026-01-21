@@ -10,7 +10,6 @@ use SimpleSAML\SOAP11\XML\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\FaultString;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -43,9 +42,7 @@ final class FaultStringTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $faultString = new FaultString(
-            StringValue::fromString('Something went wrong'),
-        );
+        $faultString = FaultString::fromString('Something went wrong');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

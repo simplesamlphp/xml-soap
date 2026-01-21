@@ -11,7 +11,6 @@ use SimpleSAML\SOAP11\XML\AbstractSoapElement;
 use SimpleSAML\SOAP11\XML\FaultCode;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -44,7 +43,7 @@ final class FaultCodeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $faultCode = new FaultCode(QNameValue::fromString('{' . C::NS_SOAP_ENV . '}env:Sender'));
+        $faultCode = FaultCode::fromString('{' . C::NS_SOAP_ENV . '}env:Sender');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

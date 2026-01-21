@@ -17,9 +17,6 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
-use SimpleSAML\XMLSchema\Type\QNameValue;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -54,15 +51,9 @@ final class FaultTest extends TestCase
     public function testMarshalling(): void
     {
         $fault = new Fault(
-            new FaultCode(
-                QNameValue::fromString('{' . C::NS_SOAP_ENV . '}SOAP-ENV:Sender'),
-            ),
-            new FaultString(
-                StringValue::fromString('Something went wrong'),
-            ),
-            new FaultActor(
-                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
-            ),
+            FaultCode::fromString('{' . C::NS_SOAP_ENV . '}SOAP-ENV:Sender'),
+            FaultString::fromString('Something went wrong'),
+            FaultActor::fromString('urn:x-simplesamlphp:namespace'),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
                     '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',

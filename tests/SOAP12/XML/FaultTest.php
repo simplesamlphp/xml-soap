@@ -22,8 +22,6 @@ use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\Type\LangValue;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
@@ -62,13 +60,9 @@ final class FaultTest extends TestCase
     {
         $fault = new Fault(
             new Code(
-                new Value(
-                    QNameValue::fromString('{' . C::NS_SOAP_ENV . '}env:Sender'),
-                ),
+                Value::fromString('{' . C::NS_SOAP_ENV . '}env:Sender'),
                 new SubCode(
-                    new Value(
-                        QNameValue::fromString('{http://www.example.org/timeouts}m:MessageTimeout'),
-                    ),
+                    Value::fromString('{http://www.example.org/timeouts}m:MessageTimeout'),
                 ),
             ),
             new Reason([
@@ -77,12 +71,8 @@ final class FaultTest extends TestCase
                     StringValue::fromString('Sender Timeout'),
                 ),
             ]),
-            new Node(
-                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
-            ),
-            new Role(
-                AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
-            ),
+            Node::fromString('urn:x-simplesamlphp:namespace'),
+            Role::fromString('urn:x-simplesamlphp:namespace'),
             new Detail([
                 new Chunk(DOMDocumentFactory::fromString(
                     '<m:MaxTime xmlns:m="http://www.example.org/timeouts">P5M</m:MaxTime>',
