@@ -35,7 +35,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v2.0.x-dev"
+            "dev-master": "v2.4.x-dev"
         }
     },
     "config": {
@@ -43,7 +43,8 @@
             "composer/package-versions-deprecated": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true,
-            "simplesamlphp/composer-xmlprovider-installer": true
+            "simplesamlphp/composer-xmlprovider-installer": true,
+            "simplesamlphp/composer-module-installer": true
         }
     }
 }
