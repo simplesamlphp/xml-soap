@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
@@ -66,12 +66,12 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
     /**
      * Convert XML into an Envelope element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'Envelope', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Envelope::NS, InvalidDOMElementException::class);
@@ -93,9 +93,9 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
     /**
      * Convert this Envelope to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this envelope to.
+     * @param \Dom\Element|null $parent The element we should add this envelope to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

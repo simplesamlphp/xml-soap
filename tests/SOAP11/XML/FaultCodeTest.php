@@ -45,9 +45,10 @@ final class FaultCodeTest extends TestCase
     {
         $faultCode = FaultCode::fromString('{' . C::NS_SOAP_ENV . '}env:Sender');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultCode),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($faultCode);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

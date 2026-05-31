@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
@@ -46,12 +46,12 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
     /*
      * Convert XML into a NotUnderstood element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'NotUnderstood', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
@@ -66,9 +66,9 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
     /**
      * Convert this NotUnderstood to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this Body to.
+     * @param \Dom\Element|null $parent The element we should add this Body to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

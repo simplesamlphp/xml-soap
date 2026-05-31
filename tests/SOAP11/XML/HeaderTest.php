@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP11\XML;
 
-use DOMElement;
+use Dom;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\AbstractSoapElement;
@@ -32,7 +32,7 @@ final class HeaderTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    private static DOMElement $headerContent;
+    private static Dom\Element $headerContent;
 
 
     /**
@@ -60,10 +60,11 @@ final class HeaderTest extends TestCase
         $header = new Header([new Chunk(self::$headerContent)], [$domAttr]);
         $this->assertFalse($header->isEmptyElement());
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($header),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($header);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 
 

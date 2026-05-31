@@ -44,9 +44,10 @@ final class FaultActorTest extends TestCase
     {
         $faultActor = FaultActor::fromString('urn:x-simplesamlphp:namespace');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultActor),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($faultActor);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

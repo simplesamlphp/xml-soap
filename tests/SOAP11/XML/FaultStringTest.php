@@ -44,9 +44,10 @@ final class FaultStringTest extends TestCase
     {
         $faultString = FaultString::fromString('Something went wrong');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultString),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($faultString);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

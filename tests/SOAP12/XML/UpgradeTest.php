@@ -50,9 +50,10 @@ final class UpgradeTest extends TestCase
             new SupportedEnvelope(QNameValue::fromString('{' . SupportedEnvelope::NS . '}env:SupportedEnvelope')),
         ]);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($upgrade),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($upgrade);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }
