@@ -7,6 +7,7 @@ namespace SimpleSAML\SOAP12\XML;
 use Dom;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
 use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -72,13 +73,16 @@ final class NotUnderstood extends AbstractSoapElement implements SchemaValidatab
     {
         $e = $this->instantiateParentElement($parent);
 
-        if (!$e->lookupPrefix($this->getQName()->getNamespaceURI()->getValue())) {
-            $namespace = new XMLAttribute(
-                'http://www.w3.org/2000/xmlns/',
-                'xmlns',
-                $this->getQName()->getNamespacePrefix()->getValue(),
-                $this->getQName()->getNamespaceURI(),
-            );
+        $namespace = new XMLAttribute(
+            C::NS_XMLNS,
+            'xmlns',
+            $this->getQName()->getNamespacePrefix()->getValue(),
+            $this->getQName()->getNamespaceURI(),
+        );
+
+        if ($parent !== null && !$parent->lookupPrefix($this->getQName()->getNamespacePrefix()->getValue())) {
+            $namespace->toXML($parent);
+        } elseif (!$e->lookupPrefix($this->getQName()->getNamespacePrefix()->getValue())) {
             $namespace->toXML($e);
         }
 
