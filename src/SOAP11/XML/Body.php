@@ -16,7 +16,7 @@ use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_diff;
 use function array_filter;
-use function array_pop;
+use function array_last;
 use function array_values;
 
 /**
@@ -61,7 +61,7 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
         }));
         Assert::maxCount($fault, 1, ProtocolViolationException::class);
 
-        $this->setFault(array_pop($fault));
+        $this->setFault(array_last($fault));
         $this->setElements(array_diff($children, $fault));
         $this->setAttributesNS($namespacedAttributes);
     }
