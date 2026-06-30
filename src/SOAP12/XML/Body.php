@@ -14,7 +14,7 @@ use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class representing a env:Body element.
@@ -104,7 +104,7 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
         Assert::maxCount($fault, 1, ProtocolViolationException::class);
 
         return new static(
-            array_pop($fault),
+            array_last($fault),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
