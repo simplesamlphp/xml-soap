@@ -13,6 +13,8 @@ use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
+use function array_last;
+
 /**
  * Class representing a env:Fault element.
  *
@@ -116,11 +118,11 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
         Assert::maxCount($detail, 1, 'Cannot process more than one Detail element.', TooManyElementsException::class);
 
         return new self(
-            array_pop($code),
-            array_pop($reason),
-            empty($node) ? null : array_pop($node),
-            empty($role) ? null : array_pop($role),
-            empty($detail) ? null : array_pop($detail),
+            array_last($code),
+            array_last($reason),
+            array_last($node),
+            array_last($role),
+            array_last($detail),
         );
     }
 

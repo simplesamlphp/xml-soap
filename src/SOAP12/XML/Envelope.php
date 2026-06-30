@@ -14,6 +14,8 @@ use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
+use function array_last;
+
 /**
  * Class representing a env:Envelope element.
  *
@@ -83,8 +85,8 @@ final class Envelope extends AbstractSoapElement implements SchemaValidatableEle
         Assert::maxCount($header, 1, 'Cannot process more than one Header element.', TooManyElementsException::class);
 
         return new static(
-            array_pop($body),
-            empty($header) ? null : array_pop($header),
+            array_last($body),
+            array_last($header),
             self::getAttributesNSFromXML($xml),
         );
     }

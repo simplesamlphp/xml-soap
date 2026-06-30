@@ -10,6 +10,8 @@ use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
+use function array_last;
+
 /**
  * Class representing a env:Subcode element.
  *
@@ -68,8 +70,8 @@ final class Subcode extends AbstractSoapElement
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
 
         return new static(
-            array_pop($value),
-            empty($subcode) ? null : array_pop($subcode),
+            array_last($value),
+            array_last($subcode),
         );
     }
 

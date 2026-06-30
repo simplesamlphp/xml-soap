@@ -68,8 +68,8 @@ final class Code extends AbstractSoapElement
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
 
         return new static(
-            array_pop($value),
-            empty($subcode) ? null : array_pop($subcode),
+            array_last($value),
+            array_last($subcode),
         );
     }
 
