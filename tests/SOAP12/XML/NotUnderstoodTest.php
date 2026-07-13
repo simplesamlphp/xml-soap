@@ -49,9 +49,10 @@ final class NotUnderstoodTest extends TestCase
             QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($notUnderstood),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($notUnderstood);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

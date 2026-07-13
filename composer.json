@@ -10,15 +10,15 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.5",
         "ext-dom": "*",
         "ext-pcre": "*",
 
         "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/xml-common": "~2.8"
+        "simplesamlphp/xml-common": "~2.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "~1.11"
+        "simplesamlphp/simplesamlphp-test-framework": "~2.0"
     },
     "autoload": {
         "psr-4": {

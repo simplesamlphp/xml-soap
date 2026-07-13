@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP11\XML;
 
-use DOMElement;
+use Dom;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\XML\AbstractSoapElement;
@@ -34,11 +34,11 @@ final class EnvelopeTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    private static DOMElement $bodyContent;
+    private static Dom\Element $bodyContent;
 
-    private static DOMElement $headerContent;
+    private static Dom\Element $headerContent;
 
-    private static DOMElement $envelopeContent;
+    private static Dom\Element $envelopeContent;
 
 
     /**
@@ -76,9 +76,10 @@ final class EnvelopeTest extends TestCase
 
         $envelope = new Envelope($body, $header, [new Chunk(self::$envelopeContent)], [$domAttr]);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($envelope),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($envelope);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

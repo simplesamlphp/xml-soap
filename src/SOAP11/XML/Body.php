@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP11\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP11\Assert\Assert;
 use SimpleSAML\SOAP11\Exception\ProtocolViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -16,7 +16,7 @@ use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_diff;
 use function array_filter;
-use function array_pop;
+use function array_last;
 use function array_values;
 
 /**
@@ -61,7 +61,7 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
         }));
         Assert::maxCount($fault, 1, ProtocolViolationException::class);
 
-        $this->setFault(array_pop($fault));
+        $this->setFault(array_last($fault));
         $this->setElements(array_diff($children, $fault));
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -97,12 +97,12 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
     /*
      * Convert XML into an Body element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'Body', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Body::NS, InvalidDOMElementException::class);
@@ -117,9 +117,9 @@ final class Body extends AbstractSoapElement implements SchemaValidatableElement
     /**
      * Convert this Body to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this Body to.
+     * @param \Dom\Element|null $parent The element we should add this Body to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

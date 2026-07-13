@@ -49,9 +49,10 @@ final class TextTest extends TestCase
             StringValue::fromString('It\'s broken'),
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($text),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($text);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

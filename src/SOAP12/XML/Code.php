@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
@@ -51,12 +51,12 @@ final class Code extends AbstractSoapElement
     /**
      * Convert XML into an Code element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'Code', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Code::NS, InvalidDOMElementException::class);
@@ -68,8 +68,8 @@ final class Code extends AbstractSoapElement
         Assert::maxCount($subcode, 1, 'Cannot process more than one Subcode element.', TooManyElementsException::class);
 
         return new static(
-            array_pop($value),
-            empty($subcode) ? null : array_pop($subcode),
+            array_last($value),
+            array_last($subcode),
         );
     }
 
@@ -77,9 +77,9 @@ final class Code extends AbstractSoapElement
     /**
      * Convert this Code to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this code to.
+     * @param \Dom\Element|null $parent The element we should add this code to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

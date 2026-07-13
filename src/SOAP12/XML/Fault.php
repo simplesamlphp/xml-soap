@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP12\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP12\Assert\Assert;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
@@ -12,6 +12,8 @@ use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+
+use function array_last;
 
 /**
  * Class representing a env:Fault element.
@@ -90,12 +92,12 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
     /**
      * Convert XML into an Fault element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'Fault', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Fault::NS, InvalidDOMElementException::class);
@@ -116,11 +118,11 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
         Assert::maxCount($detail, 1, 'Cannot process more than one Detail element.', TooManyElementsException::class);
 
         return new self(
-            array_pop($code),
-            array_pop($reason),
-            empty($node) ? null : array_pop($node),
-            empty($role) ? null : array_pop($role),
-            empty($detail) ? null : array_pop($detail),
+            array_last($code),
+            array_last($reason),
+            array_last($node),
+            array_last($role),
+            array_last($detail),
         );
     }
 
@@ -128,9 +130,9 @@ final class Fault extends AbstractSoapElement implements SchemaValidatableElemen
     /**
      * Convert this Fault to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this fault to.
+     * @param \Dom\Element|null $parent The element we should add this fault to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 
