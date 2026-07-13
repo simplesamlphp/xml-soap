@@ -50,9 +50,10 @@ final class SubcodeTest extends TestCase
             ),
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($subcode),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($subcode);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

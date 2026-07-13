@@ -45,9 +45,10 @@ final class ValueTest extends TestCase
     {
         $value = Value::fromString('{' . C::NS_SOAP_ENV . '}env:Sender');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($value),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($value);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

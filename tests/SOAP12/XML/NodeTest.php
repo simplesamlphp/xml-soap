@@ -44,9 +44,10 @@ final class NodeTest extends TestCase
     {
         $node = Node::fromString('urn:x-simplesamlphp:namespace');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($node),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($node);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

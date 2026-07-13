@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\SOAP11\XML;
 
-use DOMElement;
+use Dom;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\Constants as C;
@@ -38,7 +38,7 @@ final class BodyTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    private static DOMElement $BodyContent;
+    private static Dom\Element $BodyContent;
 
 
     /**
@@ -66,10 +66,11 @@ final class BodyTest extends TestCase
         $body = new Body([new Chunk(self::$BodyContent)], [$domAttr]);
         $this->assertFalse($body->isEmptyElement());
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($body),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($body);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 
 

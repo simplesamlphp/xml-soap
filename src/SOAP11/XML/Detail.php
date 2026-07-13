@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\SOAP11\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SOAP11\Assert\Assert;
 use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -61,12 +61,12 @@ final class Detail extends AbstractElement
     /*
      * Convert XML into an Detail element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, 'detail', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Detail::NS, InvalidDOMElementException::class);
@@ -81,9 +81,9 @@ final class Detail extends AbstractElement
     /**
      * Convert this Detail to XML.
      *
-     * @param \DOMElement|null $parent The element we should add this Detail to.
+     * @param \Dom\Element|null $parent The element we should add this Detail to.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

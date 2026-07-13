@@ -47,9 +47,10 @@ final class SupportedEnvelopeTest extends TestCase
             QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($supportedEnvelope),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($supportedEnvelope);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }
