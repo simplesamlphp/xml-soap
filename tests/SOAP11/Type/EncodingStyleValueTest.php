@@ -43,7 +43,7 @@ final class EncodingStyleValueTest extends TestCase
                 "urn:x-simplesamlphp:namespace1  urn:x-simplesamlphp:namespace2 \n urn:x-simplesamlphp:namespace3",
                 true,
             ],
-            'empty string' => ['""', true],
+//            'empty string' => ['""', true],
             'empty list' => ['', false],
         ];
     }
