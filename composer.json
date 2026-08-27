@@ -14,10 +14,10 @@
         "ext-dom": "*",
         "ext-pcre": "*",
 
-        "simplesamlphp/assert": "~3.0",
         "simplesamlphp/xml-common": "~3.0"
     },
     "require-dev": {
+        "simplesamlphp/assert": "~3.0",
         "simplesamlphp/simplesamlphp-test-framework": "~2.0"
     },
     "autoload": {
